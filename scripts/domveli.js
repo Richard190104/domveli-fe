@@ -269,7 +269,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   function renderPromoBanners() {
     const root = document.getElementById('domveli-home');
 
-    if (!root || root.querySelector('.dv-promo-banners')) {
+    if (!root || root.querySelector(':scope > .dv-promo-banners:not([data-dv-static])')) {
       return;
     }
 
@@ -277,15 +277,19 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
     if (banners.length !== 3) return;
 
-    const section = createElement(
+    // Statická verzia z HTML (hero banner a rezervované miesto) sa len oživí.
+    const staticSection = root.querySelector(':scope > .dv-promo-banners[data-dv-static]');
+    const section = staticSection || createElement(
       'section',
       'dv-promo-banners'
     );
 
-    section.setAttribute(
-      'aria-label',
-      'Vianočné kolekcie DOMVELI'
-    );
+    if (!staticSection) {
+      section.setAttribute(
+        'aria-label',
+        'Vianočné kolekcie DOMVELI'
+      );
+    }
 
     function getValue(value, index) {
       if (Array.isArray(value)) {
@@ -306,58 +310,41 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
       if (!images.length) return;
 
-      const card = createElement(
+      const existing = staticSection
+        ? staticSection.querySelector(`.dv-promo-card--${bannerIndex + 1}`)
+        : null;
+      const card = existing || createElement(
         'article',
         `dv-promo-card dv-promo-card--${bannerIndex + 1}`
       );
 
-      const picture = createElement(
-        'img',
-        'dv-promo-image'
-      );
+      // Použije prvok zo statického HTML, ak existuje, inak ho vytvorí.
+      function part(parent, selector, tag, className) {
+        let element = parent.querySelector(selector);
 
-      picture.loading = bannerIndex === 0 ? 'eager' : 'lazy';
-      if (bannerIndex === 0) picture.fetchPriority = 'high';
+        if (!element) {
+          element = createElement(tag, className);
+          parent.appendChild(element);
+        }
 
-      const overlay = createElement(
-        'div',
-        'dv-promo-overlay'
-      );
+        return element;
+      }
 
-      const content = createElement(
-        'div',
-        'dv-promo-content'
-      );
+      const picture = part(card, '.dv-promo-image', 'img', 'dv-promo-image');
 
-      const uptitle = createElement(
-        'span',
-        'dv-promo-uptitle'
-      );
+      if (!existing) {
+        picture.loading = bannerIndex === 0 ? 'eager' : 'lazy';
+        if (bannerIndex === 0) picture.fetchPriority = 'high';
+      }
 
-      const title = createElement(
-        'h2',
-        'dv-promo-title'
-      );
+      part(card, '.dv-promo-overlay', 'div', 'dv-promo-overlay');
+      const content = part(card, '.dv-promo-content', 'div', 'dv-promo-content');
+      const uptitle = part(content, '.dv-promo-uptitle', 'span', 'dv-promo-uptitle');
+      const title = part(content, '.dv-promo-title', 'h2', 'dv-promo-title');
+      const description = part(content, '.dv-promo-description', 'p', 'dv-promo-description');
+      const button = part(content, '.dv-promo-button', 'a', 'dv-promo-button');
 
-      const description = createElement(
-        'p',
-        'dv-promo-description'
-      );
-
-      const button = createElement(
-        'a',
-        'dv-promo-button'
-      );
-
-      content.append(
-        uptitle,
-        title,
-        description,
-        button
-      );
-
-      card.append(picture, overlay, content);
-      section.appendChild(card);
+      if (!existing) section.appendChild(card);
 
       const slides = images.map((image, index) => ({
         image,
@@ -401,6 +388,8 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       }
     });
 
+    if (staticSection) return;
+
     const categories = root.querySelector(
       '.dv-categories'
     );
@@ -423,7 +412,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     const root = document.getElementById('domveli-home');
     const config = DOMVELI_CONFIG.sets;
 
-    if (!root || !config || root.querySelector('.dv-sets')) {
+    if (!root || !config || root.querySelector(':scope > .dv-sets:not([data-dv-static])')) {
       return;
     }
 
@@ -610,7 +599,8 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     const config = options.config;
 
     if (!root || !config || !Array.isArray(config.products) ||
-        !config.products.length || root.querySelector('.' + options.className)) {
+        !config.products.length ||
+        root.querySelector(':scope > .' + options.className + ':not([data-dv-static])')) {
       return;
     }
 
@@ -1032,7 +1022,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     if (
       !root ||
       !config ||
-      root.querySelector('.dv-blog')
+      root.querySelector(':scope > .dv-blog:not([data-dv-static])')
     ) {
       return;
     }
@@ -1212,6 +1202,65 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     'dv-story'
   ];
 
+  /* ============================================================
+     STATICKÉ SEKCIE Z HTML
+     Nadpisy, úvody a SEO texty sú priamo v HTML v Shoptete
+     (sekcie s atribútom data-dv-static). JS z nich doplní len dynamické
+     časti (produkty, karusely) a duplicitné nadpisy zahodí.
+     ============================================================ */
+
+  const STATIC_ONLY = ['dv-feature', 'dv-seo', 'dv-story'];
+  const HYBRID = ['dv-favorites', 'dv-deals', 'dv-sets', 'dv-categories', 'dv-blog'];
+  const INTRO = '.dv-sets-intro, .dv-blog-intro';
+
+  function sectionKey(section) {
+    return STATIC_ONLY.concat(HYBRID).find(
+      key => section.classList.contains(key)
+    );
+  }
+
+  function reconcileStatic(root) {
+    root.querySelectorAll(':scope > [data-dv-static]').forEach(staticSection => {
+      const key = sectionKey(staticSection);
+
+      if (!key) return;
+
+      const built = Array.from(root.children).find(
+        child => child !== staticSection &&
+          !child.hasAttribute('data-dv-static') &&
+          sectionKey(child) === key
+      );
+
+      if (!built) return;
+
+      if (STATIC_ONLY.includes(key)) {
+        built.remove();
+        return;
+      }
+
+      const staticIntro = staticSection.querySelector(':scope > ' + INTRO.split(', ').join(', :scope > '));
+      const builtIntro = built.querySelector(':scope > ' + INTRO.split(', ').join(', :scope > '));
+
+      Array.from(staticSection.children).forEach(child => {
+        if (child !== staticIntro) child.remove();
+      });
+
+      Array.from(built.children).forEach(child => {
+        if (child !== builtIntro) staticSection.appendChild(child);
+      });
+
+      // Šípky karuselu patria do úvodného stĺpca.
+      const controls = builtIntro && builtIntro.querySelector('.dv-carousel-controls');
+
+      if (controls && staticIntro) {
+        if (key === 'dv-blog') controls.classList.add('dv-blog-controls');
+        staticIntro.appendChild(controls);
+      }
+
+      built.remove();
+    });
+  }
+
   function applySectionOrder(root) {
     SECTION_ORDER.forEach(className => {
       const section = Array.from(root.children).find(
@@ -1266,6 +1315,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderFeature(root);
     renderInspirationBlog(root);
     renderStory(root);
+    reconcileStatic(root);
     applySectionOrder(root);
   }
 

@@ -1775,3 +1775,17 @@ body .alert-info {
         margin-bottom: 36px;
     }
 }
+
+/* Odkazy v SEO texte (interné odkazy na hlavné kategórie). */
+#domveli-home .dv-seo-text a,
+#domveli-home .dv-seo-item-text a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--dv-gold);
+    text-underline-offset: 3px;
+}
+#domveli-home .dv-seo-text a:hover,
+#domveli-home .dv-seo-item-text a:hover {
+    color: var(--dv-gold);
+}

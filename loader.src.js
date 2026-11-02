@@ -39,6 +39,8 @@
   FILES.forEach(function (f) {
     if (f.when && !b.contains(f.when)) return;
     if (f.css) {
+      // CSS, ktoré je už v hlavičke Shoptetu, sa nesťahuje druhýkrát.
+      if (document.querySelector('link[href*="' + BASE + f.css + '"]')) return;
       var l = document.createElement('link');
       l.rel = 'stylesheet';
       l.href = BASE + f.css + '?v=' + V;

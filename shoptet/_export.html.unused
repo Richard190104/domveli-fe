@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>DOMVELI – export homepage pre Shoptet</title>
+<link rel="stylesheet" href="css/domveli.css">
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #fff; }
+  #dv-export-bar { position: sticky; top: 0; z-index: 10; padding: 12px 16px; background: #211913; color: #fff; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  #dv-export-bar button { padding: 8px 16px; border: 0; border-radius: 4px; background: #c99a56; color: #211913; font-weight: 700; cursor: pointer; }
+  #dv-export-bar button:disabled { opacity: .5; cursor: default; }
+  #dv-export-status { font-size: 14px; }
+  #dv-export-code { display: block; width: 100%; box-sizing: border-box; height: 120px; border: 0; border-bottom: 2px solid #c99a56; padding: 8px 16px; font: 12px monospace; }
+</style>
+</head>
+<body>
+<div id="dv-export-bar">
+  <button id="dv-export-copy" type="button" disabled>Kopírovať HTML</button>
+  <span id="dv-export-status">Vykresľujem z aktuálneho configu…</span>
+</div>
+<textarea id="dv-export-code" readonly spellcheck="false"></textarea>
+<div id="domveli-home"></div>
+
+<script type="module" src="scripts/domveli.js"></script>
+<script type="module">
+  // Po vykreslení vyberie HTML sekcie, ktoré sa vloží do Shoptetu (Titulná stránka).
+  const root = document.getElementById('domveli-home');
+  const code = document.getElementById('dv-export-code');
+  const copy = document.getElementById('dv-export-copy');
+  const status = document.getElementById('dv-export-status');
+
+  const wait = setInterval(() => {
+    if (root.dataset.dvInitialized !== 'true' || !root.querySelector('section')) return;
+    clearInterval(wait);
+    // Chvíľa navyše, aby sa dokončili asynchrónne časti vykresľovania.
+    setTimeout(() => {
+      const html = '<div id="domveli-home" data-dv-static="true">\n' + root.innerHTML + '\n</div>';
+      code.value = html;
+      copy.disabled = false;
+      status.textContent = 'Hotovo, ' + Math.round(html.length / 1024) + ' KB. Vlož ho do Shoptetu namiesto bloku <div id="domveli-home">.';
+    }, 800);
+  }, 100);
+
+  copy.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(code.value); }
+    catch { code.select(); document.execCommand('copy'); }
+    status.textContent = 'Skopírované.';
+  });
+</script>
+</body>
+</html>
