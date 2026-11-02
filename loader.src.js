@@ -22,6 +22,7 @@
     { js: 'scripts/domveli-footer.js' },
     { js: 'scripts/domveli-notifications.js' },
     { js: 'scripts/domveli-cart-popup.js' },
+    { js: 'scripts/domveli-menu-alt.js' },
     { js: 'scripts/domveli-share.js', when: 'in-blog' },
     { js: 'scripts/domveli.js', when: 'in-index' },
     { js: 'scripts/domveli-listing.js', when: 'type-category' },
