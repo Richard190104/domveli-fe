@@ -317,6 +317,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       );
 
       picture.loading = bannerIndex === 0 ? 'eager' : 'lazy';
+      if (bannerIndex === 0) picture.fetchPriority = 'high';
 
       const overlay = createElement(
         'div',
