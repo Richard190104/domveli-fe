@@ -1,0 +1,51 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Syntax check
+        run: |
+          mkdir -p /tmp/check
+          for f in scripts/*.js loader.src.js; do
+            cp "$f" "/tmp/check/$(basename "$f" .js).mjs"
+            node --check "/tmp/check/$(basename "$f" .js).mjs"
+          done
+
+      - name: Build
+        run: |
+          VER="${GITHUB_SHA::8}"
+          mkdir -p _site
+          cp -r scripts css _site/
+          sed -i "s/?v=1/?v=$VER/g" _site/scripts/*.js
+          sed "s/__VERSION__/$VER/g" loader.src.js > _site/loader.js
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
