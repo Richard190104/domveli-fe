@@ -189,31 +189,17 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
      3b. SEO BLOK – VIANOČNÉ OSVETLENIE A DEKORÁCIE
      ============================================================ */
 
-  function renderChristmasSeo(root) {
-    const section = node('section', 'dv-section dv-seo');
-    const inner = node('div', 'dv-seo-inner');
-
-    const intro = node('div', 'dv-seo-intro');
-    append(
-      intro,
-      node('div', 'dv-kicker', 'DOMVELI'),
-      node('h2', 'dv-heading', 'Vianočné LED osvetlenie a dekorácie pre váš domov'),
-      node(
-        'p',
-        'dv-seo-subtitle',
-        'Vytvorte si čarovnú vianočnú atmosféru s exkluzívnym osvetlením a dekoráciami'
-      ),
-      node(
-        'p',
-        'dv-seo-text',
-        'Hľadáte spôsob, ako premeniť svoj domov na oázu sviatočnej pohody? ' +
-        'V e-shope Domveli prinášame starostlivo vyberané vianočné osvetlenie a dekorácie, ' +
-        'ktoré dodajú vášmu interiéru aj exteriéru hrejivý šmrnc. Či už plánujete kompletnú výzdobu, ' +
-        'alebo zháňate spoľahlivé vonkajšie vianočné osvetlenie domu, u nás nakúpite rýchlo, bezpečne a s istotou.'
-      )
-    );
-
-    const items = [
+  // Záložné texty, ak config nemá sekciu seo.
+  const DEFAULT_SEO = {
+    kicker: 'DOMVELI',
+    title: 'Vianočné LED osvetlenie a dekorácie pre váš domov',
+    subtitle: 'Vytvorte si čarovnú vianočnú atmosféru s exkluzívnym osvetlením a dekoráciami',
+    text:
+      'Hľadáte spôsob, ako premeniť svoj domov na oázu sviatočnej pohody? ' +
+      'V e-shope Domveli prinášame starostlivo vyberané vianočné osvetlenie a dekorácie, ' +
+      'ktoré dodajú vášmu interiéru aj exteriéru hrejivý šmrnc. Či už plánujete kompletnú výzdobu, ' +
+      'alebo zháňate spoľahlivé vonkajšie vianočné osvetlenie domu, u nás nakúpite rýchlo, bezpečne a s istotou.',
+    items: [
       {
         title: 'Výhodné vianočné sety dekorácií',
         text: 'Ušetrite čas aj peniaze. Naše tematické vianočné sety na balkón aj stôl k sebe farebne a štýlovo dokonale pasujú.'
@@ -226,7 +212,24 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
         title: 'Odborné poradenstvo a tipy',
         text: 'Neviete, koľko svetielok potrebujete na stromček? Prečítajte si náš praktický sprievodca výberom.'
       }
-    ];
+    ]
+  };
+
+  function renderChristmasSeo(root) {
+    const seo = Object.assign({}, DEFAULT_SEO, DOMVELI_CONFIG.seo || {});
+    const items = Array.isArray(seo.items) ? seo.items : DEFAULT_SEO.items;
+
+    const section = node('section', 'dv-section dv-seo');
+    const inner = node('div', 'dv-seo-inner');
+
+    const intro = node('div', 'dv-seo-intro');
+    append(
+      intro,
+      node('div', 'dv-kicker', seo.kicker),
+      node('h2', 'dv-heading', seo.title),
+      node('p', 'dv-seo-subtitle', seo.subtitle),
+      node('p', 'dv-seo-text', seo.text)
+    );
 
     const grid = node('div', 'dv-seo-grid');
     items.forEach((item, index) => {
