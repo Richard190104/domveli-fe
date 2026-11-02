@@ -30,6 +30,12 @@
     { js: 'scripts/domveli-blog.js', when: 'in-blog' }
   ];
 
+  // Konfigurácia sa začne sťahovať hneď, nie až po načítaní modulov.
+  var CONFIG_URL = 'https://richard190104.github.io/domveli-be/config.json';
+  if (b.contains('in-index')) {
+    try { window.__dvConfigFetch = fetch(CONFIG_URL, { cache: 'no-cache', credentials: 'omit' }); } catch (e) {}
+  }
+
   FILES.forEach(function (f) {
     if (f.when && !b.contains(f.when)) return;
     if (f.css) {
@@ -40,6 +46,10 @@
     }
     if (f.js) {
       var s = document.createElement('script');
+      var pl = document.createElement('link');
+      pl.rel = 'modulepreload';
+      pl.href = BASE + f.js + '?v=' + V;
+      document.head.appendChild(pl);
       s.type = 'module';
       s.src = BASE + f.js + '?v=' + V;
       document.head.appendChild(s);

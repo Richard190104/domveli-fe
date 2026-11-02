@@ -15,11 +15,18 @@ async function fetchConfig() {
   const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
-    const response = await fetch(CONFIG_URL, {
-      cache: 'no-cache',
-      credentials: 'omit',
-      signal: controller.signal
-    });
+    let response;
+    try {
+      response = window.__dvConfigFetch ? await window.__dvConfigFetch : null;
+    } catch { response = null; }
+    window.__dvConfigFetch = null;
+    if (!response || !response.ok) {
+      response = await fetch(CONFIG_URL, {
+        cache: 'no-cache',
+        credentials: 'omit',
+        signal: controller.signal
+      });
+    }
 
     if (!response.ok) {
       throw new Error(`Konfigurácia: HTTP ${response.status}`);
