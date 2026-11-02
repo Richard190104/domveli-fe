@@ -1254,7 +1254,8 @@ body .alert-info {
 }
 
 .welcome-wrapper{
-    padding-top: 0 !important; 
+    padding-top: 0 !important;
+    padding-bottom: 0 !important; 
 }
 .navigation-home-icon-wrapper{
     margin-top: 20px;
