@@ -755,166 +755,24 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
      7. AKO TO FUNGUJE
      ============================================================ */
 
-  function renderHowItWorks() {
-    const root = document.getElementById('domveli-home');
+  // Shoptet inline SVG z vloženého HTML odstráni, preto sa ikony krokov
+  // doplnia až tu (text a nadpisy sú v HTML).
+  const HOW_ICONS = [
+    '<path d="M3 11h18l-2 10H5L3 11Z"/><path d="m8 11 4-8 4 8"/><path d="M9 15v3M15 15v3"/>',
+    '<circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M2 3h2l3 12h12l3-9H5"/>',
+    '<path d="M1 5h13v12H1z"/><path d="M14 9h4l4 4v4h-8"/><circle cx="5" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>',
+    '<path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z"/><path d="M19 2v4M17 4h4"/>'
+  ];
 
-    if (!root || root.querySelector('.dv-how')) {
-      return;
-    }
+  function fillHowIcons(root) {
+    root.querySelectorAll('.dv-how .dv-how-icon').forEach((wrap, index) => {
+      if (wrap.querySelector('svg') || !HOW_ICONS[index]) return;
 
-    const steps = [
-      {
-        icon: 'basket',
-        title: 'Vyberte si dekorácie',
-        description: 'Objavte osvetlenie a vianočné doplnky.'
-      },
-      {
-        icon: 'cart',
-        title: 'Vložte do košíka',
-        description: 'Vyberte produkty alebo výhodné sety.'
-      },
-      {
-        icon: 'truck',
-        title: 'Doručíme k vám',
-        description: 'Vašu objednávku pripravíme na doručenie.'
-      },
-      {
-        icon: 'sparkles',
-        title: 'Rozžiarte svoj domov',
-        description: 'Vytvorte si čarovnú vianočnú atmosféru.'
-      }
-    ];
-
-    const icons = {
-      basket: `
-        <path d="M3 11h18l-2 10H5L3 11Z"/>
-        <path d="m8 11 4-8 4 8"/>
-        <path d="M9 15v3M15 15v3"/>
-      `,
-      cart: `
-        <circle cx="9" cy="20" r="1"/>
-        <circle cx="19" cy="20" r="1"/>
-        <path d="M2 3h2l3 12h12l3-9H5"/>
-      `,
-      truck: `
-        <path d="M1 5h13v12H1z"/>
-        <path d="M14 9h4l4 4v4h-8"/>
-        <circle cx="5" cy="18" r="2"/>
-        <circle cx="18" cy="18" r="2"/>
-      `,
-      sparkles: `
-        <path d="m12 2 2.2 7.8L22 12l-7.8 2.2L12 22l-2.2-7.8L2 12l7.8-2.2L12 2Z"/>
-        <path d="M19 2v4M17 4h4"/>
-      `
-    };
-
-    const section = createElement(
-      'section',
-      'dv-how dv-section'
-    );
-
-    const header = createElement(
-      'div',
-      'dv-how-header'
-    );
-
-    const kicker = createElement(
-      'span',
-      'dv-kicker',
-      '4 JEDNODUCHÉ KROKY'
-    );
-
-    const heading = createElement(
-      'h2',
-      'dv-how-heading',
-      'Vianočná atmosféra začína u nás'
-    );
-
-    const subtitle = createElement(
-      'a',
-      'dv-how-subtitle',
-      'Nakupovať v domveli je jednoduché',
-      '/ako-nakupovat/'
-    );
-
-    header.append(
-      kicker,
-      heading,
-      subtitle
-    );
-
-    const grid = createElement(
-      'div',
-      'dv-how-grid'
-    );
-
-    steps.forEach((step, index) => {
-      const item = createElement(
-        'div',
-        'dv-how-step'
-      );
-
-      const iconWrap = createElement(
-        'div',
-        'dv-how-icon'
-      );
-
-      iconWrap.innerHTML = `
-        <svg
-          viewBox="0 0 24 24"
-          width="56"
-          height="56"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          ${icons[step.icon]}
-        </svg>
-      `;
-
-      const number = createElement(
-        'span',
-        'dv-how-number',
-        String(index + 1) + '. krok'
-      );
-
-      const title = createElement(
-        'h3',
-        'dv-how-step-title',
-        step.title
-      );
-
-      const description = createElement(
-        'p',
-        'dv-how-step-description',
-        step.description
-      );
-
-      item.append(
-        iconWrap,
-        number,
-        title,
-        description
-      );
-
-      grid.appendChild(item);
+      wrap.innerHTML =
+        '<svg viewBox="0 0 24 24" width="56" height="56" fill="none" ' +
+        'stroke="currentColor" stroke-width="1.5" stroke-linecap="round" ' +
+        'stroke-linejoin="round" aria-hidden="true">' + HOW_ICONS[index] + '</svg>';
     });
-
-    section.append(header, grid);
-
-    const story = root.querySelector('.dv-story');
-
-    if (story) {
-      story.insertAdjacentElement(
-        'beforebegin',
-        section
-      );
-    } else {
-      root.appendChild(section);
-    }
   }
 
   /* ============================================================
@@ -1282,6 +1140,9 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
     if (!root) return;
 
+    // Ikony sa dajú doplniť hneď, bez čakania na config.
+    fillHowIcons(root);
+
     if (root.dataset.dvInitialized === 'true') {
       return;
     }
@@ -1311,7 +1172,6 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderChristmasSeo(root);
     renderFavorites();
     renderDeals();
-    renderHowItWorks();
     renderFeature(root);
     renderInspirationBlog(root);
     renderStory(root);
