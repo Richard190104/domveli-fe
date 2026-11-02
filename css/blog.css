@@ -1,0 +1,317 @@
+/* ==========================================
+   DOMVELI – BLOG / VÝPIS ČLÁNKOV
+   Samostatný súbor blog.css
+   Ľavý bočný panel Shoptetu zostáva zachovaný.
+   ========================================== */
+
+body.in-blog:has(#newsWrapper) {
+    --dv-blog-gold: #c99a56;
+    --dv-blog-dark: #241c17;
+    --dv-blog-muted: #74695f;
+    --dv-blog-cream: #f5f0e8;
+}
+
+/* Zachovať pôvodné rozloženie Shoptetu so sidebarom. */
+body.in-blog:has(#newsWrapper) #content {
+    min-width: 0;
+}
+
+/* Nadpis blogu. */
+body.in-blog:has(#newsWrapper) #content h1 {
+    margin: 20px 0 36px;
+    color: var(--dv-blog-dark);
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(32px, 3.2vw, 46px);
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* Výpis článkov v dostupnej šírke vedľa bočného panelu. */
+body.in-blog #newsWrapper {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 42px 24px;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    align-items: start;
+}
+
+/* Reset pôvodných rozmerov kariet Shoptetu. */
+body.in-blog #newsWrapper .news-item {
+    display: flex !important;
+    flex-direction: column;
+    float: none !important;
+    clear: none !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    overflow: visible;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Obrázok pridáva domveli-blog.js, ak ho má článok vo výpise. */
+body.in-blog #newsWrapper .dv-blog-cover {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin: 0 0 18px;
+    overflow: hidden;
+    background: var(--dv-blog-cream);
+}
+
+body.in-blog #newsWrapper .dv-blog-cover img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+body.in-blog #newsWrapper .dv-blog-cover:hover img {
+    transform: scale(1.035);
+}
+
+/* Názov článku. */
+body.in-blog #newsWrapper .news-item > h2 {
+    width: 100%;
+    margin: 0 0 14px;
+    padding: 0;
+    color: var(--dv-blog-dark);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.38;
+    hyphens: none;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+body.in-blog #newsWrapper .news-item > h2 a {
+    color: inherit;
+    text-decoration: none;
+}
+
+body.in-blog #newsWrapper .news-item > h2 a:hover {
+    color: var(--dv-blog-gold);
+}
+
+/* Krátka ukážka textu namiesto celého článku. */
+body.in-blog #newsWrapper .news-item .description {
+    width: 100%;
+    min-width: 0;
+    margin: 0 0 15px;
+    color: var(--dv-blog-muted);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+body.in-blog #newsWrapper .news-item .description > * {
+    display: none !important;
+}
+
+body.in-blog #newsWrapper .news-item .description > p:first-of-type {
+    display: -webkit-box !important;
+    margin: 0;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+}
+
+/* Odkaz pridáva domveli-blog.js. */
+body.in-blog #newsWrapper .dv-blog-readmore {
+    display: inline-block;
+    align-self: flex-start;
+    margin-top: auto;
+    color: #b78340;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+}
+
+body.in-blog #newsWrapper .dv-blog-readmore:hover {
+    color: var(--dv-blog-dark);
+    text-decoration: underline;
+}
+
+/* Stredne široký desktop: pri sidebare sú vhodnejšie dve karty. */
+@media (max-width: 1439px) {
+    body.in-blog #newsWrapper {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 36px 22px;
+    }
+}
+
+/* Úzke obrazovky a mobil. */
+@media (max-width: 767px) {
+    body.in-blog:has(#newsWrapper) #content h1 {
+        margin: 15px 0 28px;
+        font-size: 34px;
+    }
+
+    body.in-blog #newsWrapper {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 34px;
+    }
+
+    body.in-blog #newsWrapper .news-item > h2 {
+        font-size: 19px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.in-blog #newsWrapper .dv-blog-cover img {
+        transition: none;
+    }
+}
+
+/* ==========================================
+   DOMVELI BLOG – VYŠŠIE FOTOGRAFIE
+   ========================================== */
+
+/* Obrázky vykresľované priamo Shoptetom */
+body.in-blog #newsWrapper .news-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Ak je obrázok vložený do odkazu */
+body.in-blog #newsWrapper .news-item a:has(> img) {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 18px;
+}
+
+/* Pre prípad, že by sa použil vlastný obal obrázka */
+body.in-blog #newsWrapper .dv-blog-cover {
+    aspect-ratio: 4 / 5;
+}
+
+/* ==========================================
+   DOMVELI BLOG – JEDNOTNÉ OBRÁZKY
+   ========================================== */
+
+body.in-blog #newsWrapper .news-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+}
+
+body.in-blog #newsWrapper .news-item a:has(> img) {
+    display: block;
+    width: 100%;
+    margin-bottom: 18px;
+    overflow: hidden;
+}
+
+/* ==========================================
+   DOMVELI BLOG – PLACEHOLDER
+   ========================================== */
+
+body.in-blog #newsWrapper .dv-blog-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    margin-bottom: 18px;
+    padding: 20px;
+    overflow: hidden;
+    border: 1px solid #e9dfd2;
+    background: linear-gradient(
+        145deg,
+        #f7f2eb 0%,
+        #e9dfd1 100%
+    );
+    text-align: center;
+    text-decoration: none;
+}
+
+body.in-blog #newsWrapper .dv-blog-placeholder-icon {
+    margin-bottom: 12px;
+    color: #c99a56;
+    font-size: 42px;
+    line-height: 1;
+}
+
+body.in-blog #newsWrapper .dv-blog-placeholder-text {
+    color: #8a6945;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+body.in-blog #newsWrapper .dv-blog-placeholder:hover {
+    border-color: #c99a56;
+}
+
+/* ==========================================
+   DOMVELI BLOG – ZAROVNANIE KARiet
+   ========================================== */
+
+body.in-blog #newsWrapper .news-item {
+    display: flex !important;
+    flex-direction: column;
+    height: 100% !important;
+    min-width: 0;
+}
+
+body.in-blog #newsWrapper .dv-blog-readmore {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
+    min-height: 43px;
+    margin-top: auto;
+    padding: 12px 20px;
+    color: #241c17;
+    background: #c99a56;
+    border: 1px solid #c99a56;
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+body.in-blog #newsWrapper .dv-blog-readmore:hover {
+    color: #ffffff;
+    background: #a9793e;
+    border-color: #a9793e;
+    text-decoration: none;
+}
+
+body.in-blog .next-prev a.btn.btn-default {
+    background-color: var(--dv-button-background, #c99a56) !important;
+    border-color: var(--dv-button-background, #c99a56) !important;
+    color: var(--dv-button-text, #30241c) !important;
+}
+
+body.in-blog .next-prev a.btn.btn-default:hover,
+body.in-blog .next-prev a.btn.btn-default:focus-visible {
+    background-color: var(--dv-button-hover-background, #a7793c) !important;
+    border-color: var(--dv-button-hover-background, #a7793c) !important;
+    color: var(--dv-button-text, #30241c) !important;
+}

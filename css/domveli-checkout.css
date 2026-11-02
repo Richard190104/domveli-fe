@@ -1,0 +1,63 @@
+
+/* =========================================
+   DOMVELI | Checkout colors | v1.0
+   Kosik + doprava/platba + udaje zakaznika
+   ========================================= */
+
+body.ordering-process {
+  --dv-checkout-gold: #b98b4b;
+  --dv-checkout-gold-hover: #a5793e;
+  --dv-checkout-brown: #30251d;
+  --dv-checkout-cream: #faf6f1;
+  --dv-checkout-border: #e8d9c7;
+}
+
+/* Hlavne tlacidla – Pokracovat / Objednat */
+body.ordering-process .next-step .btn-conversion {
+  background: var(--dv-checkout-gold) !important;
+  border-color: var(--dv-checkout-gold) !important;
+  color: #fff !important;
+}
+
+body.ordering-process .next-step .btn-conversion:hover,
+body.ordering-process .next-step .btn-conversion:focus-visible {
+  background: var(--dv-checkout-gold-hover) !important;
+  border-color: var(--dv-checkout-gold-hover) !important;
+  color: #fff !important;
+}
+
+/* Aktivny krok – cislo v hornom ukazovateli */
+body.ordering-process .cart-header .step.active::before {
+  background: var(--dv-checkout-gold) !important;
+  border-color: var(--dv-checkout-gold) !important;
+  color: #fff !important;
+}
+
+/* Aktivny krok – aj pri inom vykresleni Shoptetu */
+body.ordering-process .cart-header .step.active strong::before {
+  background-color: var(--dv-checkout-gold) !important;
+  border-color: var(--dv-checkout-gold) !important;
+  color: #fff !important;
+}
+
+/* Dokoncene kroky */
+body.ordering-process .cart-header .step.completed::before {
+  border-color: var(--dv-checkout-gold) !important;
+  color: var(--dv-checkout-gold) !important;
+}
+
+/* Jemne zladenie odkazov v navigacii objednavky */
+body.ordering-process .cart-header a:hover {
+  color: var(--dv-checkout-gold-hover) !important;
+}
+
+/* Pristupnost – viditelne oznacenie pri ovladani klavesnicou */
+body.ordering-process .next-step .btn-conversion:focus-visible {
+  outline: 2px solid var(--dv-checkout-brown);
+  outline-offset: 3px;
+}
+
+body.ordering-process ol.cart-header li.completed a:before{
+    background-color: rgb(223, 223, 223);
+    border-color: black;
+}

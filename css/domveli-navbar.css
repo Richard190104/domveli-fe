@@ -1,0 +1,1160 @@
+/* DOMVELI – bezpečná úprava hlavnej navigácie (Shoptet Disco)
+   Nemení pozíciu, šírku, display ani štruktúru podmenu. */
+:root {
+  --dv-button-background: #c99a56;
+  --dv-button-hover-background: #a7793c;
+  --dv-button-text: #30241c;
+}
+
+a.btn-conversion,
+button.btn-conversion,
+input.btn-conversion,
+a.btn.btn-primary,
+button.btn.btn-primary,
+input.btn.btn-primary {
+  background-color: var(--dv-button-background) !important;
+  border-color: var(--dv-button-background) !important;
+  color: var(--dv-button-text) !important;
+}
+
+a.btn-conversion:hover,
+a.btn-conversion:focus-visible,
+button.btn-conversion:hover,
+button.btn-conversion:focus-visible,
+input.btn-conversion:hover,
+input.btn-conversion:focus-visible,
+a.btn.btn-primary:hover,
+a.btn.btn-primary:focus-visible,
+button.btn.btn-primary:hover,
+button.btn.btn-primary:focus-visible,
+input.btn.btn-primary:hover,
+input.btn.btn-primary:focus-visible {
+  background-color: var(--dv-button-hover-background) !important;
+  border-color: var(--dv-button-hover-background) !important;
+}
+
+#header .header-bottom {
+  background: #fbf8f3;
+  border-top: 1px solid #eee5da;
+  border-bottom: 1px solid #e8ddce;
+  box-shadow: 0 3px 14px rgba(39,27,17,.045);
+  z-index: 1;
+}
+
+#header #navigation,
+#header #navigation .menu-level-1 {
+  background-color: #fbf8f3;
+}
+
+@media (min-width: 768px) {
+  #header #navigation .menu-level-1 > li > a {
+    color: #30241c;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-decoration: none;
+    transition: color .2s ease, background-color .2s ease;
+  }
+
+  #header #navigation .menu-level-1 > li > a b {
+    font: inherit;
+  }
+
+  #header #navigation .menu-level-1 > li:hover > a,
+  #header #navigation .menu-level-1 > li > a:focus-visible {
+    color: #a77637;
+    background-color: rgba(201,154,86,.07);
+  }
+
+  /* Iba farby a typografia podmenu, nie jeho geometria. */
+  #header #navigation .menu-level-2 {
+    background-color: #fffdfa;
+    border-color: #eadfce;
+  }
+
+  #header #navigation .menu-level-2 > li > div a {
+    color: #30241c;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  #header #navigation .menu-level-2 > li > div a:hover {
+    color: #a77637;
+  }
+}
+
+/* Desktop: súvislá hover plocha od hlavnej položky až po podmenu.
+   Pás má natívne 68 px; vycentrované 56 px položky nechávali 6 px medzeru. */
+@media (min-width: 992px) {
+  #header #navigation .navigation-in {
+    align-items: stretch;
+  }
+
+  #header #navigation .menu-level-1,
+  #header #navigation .menu-level-1 > li,
+  #header #navigation .menu-level-1 > li > a {
+    height: 100%;
+  }
+
+  #header #navigation .menu-level-1 > li > .menu-level-2 {
+    top: 100% !important;
+    margin-top: 0;
+  }
+
+  #header #navigation .menu-level-1 > li:hover > .menu-level-2,
+  #header #navigation .menu-level-1 > li:focus-within > .menu-level-2 {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  #header #navigation .menu-level-1 > li > a {
+    color: #30241c;
+    font-family: 'Mulish', Arial, sans-serif;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #header #navigation .menu-level-1 > li > a {
+    transition: none;
+  }
+}
+
+/* DOMVELI – zvýraznenie celej navigácie a rozmazanie pozadia.
+   Načítajte až po domveli-navbar-fixed.css. */
+
+@media (min-width: 992px) {
+    /* Celý header musí byť nad rozmazávacou vrstvou. */
+    #header {
+        position: relative;
+        z-index: 1002;
+    }
+
+    /* Navigácia a jej podmenu musia byť nad rozmazávacou vrstvou. */
+    #navigation {
+        position: relative;
+        z-index: 2;
+        transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    /* Zvýrazní sa celý pás, nielen položka pod kurzorom. */
+    #navigation:hover,
+    #navigation:focus-within {
+        background-color: #fbf6ee;
+        box-shadow: inset 0 -2px 0 #c99a56;
+    }
+
+    /* Rozmazávacia vrstva – iba pri otvorenom podmenu. */
+    body:has(#navigation .menu-level-1 > li:hover .menu-level-2)::after,
+    body:has(#navigation .menu-level-1 > li:focus-within .menu-level-2)::after {
+        content: '';
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(24, 18, 13, 0.22);
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+        pointer-events: none;
+    }
+
+    /* Nech ostane navigácia vrátane dropdownu ostrá. */
+    #navigation .menu-level-2 {
+        z-index: 3;
+    }
+
+    /* #cart-widget je mimo #header, preto potrebuje vlastnú vrstvu nad ním. */
+    #cart-widget.popup-widget {
+        z-index: 1005 !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #navigation {
+        transition: none;
+    }
+}
+
+*,
+*::before,
+*::after {
+    border-radius: 0 !important;
+}
+
+.top-navigation-menu-trigger{
+  display: none !important;
+}
+
+/* ==========================================================
+   DOMVELI – jemný redizajn hlavičky Shoptet
+   ========================================================== */
+
+:root {
+  --dv-header-bg: #fffdfa;
+  --dv-header-cream: #f7f2eb;
+  --dv-header-text: #30251e;
+  --dv-header-muted: #73685e;
+  --dv-header-border: #e5dace;
+  --dv-header-gold: #b98b4b;
+}
+
+/* Horná informačná lišta */
+
+.top-navigation-bar {
+  color: var(--dv-header-muted);
+  background: var(--dv-header-cream);
+  border-bottom: 1px solid var(--dv-header-border);
+  box-shadow: none;
+}
+
+.top-navigation-bar .top-navigation-bar-menu > li > a,
+.top-navigation-bar .top-nav-button {
+  color: var(--dv-header-muted);
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.top-navigation-bar .top-navigation-bar-menu > li > a:hover,
+.top-navigation-bar .top-nav-button:hover {
+  color: var(--dv-header-gold);
+}
+
+/* Základ hlavičky */
+
+#header {
+  color: var(--dv-header-text);
+  background: var(--dv-header-bg);
+}
+
+#header .header-top {
+  background: var(--dv-header-bg);
+  box-shadow: none;
+}
+
+#header .site-name a {
+  display: inline-block;
+}
+
+#header .site-name img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Vyhľadávanie */
+
+#header #formSearchForm {
+  margin: 0;
+}
+
+#header #formSearchForm fieldset {
+  position: relative;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#header #formSearchForm .search-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 62px 0 20px;
+  color: var(--dv-header-text);
+  background: var(--dv-header-cream);
+  border: 1px solid var(--dv-header-border);
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+
+#header #formSearchForm .search-input::placeholder {
+  color: var(--dv-header-muted);
+  opacity: 1;
+}
+
+#header #formSearchForm .search-input:focus {
+  background: #fff;
+  border-color: var(--dv-header-gold);
+  outline: 2px solid rgba(185, 139, 75, .18);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Nahrádza pôvodnú dekoratívnu ikonu skutočným tlačidlom */
+
+#header #formSearchForm .search-input-icon {
+  display: none;
+}
+
+#header #formSearchForm .search-button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  bottom: 1px;
+  display: block;
+  width: 52px;
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  color: var(--dv-header-text);
+  background-color: transparent;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2330251e' stroke-width='1.5' stroke-linecap='round'%3E%3Ccircle cx='10.5' cy='10.5' r='7.5'/%3E%3Cpath d='m16 16 5 5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 0;
+  cursor: pointer;
+}
+
+#header #formSearchForm .search-button::before,
+#header #formSearchForm .search-button::after {
+  content: none;
+}
+
+#header #formSearchForm .search-button:hover {
+  background-color: rgba(185, 139, 75, .09);
+}
+
+/* Košík a mobilné ovládacie prvky */
+
+#header .navigation-buttons > a {
+  color: var(--dv-header-text);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#header .navigation-buttons > a:hover {
+  color: var(--dv-header-gold);
+}
+
+#header .navigation-buttons .cart-count {
+  background: transparent;
+  border-color: transparent;
+}
+
+#header .navigation-buttons .cart-price {
+  color: inherit;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Navigačný pás */
+
+#header .header-bottom {
+  background: var(--dv-header-cream);
+  border-top: 1px solid var(--dv-header-border);
+  border-bottom: 1px solid var(--dv-header-border);
+  box-shadow: none;
+}
+
+#header #navigation,
+#header #navigation .menu-level-1 {
+  background: var(--dv-header-cream);
+}
+
+#header #navigation:hover,
+#header #navigation:focus-within {
+  background: var(--dv-header-cream);
+  box-shadow: none;
+}
+
+#header #navigation .menu-level-1 > li > a {
+  color: var(--dv-header-text);
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-decoration: none;
+  transition: color .2s ease, background-color .2s ease;
+}
+
+#header #navigation .menu-level-1 > li > a b {
+  font: inherit;
+}
+
+#header #navigation .menu-level-1 > li:hover > a,
+#header #navigation .menu-level-1 > li > a:focus-visible {
+  color: var(--dv-header-gold);
+  background: rgba(185, 139, 75, .06);
+}
+
+#header #navigation .menu-level-1 > li > a[href="/vyhodne-sety/"] {
+  color: #92692f;
+  font-weight: 700;
+}
+
+/* Podmenu – zachováva jeho pôvodné rozloženie */
+
+#header #navigation .menu-level-2 {
+  background: var(--dv-header-bg);
+  border-color: var(--dv-header-border);
+}
+
+#header #navigation .menu-level-2 > li > div a {
+  color: var(--dv-header-text);
+  font-family: 'Mulish', Arial, sans-serif;
+}
+
+#header #navigation .menu-level-2 > li > div a:hover {
+  color: var(--dv-header-gold);
+}
+
+/* Klávesnicové ovládanie */
+
+#header a:focus-visible,
+#header button:focus-visible,
+.top-navigation-bar a:focus-visible,
+.top-navigation-bar button:focus-visible {
+  outline: 2px solid var(--dv-header-gold);
+  outline-offset: 3px;
+}
+
+/* Desktop */
+
+@media (min-width: 992px) {
+  .top-navigation-bar > .container,
+  #header .header-top-wrapper,
+  #header .header-bottom-wrapper {
+    width: 100%;
+    max-width: 1408px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 24px;
+    padding-left: 24px;
+    box-sizing: border-box;
+  }
+
+  .top-navigation-bar > .container {
+    min-height: 32px;
+  }
+
+  #header .header-top-wrapper {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 48px;
+    min-height: 112px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  #header .header-top-wrapper::before,
+  #header .header-top-wrapper::after {
+    display: none;
+  }
+
+  #header .site-name {
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header .site-name img {
+    max-height: 76px;
+  }
+
+  #header .header-top-wrapper > .search {
+    position: relative;
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0;
+    float: none;
+  }
+
+  #header .navigation-buttons {
+    position: static;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: auto;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header .navigation-buttons .cart-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 8px 0 8px 20px;
+    white-space: nowrap;
+  }
+
+  #header #navigation .menu-level-1 > li > a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 56px;
+    padding: 16px 22px;
+    box-sizing: border-box;
+  }
+}
+
+/* Menší desktop */
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  #header .header-top-wrapper {
+    grid-template-columns: 150px minmax(0, 1fr) auto;
+    gap: 28px;
+  }
+
+  #header #navigation .menu-level-1 > li > a {
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 13px;
+  }
+}
+
+/* Mobil a tablet – zachováva natívne otváranie menu a vyhľadávania */
+
+@media (max-width: 991px) {
+  #header .site-name img {
+    max-height: 58px;
+  }
+
+  #header #formSearchForm .search-input {
+    height: 46px;
+    padding-left: 14px;
+    padding-right: 54px;
+    font-size: 14px;
+  }
+
+  #header #formSearchForm .search-button {
+    width: 46px;
+    background-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #header #formSearchForm .search-input,
+  #header #navigation .menu-level-1 > li > a {
+    transition: none;
+  }
+}
+/* Prihlasovací popup a košík nad hlavičkou */
+.overall-wrapper > .user-action {
+  z-index: 1010 !important;
+}
+
+.overall-wrapper > .user-action #login,
+.overall-wrapper > .user-action #cart-widget {
+  z-index: 1011 !important;
+}
+
+/* Tmavý navigačný pás */
+#header .header-bottom,
+#header #navigation,
+#header #navigation .menu-level-1,
+#header #navigation:hover,
+#header #navigation:focus-within {
+  background-color: #211913 !important;
+}
+
+#header .header-bottom {
+  border-top-color: #382b21;
+  border-bottom-color: #382b21;
+}
+
+#header #navigation .menu-level-1 > li > a {
+  color: #f5eee5;
+}
+
+#header #navigation .menu-level-1 > li:hover > a,
+#header #navigation .menu-level-1 > li > a:focus-visible {
+  color: #d9b478;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+#header #navigation .menu-level-1 > li > a[href="/vyhodne-sety/"] {
+  color: #d9b478;
+}
+
+/* Rozbaľovacie podmenu zostáva svetlé */
+#header #navigation .menu-level-2 {
+  background-color: #fffdfa;
+}
+
+#header #navigation .menu-level-2 > li > div a {
+  color: #30251e;
+}
+
+#header #navigation .menu-level-2 > li > div a:hover {
+  color: #92692f;
+}
+
+.navigation-in{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* ==========================================================
+   DOMVELI – našeptávač vyhľadávania
+   ========================================================== */
+
+#header .searchWhisperer {
+  color: #30251e;
+  background: #fffdfa;
+  border: 1px solid #e5dace;
+  border-radius: 0;
+  box-shadow: 0 12px 32px rgba(33, 25, 19, .14);
+  max-height: 70vh;
+  max-height: 70dvh;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #cdb89b #f7f2eb;
+  font-family: 'Mulish', Arial, sans-serif;
+  text-align: left;
+  z-index: 20;
+}
+
+#header .searchWhisperer,
+#header .searchWhisperer * {
+  box-sizing: border-box;
+}
+
+/* Nadpisy skupín */
+
+#header .searchWhisperer__products__heading,
+#header .searchWhisperer__additionalResults__heading {
+  margin: 0 0 12px;
+  padding: 0;
+  color: #806442;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: .06em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+/* Produkty */
+
+#header .searchWhisperer__products {
+  order: 0;
+  float: none;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 20px;
+}
+
+#header .searchWhisperer__products__list {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#header .searchWhisperer__products__listItem {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid #eee6dc;
+  list-style: none;
+}
+
+#header .searchWhisperer__products__listItem:last-child {
+  border-bottom: 0;
+}
+
+#header .searchWhisperer__product {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  padding: 12px 8px;
+  color: #30251e;
+  background: transparent;
+  text-align: left;
+  text-decoration: none;
+  transition: background-color .15s ease;
+}
+
+#header .searchWhisperer__product:hover,
+#header .searchWhisperer__product:focus-visible {
+  color: #30251e;
+  background: #f5eee4;
+}
+
+#header .searchWhisperer__product__image {
+  width: 60px;
+  height: 60px;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+#header .searchWhisperer__product__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+#header .searchWhisperer__product__infoWrapper {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+}
+
+#header .searchWhisperer__product__name {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: #30251e;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#header .searchWhisperer__product__availability {
+  margin-top: 4px;
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+/* Zachováva farbu dostupnosti od Shoptetu */
+
+#header .searchWhisperer__product__price {
+  width: auto;
+  margin: 0;
+  padding: 0;
+  color: #211913;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: right;
+}
+
+/* Kategórie a články */
+
+#header .searchWhisperer__additionalResults {
+  order: 1;
+  float: none;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 20px;
+  background: #f7f2eb;
+}
+
+#header .searchWhisperer__additionalResults__list {
+  margin: 0 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+#header .searchWhisperer__additionalResults__list:last-child {
+  margin-bottom: 0;
+}
+
+#header .searchWhisperer__additionalResults__listItem {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#header .searchWhisperer__additionalResults__link {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  padding: 10px 0;
+  color: #30251e;
+  border-bottom: 1px solid #e9dfd2;
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: left;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#header .searchWhisperer__additionalResults__link:hover {
+  color: #92692f;
+}
+
+/* Tlačidlo cez celú šírku panelu */
+
+#header .searchWhisperer__buttonWrapper {
+  order: 2;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  position: sticky;
+  bottom: 0;
+  float: none;
+  width: 100%;
+  margin: 0;
+  padding: 14px 20px;
+  background: #fffdfa;
+  border-top: 1px solid #e5dace;
+  z-index: 1;
+}
+
+#header .searchWhisperer__button {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  margin: 0;
+  padding: 12px 18px;
+  color: #fffdfa;
+  background: #211913;
+  border: 1px solid #211913;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  white-space: normal;
+}
+
+#header .searchWhisperer__button:hover {
+  color: #fffdfa;
+  background: #423024;
+  border-color: #423024;
+}
+
+#header .searchWhisperer a:focus-visible,
+#header .searchWhisperer button:focus-visible {
+  outline: 2px solid #b98b4b;
+  outline-offset: -2px;
+}
+
+/* Desktop */
+
+@media (min-width: 992px) {
+  #header .header-top-wrapper > .search {
+    position: relative;
+    overflow: visible;
+    z-index: 5;
+  }
+
+  #header .searchWhisperer {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: auto;
+    left: 50%;
+    width: min(1000px, calc(100vw - 48px));
+    max-width: none;
+    margin: 0;
+    transform: translateX(-50%);
+  }
+
+  #header .searchWhisperer.active {
+    display: grid;
+    grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr);
+    gap: 0;
+    align-items: start;
+  }
+
+  #header .searchWhisperer__products {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  #header .searchWhisperer__additionalResults {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    border-left: 1px solid #e5dace;
+  }
+
+  #header .searchWhisperer.active:not(
+    :has(.searchWhisperer__additionalResults)
+  ) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #header .searchWhisperer.active:not(
+    :has(.searchWhisperer__products)
+  ) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  #header .searchWhisperer.active:not(
+    :has(.searchWhisperer__products)
+  ) .searchWhisperer__additionalResults {
+    grid-column: 1;
+    border-left: 0;
+  }
+}
+
+/* Mobil a tablet */
+
+@media (max-width: 991px) {
+  #header .searchWhisperer {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  #header .searchWhisperer.active {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  #header .searchWhisperer__products,
+  #header .searchWhisperer__additionalResults {
+    width: 100%;
+    padding: 16px;
+  }
+
+  #header .searchWhisperer__additionalResults {
+    border-top: 1px solid #e5dace;
+  }
+}
+
+@media (max-width: 480px) {
+  #header .searchWhisperer__product {
+    grid-template-columns: 48px minmax(0, 1fr);
+    gap: 4px 12px;
+  }
+
+  #header .searchWhisperer__product__image {
+    grid-row: 1 / 3;
+    width: 48px;
+    height: 48px;
+  }
+
+  #header .searchWhisperer__product__price {
+    grid-column: 2;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #header .searchWhisperer__product {
+    transition: none;
+  }
+}
+
+/* DOMVELI – čisté mobilné menu */
+@media (max-width: 991px) {
+
+  #header #navigation {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    color: #30251e;
+    background: #fffdfa !important;
+    box-shadow: none;
+  }
+
+  #header #navigation .navigation-in {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 8px 0 24px;
+    align-self: stretch;
+    background: #fffdfa;
+    box-sizing: border-box;
+  }
+
+  #header #navigation .menu-level-1,
+  #header #navigation .navigationActions {
+    display: block;
+    float: none;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background: #fffdfa !important;
+    box-sizing: border-box;
+  }
+
+  #header #navigation .menu-level-1 > li,
+  #header #navigation .navigationActions > li {
+    display: block;
+    float: none;
+    width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  /* Hlavné kategórie */
+
+  #header #navigation .menu-level-1 > li > a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 58px;
+    height: auto;
+    margin: 0;
+    padding: 17px 22px;
+    color: #30251e !important;
+    background: transparent !important;
+    border: 0;
+    border-bottom: 1px solid #eee6dc;
+    box-shadow: none;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: left;
+    text-decoration: none !important;
+    box-sizing: border-box;
+  }
+
+  #header #navigation .menu-level-1 > li > a b {
+    color: inherit;
+    font: inherit;
+    text-decoration: none !important;
+  }
+
+  #header #navigation .menu-level-1 > li:hover > a,
+  #header #navigation .menu-level-1 > li > a:focus-visible,
+  #header #navigation .menu-level-1 > li > a[aria-expanded="true"] {
+    color: #92692f !important;
+    background: #f7f2eb !important;
+    box-shadow: none;
+  }
+
+  #header #navigation .menu-level-1 > li > a[href="/vyhodne-sety/"] {
+    color: #92692f !important;
+  }
+
+  /* Šípky */
+
+  #header #navigation .menu-level-1 > li > a > .submenu-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 36px;
+    align-self: stretch;
+    min-height: 36px;
+    margin: -6px -8px -6px 0;
+    color: #a17b48;
+    background: transparent;
+    border: 0;
+  }
+
+  /* Podmenu – nemení jeho otváranie */
+
+  #header #navigation .menu-level-2 {
+    width: 100%;
+    margin: 0;
+    padding: 8px 0;
+    background: #f7f2eb !important;
+    border: 0;
+    box-shadow: none;
+    box-sizing: border-box;
+  }
+
+  #header #navigation .menu-level-2 > li {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: 0;
+  }
+
+  #header #navigation .menu-level-2 > li > div {
+    margin: 0;
+    padding: 0;
+  }
+
+  #header #navigation .menu-level-2 > li > div > a {
+    display: block;
+    min-height: 44px;
+    margin: 0;
+    padding: 11px 24px 11px 34px;
+    color: #655447;
+    background: transparent;
+    border: 0;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.6;
+    text-decoration: none !important;
+    box-sizing: border-box;
+  }
+
+  #header #navigation .menu-level-2 > li > div > a:hover,
+  #header #navigation .menu-level-2 > li > div > a:focus-visible {
+    color: #805a2c;
+    background: #eee4d6;
+  }
+
+  /* Účet oddelený od kategórií */
+
+  #header #navigation .navigationActions {
+    margin-top: 20px;
+    padding: 12px 0;
+    background: #f7f2eb !important;
+    border-top: 1px solid #e5dace;
+  }
+
+  #header #navigation .navigationActions > li > a {
+    display: block;
+    min-height: 44px;
+    margin: 0;
+    padding: 11px 22px;
+    color: #655447;
+    background: transparent;
+    border: 0;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.6;
+    text-decoration: none !important;
+  }
+
+  #header #navigation .navigationActions > li > a:hover {
+    color: #92692f;
+    background: #eee4d6;
+  }
+}

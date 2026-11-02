@@ -1,0 +1,233 @@
+/* ==========================================================
+   DOMVELI – zákaznícke centrum
+   ========================================================== */
+
+#content-wrapper:has(.client-center-box) {
+  --client-bg: #faf7f2;
+  --client-text: #30251e;
+  --client-muted: #786b60;
+  --client-border: #e5dace;
+  --client-gold: #b98b4b;
+
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 24px 32px 64px;
+  color: var(--client-text);
+  box-sizing: border-box;
+}
+
+/* Drobková navigácia */
+
+#content-wrapper:has(.client-center-box) .breadcrumbs {
+  margin-bottom: 28px;
+  color: var(--client-muted);
+  font-size: 12px;
+}
+
+/* Rozloženie */
+
+#content-wrapper:has(.client-center-box) .content-wrapper-in {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  align-items: start;
+  gap: 32px;
+}
+
+#content-wrapper:has(.client-center-box) .sidebar-left,
+#content-wrapper:has(.client-center-box) #content {
+  float: none;
+  width: auto;
+  min-width: 0;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Bočné menu */
+
+#content-wrapper:has(.client-center-box) .sidebar-inner {
+  display: block;
+}
+
+#content-wrapper .client-center-box {
+  margin: 0;
+  padding: 12px;
+  background: var(--client-bg);
+  border: 1px solid var(--client-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#content-wrapper .client-center-box > ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#content-wrapper .client-center-box > ul > li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#content-wrapper .client-center-box > ul > li::before,
+#content-wrapper .client-center-box > ul > li::marker {
+  content: none;
+}
+
+#content-wrapper .client-center-box > ul > li > a {
+  display: block;
+  padding: 12px 14px;
+  color: var(--client-text);
+  background: transparent;
+  border: 0;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+#content-wrapper .client-center-box > ul > li > a:hover {
+  color: #805a2c;
+  background: #efe7dc;
+}
+
+#content-wrapper .client-center-box > ul > li.active > a {
+  color: #211913;
+  background: #eae0d2;
+  border-left-color: var(--client-gold);
+  font-weight: 700;
+}
+
+/* Odhlásenie na spodku menu */
+
+#content-wrapper .client-center-box > ul > li.logout {
+  order: 1;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--client-border);
+}
+
+#content-wrapper .client-center-box > ul > li.logout > a.btn {
+  width: 100%;
+  padding: 11px 14px;
+  color: #6f5540 !important;
+  background: transparent !important;
+  border: 1px solid #d8c8b4 !important;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+
+#content-wrapper .client-center-box > ul > li.logout > a.btn:hover {
+  color: #211913 !important;
+  background: #eae0d2 !important;
+}
+
+/* Obsah účtu */
+
+#content-wrapper:has(.client-center-box) #content > .content-inner {
+  min-height: 340px;
+  margin: 0;
+  padding: 36px;
+  background: #fff;
+  border: 1px solid var(--client-border);
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+#content-wrapper:has(.client-center-box) #content h1 {
+  margin: 0 0 24px;
+  padding-bottom: 20px;
+  color: #211913;
+  border-bottom: 1px solid var(--client-border);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+#content-wrapper:has(.client-center-box) #content > .content-inner > p {
+  color: var(--client-muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Prázdny prehľad objednávok */
+
+#content-wrapper:has(.client-center-box)
+  #content > .content-inner > h1 + p:last-child {
+  margin: 0;
+  padding: 24px;
+  background: var(--client-bg);
+  border-left: 3px solid var(--client-gold);
+}
+
+/* Prístupnosť */
+
+#content-wrapper .client-center-box a:focus-visible {
+  outline: 2px solid var(--client-gold);
+  outline-offset: 2px;
+}
+
+/* Mobil a tablet */
+
+@media (max-width: 991px) {
+  #content-wrapper:has(.client-center-box) {
+    padding: 20px 20px 40px;
+  }
+
+  #content-wrapper:has(.client-center-box) .content-wrapper-in {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  #content-wrapper:has(.client-center-box) .sidebar-left {
+    display: block;
+  }
+
+  #content-wrapper .client-center-box > ul {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 4px;
+  }
+
+  #content-wrapper .client-center-box > ul > li.logout {
+    grid-column: 1 / -1;
+  }
+
+  #content-wrapper:has(.client-center-box) #content > .content-inner {
+    min-height: 240px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 540px) {
+  #content-wrapper:has(.client-center-box) {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  #content-wrapper .client-center-box > ul {
+    grid-template-columns: 1fr;
+  }
+
+  #content-wrapper:has(.client-center-box) #content > .content-inner {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #content-wrapper .client-center-box a {
+    transition: none;
+  }
+}

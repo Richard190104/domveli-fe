@@ -1,0 +1,203 @@
+/* DOMVELI | Footer | Shoptet Disco */
+
+#footer.footer {
+  margin-top: 0;
+  padding: 0;
+  border-top: 1px solid #c99a56;
+  background: #211913;
+  color: #f5f0e8;
+  font-family: Mulish, Arial, sans-serif;
+}
+
+#footer .footer-rows {
+  padding-top: 42px;
+  padding-bottom: 42px;
+}
+
+#footer .dv-footer-main {
+  display: grid;
+  grid-template-columns: minmax(200px, 1.25fr) repeat(2, minmax(150px, 1fr)) minmax(180px, .9fr);
+  gap: 36px;
+  width: calc(100% - 40px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+#footer .dv-footer-column {
+  min-width: 0;
+}
+
+#footer .dv-footer-heading {
+  margin: 0 0 16px;
+  color: #f5f0e8;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+#footer .dv-footer-brand-name {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #d2aa70;
+  font-family: "Noto Serif", Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-decoration: none;
+}
+
+#footer .dv-footer-description {
+  max-width: 330px;
+  margin: 0;
+  color: #d8cec1;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+#footer .dv-footer-links {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#footer .dv-footer-links a,
+#footer .dv-footer-contact-link {
+  color: #d8cec1;
+  font-size: 13px;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+#footer .dv-footer-links a:hover,
+#footer .dv-footer-contact-link:hover {
+  color: #d2aa70;
+  text-decoration: underline;
+}
+
+#footer .dv-footer-contact-link {
+  display: inline-block;
+  margin-top: 14px;
+  color: #d2aa70;
+  font-weight: 700;
+}
+
+#footer .footer-rows > .row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+#footer .footer-bottom {
+  padding: 18px 0;
+  border-top: 1px solid rgba(245, 240, 232, .16);
+  background: #211913;
+  color: #d8cec1;
+  font-size: 12px;
+}
+
+#footer .footer-bottom > .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+#footer .copyright {
+  color: #d8cec1;
+  line-height: 1.7;
+}
+
+#footer .copyright strong {
+  color: #f5f0e8;
+  font-weight: 700;
+}
+
+#footer .cookies-settings,
+#footer #signature .title {
+  color: #d2aa70;
+  text-decoration: none;
+  transition: color .2s ease;
+}
+
+#footer .cookies-settings {
+  margin-left: 12px;
+}
+
+#footer .cookies-settings:hover,
+#footer #signature .title:hover {
+  color: #f2d7ad;
+  text-decoration: underline;
+}
+
+#footer #signature {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  color: #b9aa99;
+  font-size: 11px;
+}
+
+#footer #signature .image {
+  display: inline-flex;
+  align-items: center;
+}
+
+#footer #signature img {
+  display: block;
+  width: 15px;
+  height: 15px;
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: .68;
+}
+
+@media (max-width: 600px) {
+  #footer .dv-footer-main {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 20px;
+    padding-top: 34px;
+    padding-bottom: 34px;
+  }
+
+  #footer .dv-footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  #footer .footer-rows {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
+  #footer .footer-bottom {
+    padding: 16px 0;
+  }
+
+  #footer .footer-bottom > .container {
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+  #footer .cookies-settings {
+    display: block;
+    margin: 4px 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #footer .cookies-settings,
+  #footer #signature .title {
+    transition: none;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  #footer .dv-footer-main {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 30px;
+  }
+}

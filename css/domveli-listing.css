@@ -1,0 +1,901 @@
+/* DOMVELI | Listing kategórií | vyčistené CSS v4.1 */
+
+/* Najpredávanejšie */
+
+body .products-top-wrapper { display: none !important; }
+
+/* Ľavý panel */
+
+@media (min-width: 992px) {
+
+  body .sidebar.sidebar-left { padding-right: 22px; }
+
+}
+
+body .sidebar.sidebar-left .box-categories,
+
+body .sidebar.sidebar-left .box-filters {
+
+  background: #fffdf9;
+
+  border: 1px solid #e9dfd1;
+
+  box-shadow: 0 6px 22px rgba(54, 38, 23, .045);
+
+  padding: 18px 16px;
+
+  margin-bottom: 18px;
+
+}
+
+body .sidebar.sidebar-left #categories { margin: 0; padding: 0; }
+
+body .sidebar.sidebar-left #categories > .categories {
+
+  position: relative;
+
+  padding: 13px 0;
+
+  border-bottom: 1px solid #eee6dc;
+
+}
+
+body .sidebar.sidebar-left #categories > .categories:first-child { padding-top: 0; }
+
+body .sidebar.sidebar-left #categories > .categories:last-child { border-bottom: 0; padding-bottom: 0; }
+
+body .sidebar.sidebar-left #categories .topic { position: relative; margin: 0; padding: 0; border: 0; background: transparent; }
+
+body .sidebar.sidebar-left #categories .topic > a {
+
+  display: block;
+
+  padding: 10px 38px 10px 11px;
+
+  color: #35281e;
+
+  font-size: 14px;
+
+  font-weight: 750;
+
+  line-height: 1.4;
+
+  text-decoration: none;
+
+}
+
+body .sidebar.sidebar-left #categories .topic.active > a,
+
+body .sidebar.sidebar-left #categories .topic > a:hover { color: #91642c; background: #f7f0e5; }
+
+body .sidebar.sidebar-left #categories .cat-trigger {
+
+  position: absolute !important;
+  top: 50% !important; right: 10px !important; left: auto !important;
+
+  display: flex !important;
+
+  align-items: center; justify-content: center;
+
+  width: 26px; height: 26px; margin: 0; padding: 0;
+
+  transform: translateY(-50%) !important;
+
+}
+
+body .sidebar.sidebar-left #categories .categories > ul { margin: 7px 0 0; padding: 0 0 0 10px; background: transparent; }
+
+body .sidebar.sidebar-left #categories .categories > ul > li { list-style: none; margin: 2px 0; padding: 0; border: 0; }
+
+body .sidebar.sidebar-left #categories .categories > ul > li > a {
+
+  display: block;
+
+  padding: 9px 10px;
+
+  color: #67584a;
+
+  font-size: 13px;
+
+  line-height: 1.45;
+
+  text-decoration: none;
+
+}
+
+body .sidebar.sidebar-left #categories .categories > ul > li > a:hover,
+
+body .sidebar.sidebar-left #categories .categories > ul > li.active > a { color: #956a36; background: #f8f1e7; }
+
+/* Podkategórie */
+
+body .category-top > ul.subcategories.with-image {
+
+  display: grid !important;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+  gap: 12px;
+
+  margin: 20px 0 28px;
+
+  padding: 0;
+
+}
+
+body .category-top > ul.subcategories.with-image > li {
+
+  display: block !important;
+
+  float: none !important;
+
+  width: auto !important;
+
+  max-width: none !important;
+
+  margin: 0; padding: 0;
+
+}
+
+body .category-top > ul.subcategories.with-image > li > a {
+
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 12px;
+
+  width: 100% !important;
+
+  min-height: 82px;
+
+  padding: 8px;
+
+  aspect-ratio: auto !important;
+
+  overflow: hidden;
+
+  border: 1px solid #eee6dc;
+
+  background: #fbf8f3;
+
+  color: #30241c;
+
+  text-decoration: none;
+
+}
+
+body .category-top > ul.subcategories.with-image > li > a:hover,
+
+body .category-top > ul.subcategories.with-image > li > a:focus-visible { border-color: #d6bc98; background: #f2e8d8; }
+
+body .category-top > ul.subcategories.with-image > li > a > .image {
+
+  display: block;
+
+  flex: 0 0 64px;
+
+  width: 64px; height: 64px;
+
+  overflow: hidden;
+
+  background: #f5f0e8;
+
+}
+
+body .category-top > ul.subcategories.with-image > li > a > .image img {
+
+  display: block;
+
+  width: 100%; height: 100%;
+
+  object-fit: cover;
+
+}
+
+body .category-top > ul.subcategories.with-image > li > a > .text {
+
+  min-width: 0;
+
+  color: inherit;
+
+  font-family: 'Mulish', Arial, sans-serif;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.4;
+
+}
+
+/* Filtre */
+
+body .sidebar.sidebar-left .box-filters h4 {
+
+  margin-bottom: 14px;
+
+  color: #35281e;
+
+  font-family: Georgia, 'Times New Roman', serif;
+
+  font-size: 18px;
+
+  font-weight: 600;
+
+}
+
+body .sidebar.sidebar-left .box-filters .slider-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-bottom: 8px;
+
+  color: #7b5b37;
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+}
+
+body .sidebar.sidebar-left .box-filters .slider-content { padding: 8px 7px 12px; }
+
+body .sidebar.sidebar-left .box-filters #slider.ui-slider {
+
+  height: 4px;
+
+  border: 0;
+
+  background: #eadfce;
+
+}
+
+body .sidebar.sidebar-left .box-filters #slider .ui-slider-range { border: 0; background: #c99a56; }
+
+body .sidebar.sidebar-left .box-filters #slider .ui-slider-handle {
+
+  top: 50%;
+
+  width: 16px; height: 16px;
+
+  border: 2px solid #fffdf9;
+
+  background: #a7793c;
+
+  box-shadow: 0 0 0 1px #a7793c;
+
+  transform: translateY(-50%);
+
+  cursor: grab;
+
+}
+
+body .sidebar.sidebar-left .box-filters .filter-section { border-color: #eee6dc; }
+
+body .sidebar.sidebar-left .box-filters .filter-label { color: #594b40; font-size: 13px; }
+
+body .sidebar.sidebar-left .box-filters .filter-count { color: #a17a4b; }
+
+body .sidebar.sidebar-left .box-filters #clear-filters { margin: 12px 0 8px; text-align: left; }
+
+body .sidebar.sidebar-left .box-filters #clear-filters a {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  min-height: 38px;
+
+  padding: 9px 13px;
+
+  border: 1px solid #c99a56;
+
+  background: #c99a56;
+
+  color: #30241c;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+}
+
+body .sidebar.sidebar-left .box-filters #clear-filters a:hover { background: #a7793c; color: #fff; }
+
+body .sidebar.sidebar-left .box-filters .filter-total-count { color: #74695f; font-size: 13px; }
+
+/* Produktový grid */
+
+body.type-category #products.products-block {
+
+  display: grid !important;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+
+  gap: 30px 16px !important;
+
+  margin-top: 22px;
+
+  align-items: stretch;
+
+}
+
+body.type-category #products.products-block > .product {
+
+  display: block !important;
+
+  float: none !important;
+
+  width: 100% !important;
+
+  max-width: none !important;
+
+  min-width: 0;
+
+  height: 100%;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  box-shadow: none !important;
+
+}
+
+body.type-category #products.products-block > .product > .p {
+
+  display: grid !important;
+
+  grid-template-columns: minmax(0, 1fr);
+
+  grid-template-rows: auto 1fr auto;
+
+  height: 100%;
+
+  min-width: 0;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  text-align: left !important;
+
+}
+
+/* Fotografia bez paddingu a bez hover zoomu */
+
+body.type-category #products .dv-product-media {
+
+  position: relative;
+
+  grid-row: 1;
+
+  width: 100%;
+
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  background: #f6f3ee;
+
+}
+
+body.type-category #products .dv-product-media > a.image {
+
+  position: absolute !important;
+
+  inset: 0 !important;
+
+  display: block !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+}
+
+body.type-category #products .dv-product-media picture {
+
+  display: block;
+
+  width: 100%; height: 100%;
+
+}
+
+body.type-category #products .dv-product-media img,
+
+body.type-category #products .product:hover .dv-product-media img {
+
+  display: block !important;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  max-width: none !important;
+
+  max-height: none !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  object-fit: cover !important;
+
+  object-position: center;
+
+  transform: none !important;
+
+  transition: none !important;
+
+}
+
+/* Názov a dostupnosť */
+
+body.type-category #products .p-in {
+
+  grid-row: 2;
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  width: 100% !important;
+
+  min-width: 0;
+
+  margin: 0 !important;
+
+  padding: 12px 3px 9px !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  text-align: left !important;
+
+}
+
+body.type-category #products .p-in-in {
+
+  display: flex !important;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+
+}
+
+body.type-category #products a.name {
+
+  display: -webkit-box !important;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 2;
+
+  overflow: hidden;
+
+  height: 40px;
+
+  margin: 0 0 8px !important;
+
+  color: #30271f !important;
+
+  font-family: 'Mulish', Arial, sans-serif;
+
+  font-size: 13px !important;
+
+  font-weight: 700 !important;
+
+  line-height: 20px !important;
+
+  text-align: left !important;
+
+  text-decoration: none !important;
+
+  padding: 0px;
+
+}
+
+body.type-category #products a.name:hover { color: #9a7039 !important; }
+
+body.type-category #products .ratings-wrapper { margin-top: auto !important; padding: 0 !important; }
+
+body.type-category #products .availability {
+
+  display: flex !important;
+
+  align-items: center;
+
+  gap: 6px;
+
+  min-height: 19px;
+
+  font-size: 12px !important;
+
+  text-align: left !important;
+
+}
+
+body.type-category #products .availability::before {
+
+  content: '';
+
+  flex: 0 0 8px;
+
+  width: 8px; height: 8px;
+
+  background: #49a43b;
+
+}
+
+body.type-category #products .p-desc,
+
+body.type-category #products .p-code { display: none !important; }
+
+/* Cena a košík: + vpravo vedľa ceny (JS presúva .p-tools sem) */
+
+body.type-category #products .p-bottom {
+
+  grid-row: 3;
+
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  width: 100% !important;
+
+  min-height: 44px;
+
+  margin: 0 !important;
+
+  padding: 0 3px 3px !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  text-align: left !important;
+
+}
+
+body.type-category #products .p-bottom .prices,
+
+body.type-category #products .p-bottom .price-final { margin: 0 !important; padding: 0 !important; }
+
+body.type-category #products .price-final strong {
+
+  color: #30241c !important;
+
+  font-size: 18px !important;
+
+  font-weight: 800 !important;
+
+  line-height: 1.2;
+
+}
+
+body.type-category #products .p-bottom .p-tools {
+  position: static !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+body.type-category #products .p-tools {
+  flex: 0 0 auto;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body.type-category #products .p-tools form {
+
+  width: 100%; height: 100%;
+
+  margin: 0 !important;
+
+}
+
+body.type-category #products .p-tools .add-to-cart-button {
+
+  display: flex !important;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 38px !important;
+
+  height: 38px !important;
+
+  min-width: 38px !important;
+
+  min-height: 38px !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  background: #b68a4a !important;
+
+  color: #fff !important;
+
+  box-shadow: none !important;
+
+  font-size: 0 !important;
+
+  cursor: pointer;
+
+}
+
+body.type-category #products .p-tools .add-to-cart-button > span { display: none !important; }
+
+body.type-category #products .p-tools .add-to-cart-button:hover { background: #91672f !important; }
+
+body.type-category #products .p-tools .add-to-cart-button:focus-visible {
+
+  outline: 3px solid #30241c;
+
+  outline-offset: 3px;
+
+}
+
+/* Tablet */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  body.type-category #products.products-block {
+
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+    gap: 24px 13px !important;
+
+  }
+
+}
+
+/* Mobil */
+
+@media (max-width: 767px) {
+
+  body .category-top > ul.subcategories.with-image {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 10px;
+
+  }
+
+  body .category-top > ul.subcategories.with-image > li > a {
+
+    gap: 8px;
+
+    min-height: 70px;
+
+    padding: 6px;
+
+  }
+
+  body .category-top > ul.subcategories.with-image > li > a > .image {
+
+    flex-basis: 54px;
+
+    width: 54px; height: 54px;
+
+  }
+
+  body .category-top > ul.subcategories.with-image > li > a > .text { font-size: 11px; }
+
+  body .sidebar.sidebar-left .box-categories,
+
+  body .sidebar.sidebar-left .box-filters { padding: 14px; }
+
+  body.type-category #products.products-block {
+
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+    gap: 22px 11px !important;
+
+  }
+
+  body.type-category #products .p-in { padding: 9px 2px 7px !important; }
+
+  body.type-category #products a.name {
+
+    height: 51px;
+
+    -webkit-line-clamp: 3;
+
+    font-size: 11px !important;
+
+    line-height: 17px !important;
+
+  }
+
+  body.type-category #products .p-bottom { padding: 0 2px 2px !important; }
+
+  body.type-category #products .price-final strong { font-size: 16px !important; }
+
+  body.type-category #products .p-tools,
+
+  body.type-category #products .p-tools .add-to-cart-button {
+
+    width: 34px !important;
+
+    height: 34px !important;
+
+    min-width: 34px !important;
+
+    min-height: 34px !important;
+
+  }
+
+}
+
+/* DOMVELI – presné centrovanie tlačidla + */
+
+body.type-category #products .p-tools .add-to-cart-button {
+
+  position: relative !important;
+
+  display: grid !important;
+
+  place-items: center !important;
+
+  padding: 0 !important;
+
+  line-height: 1 !important;
+
+}
+
+body.type-category #products .p-tools .add-to-cart-button::before {
+
+  content: "+" !important;
+
+  position: static !important;
+
+  display: block !important;
+
+  width: auto !important;
+
+  height: auto !important;
+
+  margin: 0 !important;
+
+  padding: 0 !important;
+
+  transform: none !important;
+
+  font-family: Arial, sans-serif !important;
+
+  font-size: 26px !important;
+
+  font-weight: 400 !important;
+
+  line-height: 1 !important;
+
+  color: #fff !important;
+
+}
+
+body.type-category #products .p-tools .add-to-cart-button::after {
+
+  content: none !important;
+
+}
+
+/* DOMVELI | Množstvo v košíku na produktovej karte */
+
+body.type-category #products .p-tools .dv-qty[hidden],
+
+body.type-category #products .p-tools form[hidden] { display: none !important; }
+
+body.type-category #products .p-tools .dv-qty {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  width: max-content;
+
+  padding: 4px;
+
+  border: 1px solid #b98d4c;
+
+  background: #fffdf9;
+
+  box-sizing: border-box;
+
+}
+
+body.type-category #products .p-tools .dv-qty button {
+
+  display: grid;
+
+  place-items: center;
+
+  width: 30px;
+
+  height: 30px;
+
+  min-width: 30px;
+
+  padding: 0;
+
+  border: 0;
+
+  background-color: white;
+
+  color: black;
+
+  cursor: pointer;
+
+}
+
+body.type-category #products .p-tools .dv-qty output {
+
+  min-width: 18px;
+
+  color: #30241c;
+
+  font: 700 13px/1 Mulish, Arial, sans-serif;
+
+  text-align: center;
+
+  font-variant-numeric: tabular-nums;
+
+}
+
+body.type-category #products .p-tools .dv-qty button:disabled {
+
+  opacity: .5;
+
+  cursor: wait;
+
+}
+
+/* Úspešné Shoptet hlášky v kategóriách nezobrazujeme. */
+body.type-category .messages .msg-success {
+  display: none !important;
+}
+
+/* DOMVELI | Skrytie úspešných notifikácií Shoptetu */
+body .messages .msg-success {
+  display: none !important;
+}

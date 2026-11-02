@@ -1,0 +1,521 @@
+
+/* ==================================
+   DOMVELI – HORNA LISTA
+================================== */
+
+.dv-navbanner {
+  position: relative;
+  z-index: 10010;
+  width: 100%;
+  background: #142d4f;
+  color: #fff;
+  font-family: inherit;
+}
+
+.dv-navbanner__content {
+  min-height: 62px;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 8px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 14px;
+
+  text-align: center;
+}
+
+.dv-navbanner__text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.dv-navbanner__title {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.dv-navbanner__description {
+  font-size: 12px;
+  opacity: .9;
+}
+
+.dv-navbanner__button {
+  flex-shrink: 0;
+  color: #fff;
+
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 20px;
+
+  padding: 5px 11px;
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    background .2s,
+    color .2s;
+}
+
+.dv-navbanner__button:hover {
+  background: #fff;
+  color: #142d4f;
+  text-decoration: none;
+}
+
+/* ==================================
+   DOMVELI – NOTIFIKACIE
+================================== */
+
+.dv-notifications {
+  position: fixed;
+  z-index: 10020;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  top: 62px;
+  left: 16px;
+
+  width: min(
+    520px,
+    calc(100vw - 32px)
+  );
+
+  opacity: 0;
+  transform: translateY(-12px);
+  pointer-events: none;
+
+  transition:
+    opacity .3s ease,
+    transform .3s ease;
+}
+
+.dv-notifications--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dv-notification {
+  position: relative;
+
+  min-height: 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 18px 44px 18px 22px;
+
+  border-radius: 15px;
+  background: #fff;
+
+  box-shadow:
+    0 10px 32px rgba(22,32,44,.17);
+
+  color: #162c4c;
+}
+
+.dv-notification__image {
+  width: 68px;
+  height: 68px;
+
+  flex: 0 0 68px;
+
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.dv-notification__copy {
+  min-width: 0;
+  flex: 1;
+}
+
+.dv-notification__title {
+  display: block;
+
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.dv-notification__description {
+  margin: 5px 0 0;
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  color: #525d6c;
+}
+
+.dv-notification__action {
+  display: inline-block;
+  margin-top: 8px;
+
+  color: #946d36;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dv-notification__action:hover {
+  color: #6d4b21;
+}
+
+.dv-notification__close {
+  position: absolute;
+
+  top: 10px;
+  right: 12px;
+
+  width: 24px;
+  height: 24px;
+
+  padding: 0;
+  border: 0;
+
+  background: transparent;
+  color: #4d5867;
+
+  font-size: 22px;
+  line-height: 24px;
+
+  cursor: pointer;
+}
+
+.dv-notification__close:hover {
+  color: #111;
+}
+
+/* ==================================
+   MOBILNA VERZIA
+================================== */
+
+@media (max-width: 600px) {
+
+  .dv-navbanner__content {
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    padding: 7px 12px;
+  }
+
+  .dv-navbanner__title {
+    font-size: 12px;
+  }
+
+  .dv-navbanner__description,
+  .dv-navbanner__button {
+    font-size: 11px;
+  }
+
+  .dv-notifications {
+    left: 10px;
+    top: 68px;
+    width: calc(100vw - 20px);
+  }
+
+  .dv-notification {
+    gap: 12px;
+    min-height: 84px;
+
+    padding: 14px 38px 14px 14px;
+  }
+
+  .dv-notification__image {
+    width: 58px;
+    height: 58px;
+    flex-basis: 58px;
+  }
+
+  .dv-notification__title {
+    font-size: 13px;
+  }
+}
+
+/* ==================================
+   OBMEDZENIE ANIMACII
+================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-notifications,
+  .dv-navbanner__button {
+    transition: none;
+  }
+}
+
+
+/* Krizik na zatvorenie hornej listy */
+
+.dv-navbanner {
+  position: relative;
+}
+
+.dv-navbanner__content {
+  padding-left: 42px;
+  padding-right: 42px;
+}
+
+.dv-navbanner__close {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-50%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+  padding: 0;
+
+  border: none;
+  border-radius: 50%;
+
+  background: transparent;
+  color: #fff;
+
+  font-size: 23px;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.dv-navbanner__close:hover {
+  background: rgba(255, 255, 255, .15);
+}
+
+.dv-navbanner__close:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .dv-navbanner__content {
+    padding-left: 36px;
+    padding-right: 42px;
+  }
+
+  .dv-navbanner__close {
+    right: 8px;
+  }
+}
+
+
+/* ===================================
+   DOMVELI – VELKY PRODUKTOVY POPUP
+=================================== */
+
+body.dv-popup-open {
+  overflow: hidden;
+}
+
+.dv-popup-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+
+  background: rgba(12, 22, 37, .68);
+  backdrop-filter: blur(4px);
+}
+
+.dv-popup {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: 48% 52%;
+
+  width: min(900px, 100%);
+  max-height: calc(100dvh - 40px);
+
+  overflow: hidden;
+
+  background: #fff;
+  border-radius: 18px;
+
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .25);
+}
+
+.dv-popup__media {
+  min-height: 420px;
+  background: #f5f0e9;
+}
+
+.dv-popup__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.dv-popup__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+
+  padding: 58px 48px;
+  overflow-y: auto;
+}
+
+.dv-popup__eyebrow {
+  color: #b98b4b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.dv-popup__title {
+  margin: 16px 0 14px;
+
+  color: #172d4c;
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.dv-popup__description {
+  margin: 0;
+
+  color: #596273;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.dv-popup__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 28px;
+  padding: 14px 26px;
+
+  border-radius: 8px;
+  background: #172d4c;
+
+  color: #fff !important;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none !important;
+
+  transition: background .2s ease;
+}
+
+.dv-popup__button:hover {
+  background: #b98b4b;
+  color: #fff !important;
+}
+
+.dv-popup__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #f4f4f4;
+  color: #172d4c;
+
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.dv-popup__close:hover {
+  background: #e7e7e7;
+}
+
+.dv-popup--no-image {
+  display: block;
+  max-width: 560px;
+}
+
+.dv-popup--no-image .dv-popup__body {
+  padding: 65px 50px;
+}
+
+/* Mobil */
+
+@media (max-width: 700px) {
+  .dv-popup-overlay {
+    padding: 12px;
+  }
+
+  .dv-popup {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 430px;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+
+  .dv-popup__media {
+    min-height: 0;
+    height: 230px;
+    flex: 0 0 230px;
+  }
+
+  .dv-popup__body {
+    padding: 28px 24px 32px;
+    overflow: visible;
+  }
+
+  .dv-popup__title {
+    margin-top: 12px;
+    font-size: 25px;
+  }
+
+  .dv-popup__description {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .dv-popup__button {
+    margin-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .dv-popup__close {
+    top: 10px;
+    right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-popup__button {
+    transition: none;
+  }
+}
+
+
+@media (max-width: 767px) {
+  .dv-navbanner {
+    display: none !important;
+  }
+}

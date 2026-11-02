@@ -1,0 +1,319 @@
+
+/* DOMVELI | Product detail | v1.0 */
+
+body.type-product {
+  --dv-gold: #b98b4d;
+  --dv-gold-dark: #9c7038;
+  --dv-ink: #30251d;
+  --dv-muted: #786f66;
+  --dv-cream: #faf7f2;
+  --dv-border: #e9dfd2;
+}
+
+/* Nadpis a text */
+
+body.type-product .p-detail-inner-header h1 {
+  color: var(--dv-ink);
+  font-size: clamp(26px, 2.5vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+body.type-product .p-detail .brand-wrapper {
+  color: var(--dv-muted);
+  font-size: 13px;
+}
+
+body.type-product .p-detail .brand-wrapper a {
+  color: var(--dv-gold-dark);
+  text-decoration: none;
+}
+
+body.type-product .p-short-description {
+  color: #554a40;
+  font-size: 15px;
+  line-height: 1.8;
+  margin: 24px 0;
+}
+
+/* Galéria */
+
+body.type-product .p-detail .p-image {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
+}
+
+
+body.type-product .p-detail .p-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: transparent;
+  border: 0;
+}
+
+body.type-product .p-detail .p-thumbnails img {
+}
+
+body.type-product .p-detail .p-thumbnails a {
+  overflow: hidden;
+}
+
+/* Dostupnosť a parametre */
+
+body.type-product .p-detail .detail-parameters {
+  width: 100%;
+  margin: 20px 0 24px;
+  border: 0;
+}
+
+body.type-product .p-detail .detail-parameters tr,
+body.type-product .p-detail .detail-parameters th,
+body.type-product .p-detail .detail-parameters td {
+  border: 0;
+  background: transparent;
+}
+
+body.type-product .p-detail .detail-parameters tr {
+  border-bottom: 1px solid var(--dv-border);
+}
+
+body.type-product .p-detail .detail-parameters th,
+body.type-product .p-detail .detail-parameters td {
+  padding: 11px 4px;
+  font-size: 13px;
+}
+
+body.type-product .p-detail .detail-parameters th {
+  color: var(--dv-muted);
+  font-weight: 400;
+}
+
+body.type-product .p-detail .availability-label {
+  font-weight: 600;
+}
+
+/* Nákupný panel */
+
+body.type-product .p-detail .p-to-cart-block {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  padding: 18px;
+  margin-top: 20px;
+  background: var(--dv-cream);
+  border: 1px solid var(--dv-border);
+}
+
+body.type-product .p-detail .p-final-price-wrapper {
+  flex: 1 1 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body.type-product .p-detail .price-final {
+  color: var(--dv-ink);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+/* Pôvodné Shoptet ovládanie množstva */
+
+body.type-product .p-detail .add-to-cart {
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+body.type-product .p-detail .quantity {
+  border: 1px solid var(--dv-border);
+  background: #fff;
+  overflow: hidden;
+}
+
+body.type-product .p-detail .quantity .amount {
+  color: var(--dv-ink);
+  font-weight: 700;
+}
+
+body.type-product .p-detail .quantity button {
+  color: var(--dv-ink);
+  background: #fff;
+}
+
+body.type-product .p-detail .quantity button:hover {
+  color: var(--dv-gold-dark);
+  background: var(--dv-cream);
+}
+
+/* Hlavné CTA */
+
+body.type-product .p-detail .p-to-cart-block > .add-to-cart-button {
+  flex: 1 1 180px;
+  min-height: 52px;
+  margin: 0;
+  padding: 13px 22px;
+  border: 1px solid var(--dv-gold);
+  background: var(--dv-gold);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: none;
+  box-shadow: none;
+  transition: background .2s ease, transform .2s ease;
+}
+
+body.type-product .p-detail .p-to-cart-block > .add-to-cart-button:hover {
+  background: var(--dv-gold-dark);
+  border-color: var(--dv-gold-dark);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Odkazy pod nákupným panelom */
+
+body.type-product .p-detail .social-buttons-wrapper {
+  margin-top: 20px;
+}
+
+body.type-product .p-detail .social-buttons-wrapper a {
+  color: var(--dv-muted);
+  text-decoration: none;
+}
+
+body.type-product .p-detail .social-buttons-wrapper a:hover {
+  color: var(--dv-gold-dark);
+}
+
+/* Mobil */
+
+@media (max-width: 767px) {
+  body.type-product .p-detail-inner-header h1 {
+    font-size: 26px;
+  }
+
+  body.type-product .p-detail .p-to-cart-block {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  body.type-product .p-detail .price-final {
+    font-size: 29px;
+  }
+
+  body.type-product .p-detail .p-to-cart-block > .add-to-cart-button {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}
+
+body.type-product .p-detail .detail-parameters tr.p-code {
+  display: none !important;
+}
+
+.quantity .decrease:hover:before{
+    background-color: transparent !important;
+}
+.quantity .increase:hover:before{
+    background-color: transparent !important;
+}
+
+
+/* DOMVELI | Kompaktné benefity na detaile */
+
+body.type-product .benefitBanner.dv-product-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  padding: 14px 10px;
+  border: 1px solid #e9dfd2;
+  box-shadow: none;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 7px;
+  min-width: 0;
+  margin: 0;
+  padding: 0 5px;
+  background: transparent;
+  border: 0;
+  text-align: center;
+  width: 100%;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  margin: 0;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__img {
+  display: block;
+  width: 28px;
+  height: 28px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__content {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__title {
+  display: block;
+  margin: 0;
+  color: #30251d;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__data {
+  margin-top: 3px;
+  color: #786f66;
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+/* Dostupnosť tesnejšie k benefitom */
+body.type-product #product-detail-form .detail-parameters {
+  margin-bottom: 12px;
+}
+
+/* Mobil */
+@media (max-width: 480px) {
+  body.type-product .benefitBanner.dv-product-benefits {
+    gap: 4px;
+    padding: 12px 6px;
+  }
+
+  body.type-product .dv-product-benefits .benefitBanner__picture,
+  body.type-product .dv-product-benefits .benefitBanner__img {
+    width: 24px;
+    height: 24px;
+  }
+
+  body.type-product .dv-product-benefits .benefitBanner__title {
+    font-size: 10px;
+  }
+
+  body.type-product .dv-product-benefits .benefitBanner__data {
+    font-size: 9px;
+  }
+}
