@@ -1775,11 +1775,3 @@ body .alert-info {
         margin-bottom: 36px;
     }
 }
-
-/* Rezervované miesto pred vykreslením sekcie, aby sa obsah pod ňou neposúval (CLS). */
-#domveli-home:not(:has(section)) {
-    min-height: 1500px;
-}
-@media (max-width: 767px) {
-    #domveli-home:not(:has(section)) { min-height: 1800px; }
-}
