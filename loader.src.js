@@ -16,8 +16,6 @@
     { css: 'css/domveli.css' },
     { css: 'css/profile.css' },
     { js: 'scripts/domveli-config-loader.js' },
-    { js: 'scripts/domveli-config.js' },
-    { js: 'scripts/domveli-notifications-config.js' },
     { js: 'scripts/domveli-carousel.js' },
     { js: 'scripts/domveli-footer.js' },
     { js: 'scripts/domveli-notifications.js' },

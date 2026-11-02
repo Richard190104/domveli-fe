@@ -71,7 +71,7 @@ async function renderFooter() {
   const description = createElement(
     'p',
     'dv-footer-description',
-    DOMVELI_CONFIG.story.description
+    (DOMVELI_CONFIG.footer || DOMVELI_CONFIG.story || {}).description || ''
   );
   brandName.href = '/';
   brand.append(brandName, description);

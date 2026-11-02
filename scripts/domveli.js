@@ -71,7 +71,9 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
      ============================================================ */
 
   function renderCategories(root) {
-    const config = DOMVELI_CONFIG.categorySection;
+    const config = DOMVELI_CONFIG.categorySection || {
+      linkText: 'OBJAVIŤ KOLEKCIU →'
+    };
     const section = node('section', 'dv-section dv-categories');
     section.id = 'kategorie';
     const grid = node('div', 'dv-category-grid');
@@ -122,130 +124,6 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     if (controls) {
       intro.appendChild(controls);
     }
-  }
-
-  /* ============================================================
-     2. FEATURE SEKCIA
-     ============================================================ */
-
-  function renderFeature(root) {
-    const config = DOMVELI_CONFIG.feature;
-
-    if (!config) return;
-
-    const section = node('section', 'dv-section dv-feature');
-    const body = node('div', 'dv-feature-body');
-    const button = link(config.url, 'dv-button');
-
-    button.textContent = config.button;
-
-    append(
-      body,
-      node('div', 'dv-kicker', config.kicker),
-      node('h2', 'dv-heading', config.title),
-      node(
-        'p',
-        'dv-feature-description',
-        config.description
-      ),
-      button
-    );
-
-    const featureImage = image(
-      config.image,
-      config.title,
-      'dv-feature-image'
-    );
-
-    append(section, featureImage, body);
-    root.appendChild(section);
-  }
-
-  /* ============================================================
-     3. PRÍBEH ZNAČKY
-     ============================================================ */
-
-  function renderStory(root) {
-    const config = DOMVELI_CONFIG.story;
-
-    const section = node(
-      'section',
-      'dv-section dv-story'
-    );
-
-    append(
-      section,
-      node('div', 'dv-kicker', config.kicker),
-      node('h2', 'dv-heading', config.title),
-      node('p', 'dv-story-description', config.description),
-      node('div', 'dv-story-rule')
-    );
-
-    root.appendChild(section);
-  }
-
-
-  /* ============================================================
-     3b. SEO BLOK – VIANOČNÉ OSVETLENIE A DEKORÁCIE
-     ============================================================ */
-
-  // Záložné texty, ak config nemá sekciu seo.
-  const DEFAULT_SEO = {
-    kicker: 'DOMVELI',
-    title: 'Vianočné LED osvetlenie a dekorácie pre váš domov',
-    subtitle: 'Vytvorte si čarovnú vianočnú atmosféru s exkluzívnym osvetlením a dekoráciami',
-    text:
-      'Hľadáte spôsob, ako premeniť svoj domov na oázu sviatočnej pohody? ' +
-      'V e-shope Domveli prinášame starostlivo vyberané vianočné osvetlenie a dekorácie, ' +
-      'ktoré dodajú vášmu interiéru aj exteriéru hrejivý šmrnc. Či už plánujete kompletnú výzdobu, ' +
-      'alebo zháňate spoľahlivé vonkajšie vianočné osvetlenie domu, u nás nakúpite rýchlo, bezpečne a s istotou.',
-    items: [
-      {
-        title: 'Výhodné vianočné sety dekorácií',
-        text: 'Ušetrite čas aj peniaze. Naše tematické vianočné sety na balkón aj stôl k sebe farebne a štýlovo dokonale pasujú.'
-      },
-      {
-        title: 'Bezpečné vonkajšie LED svetielka',
-        text: 'Certifikované vianočné LED cencúle a reťaze s vysokou odolnosťou voči mrazu a dažďu pre váš dom či terasu.'
-      },
-      {
-        title: 'Odborné poradenstvo a tipy',
-        text: 'Neviete, koľko svetielok potrebujete na stromček? Prečítajte si náš praktický sprievodca výberom.'
-      }
-    ]
-  };
-
-  function renderChristmasSeo(root) {
-    const seo = Object.assign({}, DEFAULT_SEO, DOMVELI_CONFIG.seo || {});
-    const items = Array.isArray(seo.items) ? seo.items : DEFAULT_SEO.items;
-
-    const section = node('section', 'dv-section dv-seo');
-    const inner = node('div', 'dv-seo-inner');
-
-    const intro = node('div', 'dv-seo-intro');
-    append(
-      intro,
-      node('div', 'dv-kicker', seo.kicker),
-      node('h2', 'dv-heading', seo.title),
-      node('p', 'dv-seo-subtitle', seo.subtitle),
-      node('p', 'dv-seo-text', seo.text)
-    );
-
-    const grid = node('div', 'dv-seo-grid');
-    items.forEach((item, index) => {
-      const card = node('div', 'dv-seo-item');
-      append(
-        card,
-        node('span', 'dv-seo-number', String(index + 1).padStart(2, '0')),
-        node('h3', 'dv-seo-item-title', item.title),
-        node('p', 'dv-seo-item-text', item.text)
-      );
-      grid.appendChild(card);
-    });
-
-    append(inner, intro, grid);
-    section.appendChild(inner);
-    root.appendChild(section);
   }
 
   /* ============================================================
@@ -875,11 +753,10 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   }
 
   function renderInspirationBlog(root) {
-    const config = DOMVELI_CONFIG.inspirationBlog;
+    const config = DOMVELI_CONFIG.inspirationBlog || {};
 
     if (
       !root ||
-      !config ||
       root.querySelector(':scope > .dv-blog:not([data-dv-static])')
     ) {
       return;
@@ -1062,17 +939,17 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
   /* ============================================================
      STATICKÉ SEKCIE Z HTML
-     Nadpisy, úvody a SEO texty sú priamo v HTML v Shoptete
-     (sekcie s atribútom data-dv-static). JS z nich doplní len dynamické
-     časti (produkty, karusely) a duplicitné nadpisy zahodí.
+     Nadpisy, úvody, SEO text, O značke, postup nákupu a príbeh sú priamo
+     v HTML v Shoptete (sekcie s atribútom data-dv-static). JS z hybridných
+     sekcií doplní len dynamické časti (produkty, karusely) a duplicitné
+     nadpisy zahodí.
      ============================================================ */
 
-  const STATIC_ONLY = ['dv-feature', 'dv-seo', 'dv-story'];
   const HYBRID = ['dv-favorites', 'dv-deals', 'dv-sets', 'dv-categories', 'dv-blog'];
   const INTRO = '.dv-sets-intro, .dv-blog-intro';
 
   function sectionKey(section) {
-    return STATIC_ONLY.concat(HYBRID).find(
+    return HYBRID.find(
       key => section.classList.contains(key)
     );
   }
@@ -1090,11 +967,6 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       );
 
       if (!built) return;
-
-      if (STATIC_ONLY.includes(key)) {
-        built.remove();
-        return;
-      }
 
       const staticIntro = staticSection.querySelector(':scope > ' + INTRO.split(', ').join(', :scope > '));
       const builtIntro = built.querySelector(':scope > ' + INTRO.split(', ').join(', :scope > '));
@@ -1169,12 +1041,9 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderPromoBanners();
     renderSets();
     renderCategories(root);
-    renderChristmasSeo(root);
     renderFavorites();
     renderDeals();
-    renderFeature(root);
     renderInspirationBlog(root);
-    renderStory(root);
     reconcileStatic(root);
     applySectionOrder(root);
   }

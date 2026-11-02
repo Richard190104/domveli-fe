@@ -36,8 +36,7 @@ async function fetchConfig() {
     const homepage = config?.DOMVELI_CONFIG;
 
     if (!homepage || !Array.isArray(homepage.categories) ||
-        !Array.isArray(homepage.banners) || !homepage.categorySection ||
-        !homepage.story || !homepage.inspirationBlog ||
+        !Array.isArray(homepage.banners) ||
         !Array.isArray(config.notificationsConfig) ||
         !Array.isArray(config.navbannerConfig)) {
       throw new Error('Konfigurácia nemá očakávanú štruktúru.');
