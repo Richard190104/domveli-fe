@@ -1778,14 +1778,15 @@ body .alert-info {
 
 /* Odkazy v SEO texte (interné odkazy na hlavné kategórie). */
 #domveli-home .dv-seo-text a,
+#domveli-home .dv-seo-item-title a,
 #domveli-home .dv-seo-item-text a {
-    color: inherit;
+    color: var(--dv-gold);
     font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--dv-gold);
-    text-underline-offset: 3px;
+    text-decoration: none;
 }
 #domveli-home .dv-seo-text a:hover,
+#domveli-home .dv-seo-item-title a:hover,
 #domveli-home .dv-seo-item-text a:hover {
-    color: var(--dv-gold);
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
