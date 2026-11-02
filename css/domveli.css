@@ -1667,3 +1667,111 @@ body .alert-info {
         margin-top: 0;
     }
 }
+
+
+/* SEO sekcia – dvojstĺpcový úvod a body bez kariet */
+#domveli-home .dv-seo {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+#domveli-home .dv-seo-intro {
+    max-width: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(40px, 6vw, 96px);
+    align-items: start;
+    margin: 0 0 64px;
+}
+
+#domveli-home .dv-seo-intro .dv-kicker {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#domveli-home .dv-seo-intro .dv-heading {
+    grid-column: 1;
+    grid-row: 2;
+    margin: 0 0 18px;
+    font-size: clamp(30px, 3.4vw, 44px);
+}
+
+#domveli-home .dv-seo-subtitle {
+    grid-column: 1;
+    grid-row: 3;
+    margin: 0;
+}
+
+#domveli-home .dv-seo-text {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+    align-self: center;
+    padding-left: clamp(24px, 3vw, 44px);
+    border-left: 1px solid rgba(201, 160, 106, .45);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+#domveli-home .dv-seo-grid {
+    gap: 0;
+    margin: 0;
+}
+
+#domveli-home .dv-seo-item {
+    background: transparent;
+    border-top: 1px solid rgba(201, 160, 106, .45);
+    padding: 30px clamp(20px, 3vw, 40px) 6px 0;
+}
+
+#domveli-home .dv-seo-item + .dv-seo-item {
+    padding-left: clamp(20px, 3vw, 40px);
+    border-left: 1px solid rgba(201, 160, 106, .2);
+}
+
+#domveli-home .dv-seo-number {
+    font-size: 15px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    color: #c9a06a;
+}
+
+#domveli-home .dv-seo-item-title {
+    font-size: 19px;
+}
+
+@media (max-width: 900px) {
+    #domveli-home .dv-seo-intro {
+        grid-template-columns: 1fr;
+    }
+
+    #domveli-home .dv-seo-intro > * {
+        grid-column: 1 !important;
+        grid-row: auto !important;
+    }
+
+    #domveli-home .dv-seo-text {
+        border-left: 0;
+        padding-left: 0;
+        margin-top: 20px;
+    }
+
+    #domveli-home .dv-seo-item {
+        padding-right: 0;
+    }
+
+    #domveli-home .dv-seo-item + .dv-seo-item {
+        border-left: 0;
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    #domveli-home .dv-seo {
+        padding-top: 56px;
+        padding-bottom: 56px;
+    }
+
+    #domveli-home .dv-seo-intro {
+        margin-bottom: 36px;
+    }
+}
