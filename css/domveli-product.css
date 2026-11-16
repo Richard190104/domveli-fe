@@ -223,67 +223,72 @@ body.type-product .p-detail .detail-parameters tr.p-code {
 }
 
 
-/* DOMVELI | Benefity na detaile produktu */
+/* DOMVELI | Kompaktné benefity na detaile */
 
-body.type-product .dv-product-benefits {
+body.type-product .benefitBanner.dv-product-benefits {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
   width: 100%;
-  margin: 16px 0 0;
-  padding: 4px 18px;
-  background: #fff;
-  border: 1px solid var(--dv-border);
+  padding: 14px 10px;
+  border: 1px solid #e9dfd2;
   box-shadow: none;
 }
 
-body.type-product .dv-product-benefits__item {
+body.type-product .dv-product-benefits .benefitBanner__item {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  justify-content: flex-start;
+  gap: 7px;
   min-width: 0;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--dv-border);
+  margin: 0;
+  padding: 0 5px;
+  background: transparent;
+  border: 0;
+  text-align: center;
+  width: 100%;
 }
 
-body.type-product .dv-product-benefits__item:last-child {
-  border-bottom: 0;
-}
-
-body.type-product .dv-product-benefits__icon {
+body.type-product .dv-product-benefits .benefitBanner__picture {
   display: flex;
-  flex: 0 0 30px;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  color: var(--dv-gold-dark);
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  margin: 0;
 }
 
-body.type-product .dv-product-benefits__icon svg {
-  width: 25px;
-  height: 25px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-body.type-product .dv-product-benefits__item strong,
-body.type-product .dv-product-benefits__item span:not(.dv-product-benefits__icon) {
+body.type-product .dv-product-benefits .benefitBanner__img {
   display: block;
+  width: 28px;
+  height: 28px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-body.type-product .dv-product-benefits__item strong {
-  color: var(--dv-ink);
-  font-size: 14px;
+body.type-product .dv-product-benefits .benefitBanner__content {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+}
+
+body.type-product .dv-product-benefits .benefitBanner__title {
+  display: block;
+  margin: 0;
+  color: #30251d;
+  font-size: 11px;
   font-weight: 700;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
-body.type-product .dv-product-benefits__item span:not(.dv-product-benefits__icon) {
+body.type-product .dv-product-benefits .benefitBanner__data {
   margin-top: 3px;
-  color: var(--dv-muted);
-  font-size: 12px;
-  line-height: 1.4;
+  color: #786f66;
+  font-size: 10px;
+  line-height: 1.35;
 }
 
 /* Dostupnosť tesnejšie k benefitom */
@@ -291,22 +296,24 @@ body.type-product #product-detail-form .detail-parameters {
   margin-bottom: 12px;
 }
 
+/* Mobil */
 @media (max-width: 480px) {
-  body.type-product .dv-product-benefits {
-    margin-top: 12px;
-    padding: 3px 14px;
+  body.type-product .benefitBanner.dv-product-benefits {
+    gap: 4px;
+    padding: 12px 6px;
   }
 
-  body.type-product .dv-product-benefits__item {
-    gap: 11px;
-    padding: 12px 0;
+  body.type-product .dv-product-benefits .benefitBanner__picture,
+  body.type-product .dv-product-benefits .benefitBanner__img {
+    width: 24px;
+    height: 24px;
   }
 
-  body.type-product .dv-product-benefits__item strong {
-    font-size: 13px;
+  body.type-product .dv-product-benefits .benefitBanner__title {
+    font-size: 10px;
   }
 
-  body.type-product .dv-product-benefits__item span:not(.dv-product-benefits__icon) {
-    font-size: 11px;
+  body.type-product .dv-product-benefits .benefitBanner__data {
+    font-size: 9px;
   }
 }
