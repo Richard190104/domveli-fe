@@ -223,6 +223,81 @@ body.type-product .p-detail .detail-parameters tr.p-code {
 }
 
 
+/* DOMVELI | Vlastný benefitový blok pod tlačidlom Do košíka */
+
+body.type-product .dv-benefits {
+  width: 100%;
+  margin: 24px 0 0;
+  padding: 8px 20px;
+  background: #f8f5f0;
+  border: 1px solid #e5dbce;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+body.type-product .dv-benefit {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e5dbce;
+}
+
+body.type-product .dv-benefit:last-child {
+  border-bottom: 0;
+}
+
+body.type-product .dv-benefit__icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
+  border: 1px solid #b88b4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body.type-product .dv-benefit__icon svg {
+  width: 18px;
+  height: 18px;
+  stroke: #b88b4a;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body.type-product .dv-benefit__title {
+  margin: 0 0 4px;
+  color: #30251f;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+body.type-product .dv-benefit__text {
+  margin: 0;
+  color: #514940;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  body.type-product .dv-benefits {
+    padding: 6px 14px;
+  }
+
+  body.type-product .dv-benefit__title {
+    font-size: 14px;
+  }
+
+  body.type-product .dv-benefit__text {
+    font-size: 12px;
+  }
+}
+
 /* DOMVELI | Kompaktné benefity na detaile */
 
 body.type-product .benefitBanner.dv-product-benefits {
