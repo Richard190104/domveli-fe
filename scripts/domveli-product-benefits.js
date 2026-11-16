@@ -13,10 +13,10 @@
   };
 
   const ITEMS = [
-    ['truck', 'Doprava od 3,90 €', 'Pri objednávke nad 100 € doprava ZADARMO'],
-    ['card', 'Platba kartou alebo dobierkou', 'Vyberte si spôsob platby, ktorý vám vyhovuje'],
-    ['back', 'Vrátenie do 14 dní', 'Jednoduché vrátenie tovaru do 14 dní'],
-    ['box', 'Odosielame nasledujúci pracovný deň', 'Vašu objednávku vybavíme čo najrýchlejšie']
+    ['truck', 'Doprava od 3,90 €', 'Nad 100 € zadarmo'],
+    ['card', 'Platba kartou alebo dobierkou', 'Vyberte si, čo vám vyhovuje'],
+    ['back', 'Vrátenie do 14 dní', 'Jednoduché vrátenie tovaru'],
+    ['box', 'Odosielame nasledujúci pracovný deň', 'Vybavíme čo najrýchlejšie']
   ];
 
   function init() {
