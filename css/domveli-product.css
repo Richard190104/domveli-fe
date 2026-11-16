@@ -226,25 +226,30 @@ body.type-product .p-detail .detail-parameters tr.p-code {
 /* DOMVELI | Vlastný benefitový blok pod tlačidlom Do košíka */
 
 body.type-product .dv-benefits {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   width: 100%;
-  margin: 24px 0 0;
-  padding: 8px 20px;
+  margin: 20px 0 0;
+  padding: 14px 6px;
   background: #f8f5f0;
   border: 1px solid #e5dbce;
   border-radius: 10px;
   box-sizing: border-box;
+  clear: both;
 }
 
 body.type-product .dv-benefit {
   display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 16px 0;
-  border-bottom: 1px solid #e5dbce;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-right: 1px solid #e5dbce;
 }
 
 body.type-product .dv-benefit:last-child {
-  border-bottom: 0;
+  border-right: 0;
 }
 
 body.type-product .dv-benefit__icon {
