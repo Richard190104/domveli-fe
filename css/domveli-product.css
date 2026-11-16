@@ -310,21 +310,14 @@ body.type-product #product-detail-form .detail-parameters {
 /* Mobil */
 @media (max-width: 480px) {
   body.type-product .benefitBanner.dv-product-benefits {
-    gap: 4px;
-    padding: 12px 6px;
-  }
-
-  body.type-product .dv-product-benefits .benefitBanner__picture,
-  body.type-product .dv-product-benefits .benefitBanner__img {
-    width: 24px;
-    height: 24px;
+    padding: 6px 14px;
   }
 
   body.type-product .dv-product-benefits .benefitBanner__title {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   body.type-product .dv-product-benefits .benefitBanner__data {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
