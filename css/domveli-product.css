@@ -284,6 +284,26 @@ body.type-product .dv-benefit__text {
   line-height: 1.5;
 }
 
+/* Šablóna prebíja zaoblenie a odsadenie odsekov */
+body.type-product .p-detail .dv-benefits,
+body.type-product .dv-benefits {
+  border-radius: 10px !important;
+}
+
+body.type-product .dv-benefits .dv-benefit__icon {
+  border-radius: 50% !important;
+}
+
+body.type-product .dv-benefits p.dv-benefit__title {
+  margin: 0 0 4px !important;
+  padding: 0 !important;
+}
+
+body.type-product .dv-benefits p.dv-benefit__text {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 @media (max-width: 480px) {
   body.type-product .dv-benefits {
     padding: 6px 14px;
