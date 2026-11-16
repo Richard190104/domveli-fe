@@ -33,7 +33,8 @@
       '</div>'
     ).join('');
 
-    if (cartPanel.classList.contains('p-image-wrapper')) cartPanel.appendChild(box);
+    const inner = cartPanel.closest('.p-detail-inner');
+    if (inner) inner.insertAdjacentElement('afterend', box);
     else cartPanel.insertAdjacentElement('afterend', box);
   }
 
