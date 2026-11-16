@@ -20,7 +20,7 @@
   ];
 
   function init() {
-    const cartPanel = document.querySelector('.p-detail .p-to-cart-block');
+    const cartPanel = document.querySelector('.p-detail .p-image-wrapper') || document.querySelector('.p-detail .p-to-cart-block');
     if (!cartPanel || document.querySelector('.dv-benefits')) return;
 
     const box = document.createElement('div');
