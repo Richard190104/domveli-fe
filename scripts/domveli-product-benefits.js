@@ -33,7 +33,8 @@
       '</div>'
     ).join('');
 
-    cartPanel.insertAdjacentElement('afterend', box);
+    if (cartPanel.classList.contains('p-image-wrapper')) cartPanel.appendChild(box);
+    else cartPanel.insertAdjacentElement('afterend', box);
   }
 
   if (document.readyState === 'loading') {
