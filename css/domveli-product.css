@@ -211,10 +211,6 @@ body.type-product .p-detail .social-buttons-wrapper a:hover {
   }
 }
 
-body.type-product .p-detail .detail-parameters tr.p-code {
-  display: none !important;
-}
-
 .quantity .decrease:hover:before{
     background-color: transparent !important;
 }
