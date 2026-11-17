@@ -25,6 +25,7 @@
     { js: 'scripts/domveli.js', when: 'in-index' },
     { js: 'scripts/domveli-listing.js', when: 'type-category' },
     { js: 'scripts/domveli-product-benefits.js', when: 'type-product' },
+    { js: 'scripts/domveli-gallery-tracking.js', when: 'type-product' },
     { js: 'scripts/domveli-blog.js', when: 'in-blog' }
   ];
 
