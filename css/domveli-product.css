@@ -395,6 +395,11 @@ body.type-product .dv-product-benefits .benefitBanner__data {
   line-height: 1.5;
 }
 
+/* Kód produktu sa zobrazuje v parametroch nižšie, riadok nad košíkom skryť */
+body.type-product .p-detail .detail-parameters tr.p-code {
+  display: none;
+}
+
 /* Dostupnosť tesnejšie k benefitom */
 body.type-product #product-detail-form .detail-parameters {
   margin-bottom: 12px;
