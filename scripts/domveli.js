@@ -222,6 +222,25 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       const description = part(content, '.dv-promo-description', 'p', 'dv-promo-description');
       const button = part(content, '.dv-promo-button', 'a', 'dv-promo-button');
 
+      // Doplnkový odkaz vedľa tlačidla (config: "extra": { "text", "link" }), napr. kalkulačka cencúľov
+      if (banner.extra && banner.extra.link) {
+        let actions = content.querySelector('.dv-promo-actions');
+        if (!actions) {
+          actions = createElement('div', 'dv-promo-actions');
+          button.before(actions);
+          actions.appendChild(button);
+        }
+        let extra = actions.querySelector('.dv-promo-extra');
+        if (!extra) {
+          extra = createElement('a', 'dv-promo-extra');
+          actions.appendChild(extra);
+        }
+        extra.href = banner.extra.link;
+        extra.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="2.5" width="14" height="19"/><rect x="8" y="5.5" width="8" height="3.5"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3M8.5 18.5h.01M12 18.5h.01"/></svg><span></span>';
+        extra.querySelector('span').textContent = banner.extra.text || 'Na mieru';
+        if (banner.extra.title) extra.title = banner.extra.title;
+      }
+
       if (!existing) section.appendChild(card);
 
       const slides = images.map((image, index) => ({
