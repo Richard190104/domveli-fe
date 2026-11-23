@@ -589,3 +589,16 @@ body.type-product .products-alternative .p-tools .add-to-cart-button:focus-visib
 }
 body.type-product .products-alternative .p-bottom > div::before,
 body.type-product .products-alternative .p-bottom > div::after { content: none !important; display: none !important; }
+
+/* DOMVELI | Detail produktu bez ľavého panela, produkt na celú šírku */
+@media (min-width: 768px) {
+  body.type-product .content-wrapper-in > .sidebar-left { display: none !important; }
+  body.type-product .content-wrapper-in > #content {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
