@@ -6,6 +6,8 @@
 
   var FILES = [
     { css: 'css/blog.css' },
+    { css: 'css/domveli-cencule.css', when: 'type-product' },
+    { css: 'css/domveli-cencule.css', when: 'in-svetelne-zavesy' },
     { css: 'css/domveli-cart-popup.css' },
     { css: 'css/domveli-checkout.css' },
     { css: 'css/domveli-footer.css' },
