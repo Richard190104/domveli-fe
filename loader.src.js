@@ -29,7 +29,7 @@
     { js: 'scripts/domveli-product-benefits.js', when: 'type-product' },
     { js: 'scripts/domveli-gallery-tracking.js', when: 'type-product' },
     { js: 'scripts/domveli-cencule.js', when: 'type-product' },
-    { js: 'scripts/domveli-cencule.js', when: 'in-svetelne-zavesy' },
+    { js: 'scripts/domveli-cencule.js', when: 'type-category' },
     { js: 'scripts/domveli-blog.js', when: 'in-blog' }
   ];
 
