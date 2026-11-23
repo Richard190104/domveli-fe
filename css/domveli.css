@@ -1853,3 +1853,54 @@ body .alert-info {
 @media (max-width: 767px) {
   .breadcrumbs { margin-top: 66px !important; }
 }
+
+/* Doplnkový odkaz v promo banneri (napr. kalkulačka cencúľov) */
+#domveli-home .dv-promo-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+#domveli-home .dv-promo-actions .dv-promo-button { flex: none; white-space: nowrap; }
+#domveli-home .dv-promo-extra {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #f5e9d6 !important;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+#domveli-home .dv-promo-extra svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: #d9b478;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+#domveli-home .dv-promo-extra span {
+  padding-bottom: 1px;
+  border-bottom: 1px solid rgba(217, 180, 120, .7);
+}
+#domveli-home .dv-promo-extra:hover span { border-bottom-color: #d9b478; }
+#domveli-home .dv-promo-extra:focus-visible { outline: 2px solid #d9b478; outline-offset: 4px; }
+
+/* Mobil: namiesto hlavného tlačidla len tlačidlo kalkulačky */
+@media (max-width: 767px) {
+  #domveli-home .dv-promo-actions .dv-promo-button { display: none; }
+  #domveli-home .dv-promo-actions .dv-promo-extra {
+    gap: 8px;
+    padding: 11px 14px;
+    background: linear-gradient(135deg, #d5ac71, #ae7d42);
+    color: #fff !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+  }
+  #domveli-home .dv-promo-actions .dv-promo-extra svg { stroke: #fff; }
+  #domveli-home .dv-promo-actions .dv-promo-extra span { padding: 0; border: 0; }
+}
