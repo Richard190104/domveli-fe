@@ -1,5 +1,5 @@
 
-/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.0 */
+/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.1 */
 
 .dv-cc-trigger,
 .dv-cc {
@@ -38,8 +38,12 @@
   cursor: pointer;
 }
 .dv-cc-trigger:hover { border-color: var(--cc-cta); }
+.dv-cc-trigger__ic { flex: none; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: #fff; border: 1px solid var(--cc-line); color: var(--cc-cta-dark); }
+.dv-cc-trigger__ic svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.dv-cc-trigger__tx { flex: 1; }
 .dv-cc-trigger b { display: block; font-weight: 800; }
-.dv-cc-trigger span span { display: block; color: var(--cc-mute); font-size: 14px; }
+.dv-cc-trigger__tx span { display: block; color: var(--cc-mute); font-size: 14px; }
+.p-image-wrapper > .dv-cc-trigger { margin: 20px 0 0; }
 .dv-cc-trigger i { font-style: normal; font-weight: 700; white-space: nowrap; color: var(--cc-cta-dark); }
 
 /* Popup */
