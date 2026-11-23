@@ -337,6 +337,20 @@
     });
   }
 
+  // Odkaz kdekoľvek na webe (napr. banner na homepage) otvorí kalkulačku: href="#cencule-na-mieru"
+  const HASH = '#cencule-na-mieru';
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href$="' + HASH + '"]');
+    if (!a) return;
+    e.preventDefault();
+    open(null);
+  });
+  if (location.hash === HASH) {
+    const openFromHash = () => open(null);
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', openFromHash);
+    else openFromHash();
+  }
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
