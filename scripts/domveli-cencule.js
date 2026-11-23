@@ -369,7 +369,7 @@
   const showToast = () => setTimeout(() => {
     if (document.body.classList.contains('dv-cc-open') || document.body.classList.contains('dv-popup-open') || document.body.classList.contains('dv-cart-open')) return;
     toast();
-  }, 6000);
+  }, 2000);
   if (document.readyState === 'complete') showToast();
   else window.addEventListener('load', showToast);
 
