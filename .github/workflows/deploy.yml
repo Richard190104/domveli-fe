@@ -1,5 +1,9 @@
 name: Deploy
 
+# main    -> https://richard190104.github.io/domveli-fe/          (ostrý web, Shoptet)
+# staging -> https://richard190104.github.io/domveli-fe/staging/  (testovacia kópia, domveli-staging worker)
+# Vždy sa zbuildujú obe vetvy (GitHub Pages má jedno nasadenie na repo).
+# Push do staging spustí tento workflow cez staging-trigger.yml (beží z main, aby prešlo pravidlo prostredia github-pages).
 on:
   push:
     branches: [main]
@@ -18,23 +22,50 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: prod
+
+      - name: Vetva pre staging (staging, inak main)
+        run: |
+          if git -C prod ls-remote --exit-code --heads origin staging >/dev/null; then
+            echo "STAGE_REF=staging" >> "$GITHUB_ENV"
+          else
+            echo "STAGE_REF=main" >> "$GITHUB_ENV"
+          fi
+
+      - name: Checkout staging
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.STAGE_REF }}
+          path: stage
 
       - name: Syntax check
         run: |
-          mkdir -p /tmp/check
-          for f in scripts/*.js loader.src.js; do
-            cp "$f" "/tmp/check/$(basename "$f" .js).mjs"
-            node --check "/tmp/check/$(basename "$f" .js).mjs"
+          for tree in prod stage; do
+            mkdir -p /tmp/check/$tree
+            for f in $tree/scripts/*.js $tree/loader.src.js; do
+              cp "$f" "/tmp/check/$tree/$(basename "$f" .js).mjs"
+              node --check "/tmp/check/$tree/$(basename "$f" .js).mjs"
+            done
           done
 
       - name: Build
         run: |
-          VER="${GITHUB_SHA::8}"
-          mkdir -p _site
-          cp -r scripts css _site/
-          sed -i "s/?v=1/?v=$VER/g" _site/scripts/*.js
-          sed "s/__VERSION__/$VER/g" loader.src.js > _site/loader.js
+          PROD_BASE="https://richard190104.github.io/domveli-fe/"
+          build() {
+            src=$1; out=$2; base=$3
+            ver=$(git -C "$src" rev-parse --short=8 HEAD)
+            mkdir -p "$out"
+            cp -r "$src/scripts" "$src/css" "$out/"
+            sed -i "s/?v=1/?v=$ver/g" "$out"/scripts/*.js
+            sed "s/__VERSION__/$ver/g; s#$PROD_BASE#$base#g" "$src/loader.src.js" > "$out/loader.js"
+            echo "$src ($ver) -> $out"
+          }
+          build prod _site "$PROD_BASE"
+          build stage _site/staging "${PROD_BASE}staging/"
 
       - uses: actions/upload-pages-artifact@v3
         with:
