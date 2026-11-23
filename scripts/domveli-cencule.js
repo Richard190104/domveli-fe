@@ -137,6 +137,7 @@
             <p class="dv-cc__intro">Zadajte dĺžku strechy alebo odkvapu. Zostavíme ju z prepojiteľných sád za najlepšiu cenu.</p>
             <div class="dv-cc__f"><label for="dv-cc-L">Dĺžka v metroch</label>
               <div class="dv-cc__qty"><button type="button" data-step="-0.5" aria-label="Menej">−</button><input id="dv-cc-L" type="number" inputmode="decimal" min="1" max="300" step="0.5" placeholder="napr. 30"><button type="button" data-step="0.5" aria-label="Viac">+</button></div>
+              <div class="dv-cc__chips" role="group" aria-label="Rýchly výber dĺžky">${[10, 20, 30, 40, 60].map(m => `<button type="button" data-len="${m}">${m} m</button>`).join('')}</div>
               <p class="dv-cc__hint">Cencúle sa nedajú skrátiť, presah zavediete za roh.</p></div>
             <div class="dv-cc__f"><label for="dv-cc-fam">Farba a režim</label><select id="dv-cc-fam">${DATA.map((f, i) => `<option value="${i}">${h(f.name)}</option>`).join('')}</select><p class="dv-cc__hint dv-cc__sub"></p></div>
             <div class="dv-cc__f dv-cc__viz"></div>
@@ -159,6 +160,8 @@
       if (e.target.closest('.dv-cc__swap')) { useAlt = !useAlt; return render(); }
       if (e.target.closest('.dv-cc__opt')) { showOpt = !showOpt; useAlt = false; return render(); }
       if (e.target.closest('.dv-cc__cta')) return addAll();
+      const chip = e.target.closest('[data-len]');
+      if (chip) return setL(Number(chip.dataset.len));
     });
     inp.addEventListener('input', () => {
       const v = parseFloat(String(inp.value).replace(',', '.'));
@@ -186,6 +189,7 @@
 
   function render() {
     $('.dv-cc__sub').textContent = fam.sub;
+    root.querySelectorAll('[data-len]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.len) === L)));
     const cta = $('.dv-cc__cta');
     if (!L) {
       $('.dv-cc__viz').innerHTML = '';
@@ -303,7 +307,7 @@
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'dv-cc-trigger';
-    b.innerHTML = `<span class="dv-cc-trigger__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="3.5" rx=".5"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3M8.5 18.5h.01M12 18.5h.01"/></svg></span><span class="dv-cc-trigger__tx"><b>${title}</b><span>${sub}</span></span><i>Vypočítať →</i>`;
+    b.innerHTML = `<span class="dv-cc-trigger__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="3.5" rx=".5"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3M8.5 18.5h.01M12 18.5h.01"/></svg></span><span class="dv-cc-trigger__tx"><b>${title}</b><span>${sub}</span></span><i>Vypočítať</i>`;
     b.addEventListener('click', () => open(preset));
     return b;
   }
@@ -315,7 +319,7 @@
       const f = DATA.find(x => x.items.some(i => i.code === curCode));
       if (f) {
         // počítač: pod galériou vľavo, mobil: pod nákupným panelom
-        const el = trigger(f, 'Potrebujete dlhšie cencúle?', 'Vyskladáme vám ich na mieru z prepojiteľných sád');
+        const el = trigger(f, 'Cencúle na mieru', 'Zadajte dĺžku, zvyšok vyrátame za vás');
         const mq = window.matchMedia('(min-width: 768px)');
         const place = () => {
           const gal = document.querySelector('.p-detail .p-image-wrapper');
