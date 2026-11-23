@@ -337,6 +337,42 @@
     });
   }
 
+  // Ponuka na homepage vysúvaná z pravého okraja: po zatvorení (alebo otvorení kalkulačky) sa už nezobrazí
+  const TOAST_KEY = 'dv-cc-toast-off';
+  function toast() {
+    // len na hlavnej stránke
+    if (!document.body.classList.contains('in-index')) return;
+    try { if (localStorage.getItem(TOAST_KEY)) return; } catch (e) { return; }
+
+    const el = document.createElement('aside');
+    el.className = 'dv-cc-toast';
+    el.setAttribute('aria-label', 'Cencúle na mieru');
+    el.innerHTML =
+      '<div class="dv-cc-toast__img"><img src="https://richard190104.github.io/domveli-be/images/svetelne-zavesy.webp" alt="" width="380" height="170" loading="lazy">' +
+      '<span class="dv-cc-toast__badge">Novinka</span></div>' +
+      '<div class="dv-cc-toast__tx"><span class="dv-cc-toast__k">Cencúle na mieru</span>' +
+      '<strong>Presne na dĺžku vašej strechy</strong>' +
+      '<p>Zadajte metre a zostavu z prepojiteľných sád aj s cenou vyrátame za vás.</p>' +
+      '<button type="button" class="dv-cc-toast__go">Vypočítať zostavu <span aria-hidden="true">→</span></button></div>' +
+      '<button type="button" class="dv-cc-toast__x" aria-label="Zavrieť a viac nezobrazovať">×</button>';
+    document.body.appendChild(el);
+
+    const off = () => {
+      try { localStorage.setItem(TOAST_KEY, '1'); } catch (e) {}
+      el.classList.remove('is-in');
+      setTimeout(() => el.remove(), 400);
+    };
+    el.querySelector('.dv-cc-toast__x').addEventListener('click', off);
+    el.querySelector('.dv-cc-toast__go').addEventListener('click', () => { off(); open(null); });
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('is-in')));
+  }
+  const showToast = () => setTimeout(() => {
+    if (document.body.classList.contains('dv-cc-open') || document.body.classList.contains('dv-popup-open') || document.body.classList.contains('dv-cart-open')) return;
+    toast();
+  }, 6000);
+  if (document.readyState === 'complete') showToast();
+  else window.addEventListener('load', showToast);
+
   // Odkaz kdekoľvek na webe (napr. banner na homepage) otvorí kalkulačku: href="#cencule-na-mieru"
   const HASH = '#cencule-na-mieru';
   document.addEventListener('click', e => {
