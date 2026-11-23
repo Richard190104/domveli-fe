@@ -117,6 +117,8 @@
     const element = createPopup();
 
     element.querySelector('.dv-cart-name').textContent = product.name;
+    element.querySelector('.dv-cart-quantity').textContent = product.quantity || '1 ks';
+    element.querySelector('#dv-cart-title').textContent = product.title || 'Produkt je vo vašom košíku';
     element.querySelector('.dv-cart-price').textContent = product.price;
 
     const image = element.querySelector('.dv-cart-image img');
@@ -137,6 +139,9 @@
     element.querySelector('.dv-cart-close').focus();
   }
 
+
+// Otvorenie popupu z iných skriptov (napr. cencúle na mieru)
+window.DomveliCartPopup = { open: openPopup };
 
 /* DOMVELI | Popup pre listing aj detail produktu */
 

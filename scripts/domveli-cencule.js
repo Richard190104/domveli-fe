@@ -1,5 +1,5 @@
 
-/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.0
+/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.1
    Spúšťač na detaile cencúľov a v kategórii Vianočné LED cencúle, popup so zostavou z prepojiteľných sád.
    Zoznam sád je tu; cena a sklad sa pri otvorení načítajú naživo z produktových stránok (záložné hodnoty nižšie). */
 (() => {
@@ -258,7 +258,18 @@
       const ok = await addOne(l.item.code, l.qty);
       if (!ok) { msg.textContent = 'Niektorú sadu sa nepodarilo pridať. Skontrolujte prosím košík.'; msg.style.color = 'var(--cc-warn)'; cta.disabled = false; cta.textContent = 'Skúsiť znova'; return; }
     }
-    location.href = '/kosik/';
+    close();
+    const first = c.lines[0].item;
+    if (window.DomveliCartPopup && window.DomveliCartPopup.open) {
+      window.DomveliCartPopup.open({
+        title: 'Zostava je vo vašom košíku',
+        name: 'Cencúle na mieru – ' + fam.name + ', spolu ' + num(c.m) + ' m',
+        quantity: c.lines.map(l => l.qty + '× ' + num(l.item.m) + ' m').join(' + ') + ' (' + c.n + ' ' + sady(c.n) + ')',
+        price: eur(c.price),
+        image: IMG + first.img
+      });
+    } else location.href = '/kosik/';
+    cta.disabled = false; cta.textContent = 'Pridať celú zostavu do košíka';
   }
 
   function open(preset) {
