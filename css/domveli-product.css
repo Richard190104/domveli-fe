@@ -419,3 +419,173 @@ body.type-product #product-detail-form .detail-parameters {
     font-size: 12px;
   }
 }
+
+/* DOMVELI | Podobné produkty (DOM-8): karty ako na listingu, posúvací pás */
+body.type-product .dv-related-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 48px 0 20px;
+}
+body.type-product .dv-related-head .products-alternative-header {
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+  font-size: 28px;
+  line-height: 1.2;
+}
+body.type-product .dv-related-kicker {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--dv-gold-dark);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+body.type-product .dv-related-nav { display: flex; gap: 8px; }
+body.type-product .dv-related-nav[hidden] { display: none; }
+body.type-product .dv-related-nav button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--dv-ink);
+  background: #fff;
+  color: var(--dv-ink);
+  cursor: pointer;
+}
+body.type-product .dv-related-nav button:disabled { border-color: var(--dv-border); color: #c8bcae; cursor: default; }
+body.type-product .dv-related-nav button:focus-visible { outline: 3px solid var(--dv-gold); outline-offset: 2px; }
+body.type-product .dv-related-nav svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Pás: natívne posúvanie (swipe), prebíja šírky, ktoré nastavuje slider Shoptetu */
+body.type-product .products-alternative-wrapper { overflow: visible !important; margin: 0 0 8px !important; padding: 0 !important; }
+body.type-product .products-alternative { width: auto !important; margin: 0 !important; padding: 0 !important; overflow: visible !important; }
+body.type-product .products-alternative .products-block {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  gap: 16px;
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0 0 4px !important;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  transform: none !important;
+}
+body.type-product .products-alternative .products-block::-webkit-scrollbar { display: none; }
+body.type-product .products-alternative .product {
+  flex: 0 0 calc((100% - 32px) / 3) !important;
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  scroll-snap-align: start;
+}
+
+/* Karta */
+body.type-product .products-alternative .p {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid var(--dv-border) !important;
+  background: #fff;
+  text-align: left !important;
+}
+body.type-product .products-alternative .p > a.image { display: block; margin: 0 !important; padding: 0 !important; aspect-ratio: 4 / 3; overflow: hidden; }
+body.type-product .products-alternative .p > a.image img { display: block; width: 100% !important; height: 100% !important; max-height: none !important; margin: 0 !important; object-fit: cover; }
+body.type-product .products-alternative .p-in { flex: 1; padding: 14px 16px 0 !important; text-align: left !important; }
+body.type-product .products-alternative .p-in-in { padding: 0 !important; }
+body.type-product .products-alternative a.name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  height: 40px;
+  overflow: hidden;
+  margin: 0 0 10px !important;
+  padding: 0 !important;
+  color: var(--dv-ink) !important;
+  font-size: 14px !important;
+  font-weight: 600;
+  line-height: 20px !important;
+  text-decoration: none !important;
+}
+body.type-product .products-alternative .ratings-wrapper { display: block !important; margin: 0 !important; text-align: left !important; }
+body.type-product .products-alternative .stars-placeholder { display: none; }
+body.type-product .products-alternative .availability { font-size: 13px; text-align: left !important; }
+body.type-product .products-alternative .availability-amount { color: var(--dv-muted); }
+body.type-product .products-alternative .p-bottom { margin: 0 !important; padding: 12px 0 16px !important; }
+body.type-product .products-alternative-wrapper > .product-slider-pagination,
+body.type-product .products-alternative-wrapper > .product-slider-navigation { display: none !important; }
+body.type-product .products-alternative .p-bottom > div {
+  display: flex !important;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between !important;
+  gap: 10px;
+}
+body.type-product .products-alternative .prices,
+body.type-product .products-alternative .price-final { margin: 0 !important; padding: 0 !important; text-align: left !important; }
+body.type-product .products-alternative .price-final strong { color: var(--dv-ink); font-size: 18px; font-weight: 800; }
+body.type-product .products-alternative .price-standard,
+body.type-product .products-alternative .p-desc,
+body.type-product .products-alternative .p-code { display: none !important; }
+
+body.type-product .products-alternative .p-tools { display: block !important; width: auto !important; margin: 0 0 0 auto !important; padding: 0 !important; }
+body.type-product .products-alternative .p-tools form { display: block !important; width: auto !important; min-width: 0 !important; margin: 0 !important; }
+body.type-product .products-alternative .p-tools .add-to-cart-button,
+body.type-product .products-alternative .p-tools a.btn {
+  position: relative;
+  display: block !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: #b68a4a !important;
+  box-shadow: none !important;
+  font-size: 0 !important;
+  color: transparent !important;
+  cursor: pointer;
+}
+body.type-product .products-alternative .p-tools .add-to-cart-button > span { display: none !important; }
+body.type-product .products-alternative .p-tools .add-to-cart-button::before,
+body.type-product .products-alternative .p-tools a.btn::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: center / 20px 20px no-repeat !important;
+}
+body.type-product .products-alternative .p-tools .add-to-cart-button::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M12 5v14M5 12h14'/%3E%3C/svg%3E") !important;
+}
+body.type-product .products-alternative .p-tools a.btn::before {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E") !important;
+}
+body.type-product .products-alternative .p-tools .add-to-cart-button::after,
+body.type-product .products-alternative .p-tools a.btn::after { content: none !important; }
+body.type-product .products-alternative .p-tools .add-to-cart-button:hover,
+body.type-product .products-alternative .p-tools a.btn:hover { background: #91672f !important; }
+body.type-product .products-alternative .p-tools .add-to-cart-button:focus-visible { outline: 3px solid var(--dv-ink); outline-offset: 3px; }
+
+@media (max-width: 991px) {
+  body.type-product .products-alternative .product { flex-basis: calc((100% - 16px) / 2.3) !important; }
+}
+@media (max-width: 480px) {
+  body.type-product .dv-related-head { margin-top: 36px; }
+  body.type-product .dv-related-head .products-alternative-header { font-size: 24px; }
+  body.type-product .products-alternative .products-block { gap: 12px; }
+  body.type-product .products-alternative .product { flex-basis: 76% !important; }
+}
+body.type-product .products-alternative .p-bottom > div::before,
+body.type-product .products-alternative .p-bottom > div::after { content: none !important; display: none !important; }

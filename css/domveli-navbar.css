@@ -135,6 +135,12 @@ input.btn.btn-primary:focus-visible {
         z-index: 1002;
     }
 
+    /* Horný pruh (Prihlásenie, Registrácia...) je mimo #header a ostáva ostrý nad vrstvou (DOM-6). */
+    .top-navigation-bar {
+        position: relative;
+        z-index: 1002;
+    }
+
     /* Navigácia a jej podmenu musia byť nad rozmazávacou vrstvou. */
     #navigation {
         position: relative;
