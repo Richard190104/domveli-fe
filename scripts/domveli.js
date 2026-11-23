@@ -240,21 +240,6 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
         extra.querySelector('span').textContent = banner.extra.text || 'Na mieru';
         if (banner.extra.title) extra.title = banner.extra.title;
 
-        // Pulz: trieda sa pridá len na čas animácie a potom odoberie (inak by bol text rozmazaný)
-        if (!extra.dataset.dvPulse) {
-          extra.dataset.dvPulse = '1';
-          const pulse = () => {
-            if (extra.matches(':hover, :focus-visible')) return;
-            extra.classList.remove('dv-pulse');
-            void extra.offsetWidth;
-            extra.classList.add('dv-pulse');
-          };
-          extra.addEventListener('animationend', e => {
-            if (e.target === extra) extra.classList.remove('dv-pulse');
-          });
-          setTimeout(pulse, 1500);
-          setInterval(pulse, 8000);
-        }
       }
 
       if (!existing) section.appendChild(card);
