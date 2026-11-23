@@ -1888,19 +1888,7 @@ body .alert-info {
 #domveli-home .dv-promo-extra:hover span { border-bottom-color: #d9b478; }
 #domveli-home .dv-promo-extra:focus-visible { outline: 2px solid #d9b478; outline-offset: 4px; }
 
-/* Mobil: namiesto hlavného tlačidla len tlačidlo kalkulačky */
+/* Mobil: len hlavné tlačidlo, odkaz na kalkulačku sa nezmestí */
 @media (max-width: 767px) {
-  #domveli-home .dv-promo-actions .dv-promo-button { display: none; }
-  #domveli-home .dv-promo-actions .dv-promo-extra {
-    gap: 8px;
-    padding: 11px 14px;
-    background: linear-gradient(135deg, #d5ac71, #ae7d42);
-    color: #fff !important;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: .5px;
-    text-transform: uppercase;
-  }
-  #domveli-home .dv-promo-actions .dv-promo-extra svg { stroke: #fff; }
-  #domveli-home .dv-promo-actions .dv-promo-extra span { padding: 0; border: 0; }
+  #domveli-home .dv-promo-actions .dv-promo-extra { display: none; }
 }

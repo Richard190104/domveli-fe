@@ -318,17 +318,10 @@
     if (body.contains('type-product') && curCode) {
       const f = DATA.find(x => x.items.some(i => i.code === curCode));
       if (f) {
-        // počítač: pod galériou vľavo, mobil: pod nákupným panelom
+        // pod nákupným panelom (pri cene a košíku) na počítači aj mobile
         const el = trigger(f, 'Cencúle na mieru', 'Zadajte dĺžku, zvyšok vyrátame za vás');
-        const mq = window.matchMedia('(min-width: 768px)');
-        const place = () => {
-          const gal = document.querySelector('.p-detail .p-image-wrapper');
-          const cart = document.querySelector('.p-detail .p-to-cart-block') || document.querySelector('.p-detail-inner-header');
-          if (mq.matches && gal) gal.appendChild(el);
-          else if (cart) cart.insertAdjacentElement('afterend', el);
-        };
-        place();
-        if (mq.addEventListener) mq.addEventListener('change', place);
+        const cart = document.querySelector('.p-detail .p-to-cart-block') || document.querySelector('.p-detail-inner-header');
+        if (cart) cart.insertAdjacentElement('afterend', el);
       }
     }
     // ľubovoľné miesto: <div data-dv-cencule></div>
