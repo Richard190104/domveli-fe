@@ -117,6 +117,8 @@
     const element = createPopup();
 
     element.querySelector('.dv-cart-name').textContent = product.name;
+    element.querySelector('.dv-cart-quantity').textContent = product.quantity || '1 ks';
+    element.querySelector('#dv-cart-title').textContent = product.title || 'Produkt je vo vašom košíku';
     element.querySelector('.dv-cart-price').textContent = product.price;
 
     const image = element.querySelector('.dv-cart-image img');
