@@ -61,3 +61,91 @@ body.ordering-process ol.cart-header li.completed a:before{
     background-color: rgb(223, 223, 223);
     border-color: black;
 }
+
+/* =========================================
+   DOMVELI | Prázdny košík (DOM-9)
+   ========================================= */
+body.ordering-process .cart-empty > [hidden] { display: none !important; }
+
+body.ordering-process .dv-empty { padding: 48px 0 56px; color: var(--dv-checkout-brown); }
+body.ordering-process .dv-empty__hero { text-align: center; }
+body.ordering-process .dv-empty__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  margin-bottom: 22px;
+  border: 1px solid var(--dv-checkout-border);
+  border-radius: 50% !important;
+  background: var(--dv-checkout-cream);
+  color: var(--dv-checkout-gold);
+}
+body.ordering-process .dv-empty svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+body.ordering-process .dv-empty__icon svg { width: 38px; height: 38px; }
+body.ordering-process .dv-empty__title { margin: 0 0 10px; font-size: 36px; line-height: 1.2; }
+body.ordering-process .dv-empty__text { margin: 0 0 28px; color: #786f66; font-size: 16px; }
+body.ordering-process .dv-empty__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 34px;
+  background: var(--dv-checkout-gold);
+  color: #fff !important;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+body.ordering-process .dv-empty__cta:hover { background: var(--dv-checkout-gold-hover); }
+
+body.ordering-process .dv-empty__cats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+}
+body.ordering-process .dv-empty__cats li { margin: 0; padding: 0; }
+body.ordering-process .dv-empty__cats li::before { content: none !important; }
+body.ordering-process .dv-empty__cats a {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: 100%;
+  padding: 14px;
+  border: 1px solid var(--dv-checkout-border);
+  background: var(--dv-checkout-cream);
+  color: var(--dv-checkout-brown) !important;
+  text-decoration: none !important;
+  transition: border-color .2s ease, background-color .2s ease;
+}
+body.ordering-process .dv-empty__cats a:hover { border-color: #d6bc98; background: #f2e8d8; }
+body.ordering-process .dv-empty__cats img { flex: 0 0 96px; width: 96px !important; height: 70px !important; max-width: none !important; object-fit: cover; }
+body.ordering-process .dv-empty__cats strong { display: block; font-size: 16px; font-weight: 700; }
+body.ordering-process .dv-empty__cats small { display: block; margin-top: 4px; color: #786f66; font-size: 13px; line-height: 1.4; }
+
+body.ordering-process .dv-empty__help {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 32px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid var(--dv-checkout-border);
+}
+body.ordering-process .dv-empty__help strong { font-family: 'Noto Serif', serif; font-size: 18px; }
+body.ordering-process .dv-empty__help a { display: inline-flex; align-items: center; gap: 8px; color: var(--dv-checkout-brown) !important; font-size: 15px; }
+body.ordering-process .dv-empty__help svg { width: 18px; height: 18px; color: var(--dv-checkout-gold); }
+body.ordering-process .dv-empty a:focus-visible { outline: 3px solid var(--dv-checkout-brown); outline-offset: 3px; }
+
+@media (max-width: 991px) {
+  body.ordering-process .dv-empty__cats { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+}
+@media (max-width: 480px) {
+  body.ordering-process .dv-empty { padding: 32px 0 40px; }
+  body.ordering-process .dv-empty__title { font-size: 26px; }
+  body.ordering-process .dv-empty__cta { width: 100%; justify-content: center; }
+  body.ordering-process .dv-empty__help { flex-direction: column; gap: 10px; }
+}

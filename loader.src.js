@@ -27,8 +27,10 @@
     { js: 'scripts/domveli-listing.js', when: 'type-category' },
     { js: 'scripts/domveli-product-benefits.js', when: 'type-product' },
     { js: 'scripts/domveli-gallery-tracking.js', when: 'type-product' },
+    { js: 'scripts/domveli-related.js', when: 'type-product' },
     { js: 'scripts/domveli-cencule.js', when: 'type-product' },
-    { js: 'scripts/domveli-blog.js', when: 'in-blog' }
+    { js: 'scripts/domveli-blog.js', when: 'in-blog' },
+    { js: 'scripts/domveli-empty-cart.js', when: 'in-kosik' }
   ];
 
   // Konfigurácia sa začne sťahovať hneď, nie až po načítaní modulov.
