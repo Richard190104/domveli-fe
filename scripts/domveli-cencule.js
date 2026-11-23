@@ -1,5 +1,5 @@
 
-/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.1
+/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.2
    Spúšťač na detaile cencúľov a v kategórii Vianočné LED cencúle, popup so zostavou z prepojiteľných sád.
    Zoznam sád je tu; cena a sklad sa pri otvorení načítajú naživo z produktových stránok (záložné hodnoty nižšie). */
 (() => {
@@ -293,7 +293,7 @@
     const b = document.createElement('button');
     b.type = 'button';
     b.className = 'dv-cc-trigger';
-    b.innerHTML = `<span><b>${title}</b><span>${sub}</span></span><i>Vypočítať →</i>`;
+    b.innerHTML = `<span class="dv-cc-trigger__ic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="2"/><rect x="8" y="5.5" width="8" height="3.5" rx=".5"/><path d="M8.5 12.5h.01M12 12.5h.01M15.5 12.5h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5v3M8.5 18.5h.01M12 18.5h.01"/></svg></span><span class="dv-cc-trigger__tx"><b>${title}</b><span>${sub}</span></span><i>Vypočítať →</i>`;
     b.addEventListener('click', () => open(preset));
     return b;
   }
@@ -304,8 +304,17 @@
     if (body.contains('type-product') && curCode) {
       const f = DATA.find(x => x.items.some(i => i.code === curCode));
       if (f) {
-        const anchor = document.querySelector('.p-detail .p-to-cart-block') || document.querySelector('.p-detail-inner-header');
-        if (anchor) anchor.insertAdjacentElement('afterend', trigger(f, 'Potrebujete dlhšie cencúle?', 'Vyskladáme vám ich na mieru z prepojiteľných sád'));
+        // počítač: pod galériou vľavo, mobil: pod nákupným panelom
+        const el = trigger(f, 'Potrebujete dlhšie cencúle?', 'Vyskladáme vám ich na mieru z prepojiteľných sád');
+        const mq = window.matchMedia('(min-width: 768px)');
+        const place = () => {
+          const gal = document.querySelector('.p-detail .p-image-wrapper');
+          const cart = document.querySelector('.p-detail .p-to-cart-block') || document.querySelector('.p-detail-inner-header');
+          if (mq.matches && gal) gal.appendChild(el);
+          else if (cart) cart.insertAdjacentElement('afterend', el);
+        };
+        place();
+        if (mq.addEventListener) mq.addEventListener('change', place);
       }
     }
     // kategória Vianočné LED cencúle
