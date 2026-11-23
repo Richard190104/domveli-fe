@@ -133,6 +133,8 @@ body.dv-cc-open { overflow: hidden; }
 .dv-cc .dv-cc__total { display: flex; justify-content: space-between; align-items: baseline; margin-top: 18px; }
 .dv-cc .dv-cc__total span:first-child { font-weight: 700; }
 .dv-cc .dv-cc__price { font: 800 32px/1 "Noto Serif", Georgia, serif; white-space: nowrap; }
+.dv-cc .dv-cc__empty { margin: 0; padding: 28px 20px; border: 1px dashed var(--cc-field); background: #fff; color: var(--cc-mute); text-align: center; }
+.dv-cc .dv-cc__qty input::placeholder { color: #b9ab98; font-weight: 400; }
 .dv-cc .dv-cc__note { background: #fff; padding: 12px 14px; margin-top: 14px; font-size: 14px; }
 .dv-cc .dv-cc__box { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin-top: 14px; padding: 12px 14px; border: 1px solid var(--cc-line); font-size: 15px; }
 .dv-cc .dv-cc__box--warn { border-color: #e9b6b2; background: #fdf3f2; }
