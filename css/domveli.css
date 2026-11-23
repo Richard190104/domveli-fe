@@ -1790,3 +1790,66 @@ body .alert-info {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+/* ==========================================================
+   DOMVELI | Breadcrumb (DOM-13, DOM-15)
+   ========================================================== */
+.breadcrumbs {
+  color: #786f66;
+  font-size: 13px;
+}
+.breadcrumbs a {
+  color: #786f66 !important;
+  text-decoration: none !important;
+}
+.breadcrumbs a:hover { color: #91672f !important; text-decoration: underline !important; }
+.breadcrumbs .navigation-bullet { margin: 0 6px; color: #c8bcae; }
+.breadcrumbs [data-testid="breadcrumbsLastLevel"] { color: #30251d; }
+
+/* Počítač: na celú šírku obsahu, v jednom riadku (na detaile nad ľavým panelom aj produktom) */
+@media (min-width: 992px) {
+  .breadcrumbs {
+    width: auto !important;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  /* Na detaile je názov produktu hneď pod tým v nadpise, v breadcrumbe ho vynecháme */
+  body.type-product .breadcrumbs [data-testid="breadcrumbsLastLevel"] { display: none; }
+  body.type-product .breadcrumbs > span:has(+ [data-testid="breadcrumbsLastLevel"]) .navigation-bullet { display: none; }
+}
+
+/* Mobil a tablet: pevná hlavička prekrývala breadcrumb. Ukážeme len odkaz späť o úroveň vyššie. */
+@media (max-width: 991px) {
+  .breadcrumbs {
+    margin-bottom: 4px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 14px;
+  }
+  .breadcrumbs > span { display: none !important; }
+  .breadcrumbs > span:has(+ [data-testid="breadcrumbsLastLevel"]) { display: inline !important; }
+  .breadcrumbs > span:has(+ [data-testid="breadcrumbsLastLevel"]) .navigation-bullet { display: none; }
+  .breadcrumbs > span:has(+ [data-testid="breadcrumbsLastLevel"]) a::before { content: "‹"; margin-right: 6px; font-size: 18px; line-height: 1; }
+  .breadcrumbs > span:has(+ [data-testid="breadcrumbsLastLevel"]) a { display: inline-flex; align-items: center; min-height: 32px; font-weight: 700; color: #30251d !important; }
+  /* Ak je o úroveň vyššie domovská stránka, zobrazí sa „Domov“ namiesto ikony */
+  .breadcrumbs #navigation-first a.navigation-home-icon::after { content: none !important; display: none !important; }
+  .breadcrumbs #navigation-first .sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    clip: auto !important;
+    white-space: nowrap !important;
+  }
+}
+
+/* Na mobile je hlavička pevná (66 px, DOM-14) a prekrývala breadcrumb */
+@media (max-width: 767px) {
+  .breadcrumbs { margin-top: 66px !important; }
+}
