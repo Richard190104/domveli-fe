@@ -1905,30 +1905,24 @@ body .alert-info {
   #domveli-home .dv-promo-actions .dv-promo-extra span { padding: 0; border: 0; }
 }
 
-/* Odkaz „Na mieru“: po načítaní a potom každých 8 s sa dvakrát po sebe jemne zväčší */
+/* Odkaz „Na mieru“: dvakrát po sebe jemne zväčší. Spúšťa ho domveli.js triedou .dv-pulse
+   (po 1,5 s a potom každých 8 s). Mimo pulzu nemá žiadnu animáciu, aby bol text ostrý. */
 @keyframes dv-promo-extra-pulse {
-  0%, 15%, 100% { transform: scale(1); }
-  3.5%, 11% { transform: scale(1.12); }
-  7% { transform: scale(1); }
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.12); }
+  50% { transform: scale(1); }
 }
 @keyframes dv-promo-extra-glow {
-  0%, 15%, 100% { filter: none; }
-  3.5%, 11% { filter: drop-shadow(0 0 6px rgba(217, 180, 120, .85)); }
+  0%, 50%, 100% { filter: none; }
+  25%, 75% { filter: drop-shadow(0 0 6px rgba(217, 180, 120, .85)); }
 }
-#domveli-home .dv-promo-extra {
-  transform-origin: left center;
-  animation: dv-promo-extra-pulse 8s ease-in-out 1.5s infinite;
-}
-#domveli-home .dv-promo-extra svg {
-  animation: dv-promo-extra-glow 8s ease-in-out 1.5s infinite;
-}
-#domveli-home .dv-promo-extra:hover,
-#domveli-home .dv-promo-extra:focus-visible,
-#domveli-home .dv-promo-extra:hover svg { animation: none; }
+#domveli-home .dv-promo-extra { transform-origin: left center; }
+#domveli-home .dv-promo-extra.dv-pulse { animation: dv-promo-extra-pulse 1.2s ease-in-out; }
+#domveli-home .dv-promo-extra.dv-pulse svg { animation: dv-promo-extra-glow 1.2s ease-in-out; }
 @media (max-width: 767px) {
   #domveli-home .dv-promo-actions .dv-promo-extra { transform-origin: center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  #domveli-home .dv-promo-extra,
-  #domveli-home .dv-promo-extra svg { animation: none; }
+  #domveli-home .dv-promo-extra.dv-pulse,
+  #domveli-home .dv-promo-extra.dv-pulse svg { animation: none; }
 }
