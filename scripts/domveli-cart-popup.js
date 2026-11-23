@@ -140,6 +140,9 @@
   }
 
 
+// Otvorenie popupu z iných skriptov (napr. cencúle na mieru)
+window.DomveliCartPopup = { open: openPopup };
+
 /* DOMVELI | Popup pre listing aj detail produktu */
 
 document.addEventListener('click', event => {
