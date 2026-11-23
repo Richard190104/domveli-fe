@@ -1,6 +1,6 @@
 
-/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.2
-   Spúšťač na detaile cencúľov a v kategórii Vianočné LED cencúle, popup so zostavou z prepojiteľných sád.
+/* DOMVELI | Cencúle na mieru (konfigurátor) | v1.3
+   Spúšťač na detaile cencúľov, popup so zostavou z prepojiteľných sád.
    Zoznam sád je tu; cena a sklad sa pri otvorení načítajú naživo z produktových stránok (záložné hodnoty nižšie). */
 (() => {
   'use strict';
@@ -121,7 +121,7 @@
   const sady = n => n === 1 ? 'sada' : n < 5 ? 'sady' : 'sád';
   const h = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
 
-  let fam = DATA[0], L = 30, useAlt = false, showOpt = false, last = null, loading = false, root = null, prevFocus = null;
+  let fam = DATA[0], L = null, useAlt = false, showOpt = false, last = null, loading = false, root = null, prevFocus = null;
   const $ = s => root.querySelector(s);
 
   function build() {
@@ -136,7 +136,7 @@
             <h2 class="dv-cc__t" id="dv-cc-t">Cencúle na mieru</h2>
             <p class="dv-cc__intro">Zadajte dĺžku strechy alebo odkvapu. Zostavíme ju z prepojiteľných sád za najlepšiu cenu.</p>
             <div class="dv-cc__f"><label for="dv-cc-L">Dĺžka v metroch</label>
-              <div class="dv-cc__qty"><button type="button" data-step="-0.5" aria-label="Menej">−</button><input id="dv-cc-L" type="number" inputmode="decimal" min="1" max="300" step="0.5"><button type="button" data-step="0.5" aria-label="Viac">+</button></div>
+              <div class="dv-cc__qty"><button type="button" data-step="-0.5" aria-label="Menej">−</button><input id="dv-cc-L" type="number" inputmode="decimal" min="1" max="300" step="0.5" placeholder="napr. 30"><button type="button" data-step="0.5" aria-label="Viac">+</button></div>
               <p class="dv-cc__hint">Cencúle sa nedajú skrátiť, presah zavediete za roh.</p></div>
             <div class="dv-cc__f"><label for="dv-cc-fam">Farba a režim</label><select id="dv-cc-fam">${DATA.map((f, i) => `<option value="${i}">${h(f.name)}</option>`).join('')}</select><p class="dv-cc__hint dv-cc__sub"></p></div>
             <div class="dv-cc__f dv-cc__viz"></div>
@@ -155,7 +155,7 @@
     root.addEventListener('click', e => {
       if (e.target === root || e.target.closest('.dv-cc__x')) return close();
       const st = e.target.closest('[data-step]');
-      if (st) return setL(L + parseFloat(st.dataset.step));
+      if (st) return setL((L || 0) + parseFloat(st.dataset.step));
       if (e.target.closest('.dv-cc__swap')) { useAlt = !useAlt; return render(); }
       if (e.target.closest('.dv-cc__opt')) { showOpt = !showOpt; useAlt = false; return render(); }
       if (e.target.closest('.dv-cc__cta')) return addAll();
@@ -163,6 +163,7 @@
     inp.addEventListener('input', () => {
       const v = parseFloat(String(inp.value).replace(',', '.'));
       if (v > 0 && v <= 300) { L = v; useAlt = false; showOpt = false; render(); }
+      else if (String(inp.value).trim() === '') { L = null; render(); }
     });
     inp.addEventListener('change', () => setL(parseFloat(String(inp.value).replace(',', '.'))));
     $('#dv-cc-fam').addEventListener('change', e => { fam = DATA[+e.target.value]; useAlt = false; showOpt = false; refresh(); });
@@ -170,6 +171,7 @@
   }
 
   function setL(v) {
+    if (isNaN(v)) { if (String($('#dv-cc-L').value).trim() === '') { L = null; render(); } return; }
     v = Math.max(1, Math.min(300, Math.round(v * 2) / 2 || 1));
     $('#dv-cc-L').value = v;
     if (v === L) return;
@@ -183,6 +185,15 @@
   }
 
   function render() {
+    $('.dv-cc__sub').textContent = fam.sub;
+    const cta = $('.dv-cc__cta');
+    if (!L) {
+      $('.dv-cc__viz').innerHTML = '';
+      $('.dv-cc__res').innerHTML = '<p class="dv-cc__empty">Zadajte dĺžku, ktorú chcete osvetliť, a tu sa zobrazí zostava s cenou.</p>';
+      cta.disabled = true; cta.textContent = 'Pridať celú zostavu do košíka';
+      $('.dv-cc__msg').textContent = '';
+      return;
+    }
     const items = fam.items;
     const rs = solve(items, L, false), ro = solve(items, L, true);
     const same = (a, b) => a && b && a.counts.join() === b.counts.join();
@@ -230,7 +241,6 @@
     }
     $('.dv-cc__res').innerHTML = html;
 
-    const cta = $('.dv-cc__cta');
     cta.disabled = loading || c.lowStock;
     cta.textContent = loading ? 'Overujem dostupnosť…' : c.lowStock ? 'Zostava nie je skladom' : 'Pridať celú zostavu do košíka';
     $('.dv-cc__msg').textContent = '';
@@ -276,7 +286,7 @@
     if (!root) build();
     if (preset) { fam = preset; useAlt = false; showOpt = false; }
     $('#dv-cc-fam').value = String(DATA.indexOf(fam));
-    $('#dv-cc-L').value = L;
+    $('#dv-cc-L').value = L == null ? '' : L;
     prevFocus = document.activeElement;
     root.hidden = false;
     document.body.classList.add('dv-cc-open');
@@ -316,11 +326,6 @@
         place();
         if (mq.addEventListener) mq.addEventListener('change', place);
       }
-    }
-    // kategória Vianočné LED cencúle
-    if (body.contains('in-svetelne-zavesy')) {
-      const anchor = document.querySelector('.category-top .category-perex') || document.querySelector('.category-title');
-      if (anchor) anchor.insertAdjacentElement('afterend', trigger(null, 'Cencúle na mieru', 'Zadajte dĺžku strechy a zostavíme vám ju z prepojiteľných sád'));
     }
     // ľubovoľné miesto: <div data-dv-cencule></div>
     document.querySelectorAll('[data-dv-cencule]').forEach(el => {

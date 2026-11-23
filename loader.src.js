@@ -7,7 +7,6 @@
   var FILES = [
     { css: 'css/blog.css' },
     { css: 'css/domveli-cencule.css', when: 'type-product' },
-    { css: 'css/domveli-cencule.css', when: 'type-category' },
     { css: 'css/domveli-cart-popup.css' },
     { css: 'css/domveli-checkout.css' },
     { css: 'css/domveli-footer.css' },
@@ -29,7 +28,6 @@
     { js: 'scripts/domveli-product-benefits.js', when: 'type-product' },
     { js: 'scripts/domveli-gallery-tracking.js', when: 'type-product' },
     { js: 'scripts/domveli-cencule.js', when: 'type-product' },
-    { js: 'scripts/domveli-cencule.js', when: 'type-category' },
     { js: 'scripts/domveli-blog.js', when: 'in-blog' }
   ];
 
