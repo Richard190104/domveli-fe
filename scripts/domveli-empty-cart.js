@@ -62,4 +62,12 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+
+  // Po odstránení poslednej položky Shoptet prekreslí košík cez AJAX bez načítania stránky
+  document.addEventListener('ShoptetDOMCartContentLoaded', init);
+  const root = document.getElementById('content') || document.body;
+  new MutationObserver(() => {
+    const cart = document.querySelector('.cart-inner.cart-empty');
+    if (cart && !cart.querySelector('.dv-empty')) init();
+  }).observe(root, { childList: true, subtree: true });
 })();
