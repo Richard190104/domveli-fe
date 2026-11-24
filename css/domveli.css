@@ -1849,9 +1849,10 @@ body .alert-info {
   }
 }
 
-/* Na mobile je hlavička pevná (66 px, DOM-14) a prekrývala breadcrumb */
+/* Na mobile je hlavička pevná (66 px, DOM-14): obsah začína pod ňou na všetkých stránkach */
 @media (max-width: 767px) {
-  .breadcrumbs { margin-top: 66px !important; }
+  #content-wrapper { padding-top: 76px !important; }
+  .breadcrumbs { margin-top: 0 !important; }
 }
 
 /* Doplnkový odkaz v promo banneri (napr. kalkulačka cencúľov) */
