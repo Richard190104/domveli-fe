@@ -26,6 +26,7 @@
     { js: 'scripts/domveli-cart-popup.js' },
     { js: 'scripts/domveli-menu-alt.js' },
     { js: 'scripts/domveli-mobile-menu.js' },
+    { js: 'scripts/domveli-sticky-menu.js' },
     { js: 'scripts/domveli-share.js', when: 'in-blog' },
     { js: 'scripts/domveli.js', when: 'in-index' },
     { js: 'scripts/domveli-home-benefits.js', when: 'in-index' },

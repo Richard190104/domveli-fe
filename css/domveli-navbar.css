@@ -555,6 +555,14 @@ input.btn.btn-primary:focus-visible {
     transition: none;
   }
 }
+/* Prilepené horné menu pri skrolovaní (top nastavuje domveli-sticky-menu.js) */
+@media (min-width: 992px) {
+  #header.dv-sticky-menu {
+    position: sticky !important;
+    z-index: 1002;
+  }
+}
+
 /* Prihlasovací popup a košík nad hlavičkou */
 .overall-wrapper > .user-action {
   z-index: 1010 !important;
