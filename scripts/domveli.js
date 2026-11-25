@@ -972,8 +972,8 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     'dv-promo-banners',
     'dv-catstrip',
 
-    'dv-sets',
     'dv-favorites',
+    'dv-sets',
         'dv-categories',
 
     'dv-deals',
