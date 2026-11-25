@@ -680,6 +680,7 @@ body #domveli-home .dv-bundles .dv-set-footer {
   align-items: flex-end;
   justify-content: space-between;
   gap: 12px;
+  flex-wrap: nowrap;
   margin: 0 18px;
   padding: 14px 0 18px;
   border-top: 1px solid #f0e8dd;
