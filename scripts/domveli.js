@@ -1022,6 +1022,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     'dv-catstrip',
 
     'dv-favorites',
+    'dv-ccband',
     'dv-sets',
         'dv-categories',
 
