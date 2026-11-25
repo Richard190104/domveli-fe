@@ -61,6 +61,14 @@
           </div>
         </div>
 
+        <div class="dv-cart-free" hidden>
+          <div class="dv-cart-free__txt">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v3h-7"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="18.5" cy="17.5" r="1.8"/></svg>
+            <span></span>
+          </div>
+          <div class="dv-cart-free__bar"><i></i></div>
+        </div>
+
         <div class="dv-cart-actions">
           <button type="button" class="dv-cart-continue">
             ← Pokračovať v nákupe
@@ -113,6 +121,45 @@
     return popup;
   }
 
+  /* Doprava zadarmo: údaje z košíka Shoptetu (cartInfo) */
+  function formatEur(value) {
+    return value.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function updateFreeShipping() {
+    if (!popup) return;
+    const box = popup.querySelector('.dv-cart-free');
+    let info = null;
+
+    try {
+      info = typeof window.getShoptetDataLayer === 'function' ? window.getShoptetDataLayer('cartInfo') : null;
+    } catch (e) {
+      info = null;
+    }
+
+    const from = info && Number(info.freeShippingFrom);
+    const left = info && info.leftToFreeShipping ? Number(info.leftToFreeShipping.priceLeft) : NaN;
+
+    if (!from || Number.isNaN(left)) {
+      box.hidden = true;
+      return;
+    }
+
+    const done = info.freeShipping === true || left <= 0;
+    const pct = done ? 100 : Math.max(3, Math.min(100, ((from - left) / from) * 100));
+
+    box.classList.toggle('is-done', done);
+    box.querySelector('.dv-cart-free__txt span').innerHTML = done
+      ? '<b>Máte dopravu zadarmo!</b> 🎉'
+      : 'Do dopravy zadarmo vám chýba už len <b>' + formatEur(left) + '</b>';
+    box.querySelector('.dv-cart-free__bar i').style.width = pct + '%';
+    box.hidden = false;
+  }
+
+  document.addEventListener('ShoptetDataLayerUpdated', () => {
+    if (popup && !popup.hidden) updateFreeShipping();
+  });
+
   function openPopup(product) {
     const element = createPopup();
 
@@ -131,6 +178,9 @@
     } else {
       image.removeAttribute('src');
     }
+
+    updateFreeShipping();
+    setTimeout(updateFreeShipping, 700);
 
     previousFocus = document.activeElement;
     element.hidden = false;
