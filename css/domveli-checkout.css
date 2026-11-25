@@ -67,6 +67,54 @@ body.ordering-process ol.cart-header li.completed a:before{
    ========================================= */
 body.ordering-process .cart-empty > [hidden] { display: none !important; }
 
+/* DOMVELI | Košík: koľko chýba do dopravy zadarmo */
+body.ordering-process .extra.delivery {
+  max-width: 620px;
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  border: 1px solid #eadfce;
+  background: #f7f2eb;
+  color: var(--dv-checkout-brown);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+body.ordering-process .extra.delivery > span {
+  position: relative;
+  display: block;
+  padding-left: 36px;
+}
+
+body.ordering-process .extra.delivery > span::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 24px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b98d4c' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='1' y='6' width='14' height='10' rx='1'/%3E%3Cpath d='M15 10h4l3 3v3h-7'/%3E%3Ccircle cx='5.5' cy='17.5' r='1.8'/%3E%3Ccircle cx='18.5' cy='17.5' r='1.8'/%3E%3C/svg%3E") no-repeat center / contain;
+}
+
+body.ordering-process .extra.delivery strong {
+  color: #92692f;
+}
+
+body.ordering-process .extra.delivery .price-range {
+  width: auto !important;
+  height: 6px !important;
+  margin: 12px 0 0 -36px !important;
+  background: #e6dccd !important;
+}
+
+body.ordering-process .extra.delivery .price-range::before {
+  content: none !important;
+}
+
+body.ordering-process .extra.delivery .price-range > div {
+  height: 100% !important;
+  background: #c99a56 !important;
+}
+
 body.ordering-process .dv-empty { padding: 48px 0 56px; color: var(--dv-checkout-brown); }
 body.ordering-process .dv-empty__hero { text-align: center; }
 body.ordering-process .dv-empty__icon {
