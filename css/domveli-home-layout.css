@@ -569,3 +569,168 @@ body #domveli-home .dv-ccband-ben svg {
     animation: none;
   }
 }
+
+/* ==========================================================
+   Výhodné sety (trieda dv-bundles pridáva domveli.js)
+   ========================================================== */
+body #domveli-home > .dv-sets.dv-bundles {
+  background: #f7f2eb;
+  border-top: 1px solid #eadfce;
+  border-bottom: 1px solid #eadfce;
+  align-items: center;
+}
+
+body #domveli-home .dv-bundles .dv-sets-subtitle {
+  color: #73685e;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+body #domveli-home .dv-bundles .dv-sets-points {
+  display: grid;
+  gap: 9px;
+  margin: 4px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+body #domveli-home .dv-bundles .dv-sets-points li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  color: #30251e;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+body #domveli-home .dv-bundles .dv-sets-points li::before {
+  content: none;
+}
+
+body #domveli-home .dv-bundles .dv-sets-points svg {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #b98d4c;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body #domveli-home .dv-bundles .dv-set-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  border-color: #eadfce;
+  transition: box-shadow .2s ease;
+}
+
+body #domveli-home .dv-bundles .dv-set-card:hover {
+  box-shadow: 0 14px 34px rgba(48, 37, 30, .12);
+}
+
+body #domveli-home .dv-bundles .dv-set-product {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: inherit;
+  text-decoration: none;
+}
+
+body #domveli-home .dv-bundles .dv-set-image-wrap {
+  position: relative;
+}
+
+body #domveli-home .dv-bundles .dv-set-discount {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 6px 10px;
+  background: #211913;
+  color: #d9b478;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: .02em;
+  line-height: 1.2;
+}
+
+body #domveli-home .dv-bundles .dv-set-name {
+  min-height: 0;
+  padding: 16px 18px 4px;
+  color: #30251e;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+body #domveli-home .dv-bundles .dv-set-includes {
+  margin: 0;
+  padding: 0 18px 14px;
+  color: #73685e;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+body #domveli-home .dv-bundles .dv-set-footer {
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+  margin: 0 18px;
+  padding: 14px 0 18px;
+  border-top: 1px solid #f0e8dd;
+}
+
+body #domveli-home .dv-bundles .dv-set-prices {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+}
+
+body #domveli-home .dv-bundles .dv-set-separately {
+  color: #8b7b6c;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+body #domveli-home .dv-bundles .dv-set-separately del {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+body #domveli-home .dv-bundles .dv-set-price {
+  color: #211913;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 22px;
+  white-space: nowrap;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+body #domveli-home .dv-bundles .dv-set-button {
+  flex: none;
+  padding: 12px 14px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  body #domveli-home .dv-bundles .dv-sets-points {
+    display: none;
+  }
+
+  body #domveli-home .dv-bundles .dv-set-name {
+    font-size: 19px;
+  }
+
+  body #domveli-home .dv-bundles .dv-set-price {
+    font-size: 21px;
+  }
+}
