@@ -69,7 +69,8 @@ body.ordering-process .cart-empty > [hidden] { display: none !important; }
 
 /* DOMVELI | Košík: koľko chýba do dopravy zadarmo */
 body.ordering-process .extra.delivery {
-  max-width: 620px;
+  box-sizing: border-box;
+  max-width: 620px !important;
   margin: 20px 0 0;
   padding: 16px 18px;
   border: 1px solid #eadfce;
