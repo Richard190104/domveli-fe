@@ -61,6 +61,8 @@
     const wrap = document.querySelector('.overall-wrapper');
     if (wrap) wrap.style.paddingTop = bar.offsetHeight + 'px';
     onScroll();
+    // Prilepené menu pri zmene okna maže „top“ hlavičky, preto ešte raz po ňom.
+    requestAnimationFrame(onScroll);
   }
 
   function init() {
