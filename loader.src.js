@@ -27,6 +27,7 @@
     { js: 'scripts/domveli-mobile-menu.js' },
     { js: 'scripts/domveli-share.js', when: 'in-blog' },
     { js: 'scripts/domveli.js', when: 'in-index' },
+    { js: 'scripts/domveli-home-benefits.js', when: 'in-index' },
     { js: 'scripts/domveli-listing.js', when: 'type-category' },
     { js: 'scripts/domveli-filter.js', when: 'type-category' },
     { js: 'scripts/domveli-product-benefits.js', when: 'type-product' },
