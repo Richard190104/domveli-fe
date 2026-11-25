@@ -707,7 +707,9 @@ body #domveli-home .dv-bundles .dv-set-separately del {
 
 body #domveli-home .dv-bundles .dv-set-price {
   color: #211913;
-  font-size: 23px;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 22px;
+  white-space: nowrap;
   font-weight: 800;
   line-height: 1.1;
 }
