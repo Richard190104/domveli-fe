@@ -563,6 +563,93 @@ input.btn.btn-primary:focus-visible {
   }
 }
 
+/* Košík v prilepenom páse (vkladá domveli-sticky-menu.js) */
+.dv-sticky-cart {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  #header .header-bottom-wrapper {
+    position: relative;
+  }
+
+  #header .dv-sticky-cart {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 6px 0 20px;
+    color: #f5eee5;
+    background: #211913;
+    border-left: 1px solid #4a3a2d;
+    font-family: 'Mulish', Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    white-space: nowrap;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease, visibility .2s ease;
+    z-index: 3;
+  }
+
+  #header .dv-sticky-cart.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  #header .dv-sticky-cart:hover,
+  #header .dv-sticky-cart:focus-visible {
+    color: #d9b478;
+    text-decoration: none;
+  }
+
+  #header .dv-sticky-cart .dv-sc-ic {
+    position: relative;
+    display: flex;
+  }
+
+  #header .dv-sticky-cart svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: #d9b478;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  #header .dv-sticky-cart .dv-sc-ic b {
+    position: absolute;
+    top: -6px;
+    right: -9px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    box-sizing: border-box;
+    color: #211913;
+    background: #c99a56;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  #header .dv-sticky-cart .dv-sc-price {
+    color: #d9b478;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #header .dv-sticky-cart {
+    transition: none;
+  }
+}
+
 /* Prihlasovací popup a košík nad hlavičkou */
 .overall-wrapper > .user-action {
   z-index: 1010 !important;
