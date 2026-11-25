@@ -326,7 +326,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       list.appendChild(item);
     });
 
-    section.appendChild(list);
+    append(section, node('div', 'dv-catstrip-head', 'Nakupujte podľa kategórie'), list);
     root.appendChild(section);
   }
 
