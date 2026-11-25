@@ -1210,7 +1210,8 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderPromoBanners();
     renderCategoryStrip(root);
     renderSets();
-    renderCategories(root);
+    // Sekcia „Vianočné kúzlo začína tu“ sa už nezobrazuje, kategórie sú v páse pod bannerom.
+    root.querySelectorAll(':scope > .dv-categories').forEach(section => section.remove());
     renderFavorites();
     renderCenculeBand(root);
     renderDeals();
