@@ -303,6 +303,34 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   }
 
   /* ============================================================
+     5b. PÁS KATEGÓRIÍ POD BANNEROM
+     ============================================================ */
+
+  function renderCategoryStrip(root) {
+    if (!root || root.querySelector(':scope > .dv-catstrip')) return;
+
+    const categories = DOMVELI_CONFIG.categories || [];
+
+    if (!categories.length) return;
+
+    const section = node('nav', 'dv-catstrip');
+    section.setAttribute('aria-label', 'Kategórie');
+    const list = node('div', 'dv-catstrip-list');
+
+    categories.forEach(category => {
+      const item = link(category.url, 'dv-catstrip-item');
+      const circle = node('span', 'dv-catstrip-circle');
+
+      circle.appendChild(image(category.image, '', 'dv-catstrip-img'));
+      append(item, circle, node('span', 'dv-catstrip-name', category.name));
+      list.appendChild(item);
+    });
+
+    section.appendChild(list);
+    root.appendChild(section);
+  }
+
+  /* ============================================================
      6. VÝHODNÉ SETY
      ============================================================ */
 
@@ -942,6 +970,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
   const SECTION_ORDER = [
     'dv-promo-banners',
+    'dv-catstrip',
 
     'dv-sets',
     'dv-favorites',
@@ -1059,6 +1088,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     }
 
     renderPromoBanners();
+    renderCategoryStrip(root);
     renderSets();
     renderCategories(root);
     renderFavorites();
