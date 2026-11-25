@@ -601,6 +601,32 @@ input.btn.btn-primary:focus-visible {
   }
 }
 
+/* Mobil: pevný nad pevnou hlavičkou, po zrolovaní sa schová */
+.dv-gift-bar.is-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1003;
+  box-sizing: border-box;
+  transition: transform .2s ease;
+}
+
+.dv-gift-bar.is-fixed.is-hidden {
+  transform: translateY(-100%);
+}
+
+.dv-gift-bar.is-fixed ~ #header {
+  transition: top .2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-gift-bar.is-fixed,
+  .dv-gift-bar.is-fixed ~ #header {
+    transition: none;
+  }
+}
+
 /* Košík v prilepenom páse (vkladá domveli-sticky-menu.js) */
 .dv-sticky-cart {
   display: none;
