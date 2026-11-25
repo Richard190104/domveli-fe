@@ -1142,6 +1142,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderSets();
     renderCategories(root);
     renderFavorites();
+    renderCenculeBand(root);
     renderDeals();
     renderInspirationBlog(root);
     reconcileStatic(root);
