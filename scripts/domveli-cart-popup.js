@@ -140,6 +140,9 @@
       image.removeAttribute('src');
     }
 
+    updateFreeShipping();
+    setTimeout(updateFreeShipping, 700);
+
     previousFocus = document.activeElement;
     element.hidden = false;
 
