@@ -1087,6 +1087,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     }
 
     renderPromoBanners();
+    renderCategoryStrip(root);
     renderSets();
     renderCategories(root);
     renderFavorites();
