@@ -473,23 +473,37 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
       imageWrap.appendChild(picture);
 
-      if (product.discount) {
+      // Úspora: text z configu, inak sa vypočíta z ceny samostatne (oldPrice).
+      const saving = euro(product.oldPrice) - euro(product.price);
+      const discountText = product.discount ||
+        (saving > 0.005 ? 'Ušetríte ' + formatEuro(saving) : '');
+
+      if (discountText) {
         const discount = createElement(
           'span',
           'dv-set-discount',
-          product.discount
+          discountText
         );
 
         imageWrap.appendChild(discount);
       }
 
+      // Krátky názov setu (časť pred „–“), celý názov ostáva v title.
+      const shortName = String(product.name || '').split(' – ')[0];
       const name = createElement(
         'h3',
         'dv-set-name',
-        product.name
+        shortName
       );
 
+      name.title = product.name;
       productLink.append(imageWrap, name);
+
+      if (product.includes) {
+        productLink.appendChild(
+          createElement('p', 'dv-set-includes', product.includes)
+        );
+      }
 
       const footer = createElement(
         'div',
