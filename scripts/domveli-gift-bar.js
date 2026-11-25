@@ -8,7 +8,6 @@
 
   function init() {
     if (document.querySelector('.dv-gift-bar')) return;
-    if (document.body.classList.contains('ordering-process')) return;
 
     const anchor = document.querySelector('.overall-wrapper > .top-navigation-bar') ||
       document.getElementById('header');
