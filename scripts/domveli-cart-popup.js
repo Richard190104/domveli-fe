@@ -121,6 +121,45 @@
     return popup;
   }
 
+  /* Doprava zadarmo: údaje z košíka Shoptetu (cartInfo) */
+  function formatEur(value) {
+    return value.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  function updateFreeShipping() {
+    if (!popup) return;
+    const box = popup.querySelector('.dv-cart-free');
+    let info = null;
+
+    try {
+      info = typeof window.getShoptetDataLayer === 'function' ? window.getShoptetDataLayer('cartInfo') : null;
+    } catch (e) {
+      info = null;
+    }
+
+    const from = info && Number(info.freeShippingFrom);
+    const left = info && info.leftToFreeShipping ? Number(info.leftToFreeShipping.priceLeft) : NaN;
+
+    if (!from || Number.isNaN(left)) {
+      box.hidden = true;
+      return;
+    }
+
+    const done = info.freeShipping === true || left <= 0;
+    const pct = done ? 100 : Math.max(3, Math.min(100, ((from - left) / from) * 100));
+
+    box.classList.toggle('is-done', done);
+    box.querySelector('.dv-cart-free__txt span').innerHTML = done
+      ? '<b>Máte dopravu zadarmo!</b> 🎉'
+      : 'Do dopravy zadarmo vám chýba už len <b>' + formatEur(left) + '</b>';
+    box.querySelector('.dv-cart-free__bar i').style.width = pct + '%';
+    box.hidden = false;
+  }
+
+  document.addEventListener('ShoptetDataLayerUpdated', () => {
+    if (popup && !popup.hidden) updateFreeShipping();
+  });
+
   function openPopup(product) {
     const element = createPopup();
 
