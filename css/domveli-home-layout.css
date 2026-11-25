@@ -237,6 +237,25 @@ body #domveli-home .dv-set-card--featured .dv-set-price {
   }
 }
 
+/* Obľúbené produkty: fotky celé, bez orezania (fotky produktov majú pomer 4:3) */
+body #domveli-home .dv-favorites .dv-set-image-wrap,
+body #domveli-home .dv-favorites .dv-set-card--featured .dv-set-image-wrap {
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background: #fff;
+}
+
+body #domveli-home .dv-favorites .dv-set-image {
+  object-fit: contain !important;
+}
+
+@media (max-width: 600px) {
+  body #domveli-home .dv-favorites .dv-set-image-wrap,
+  body #domveli-home .dv-favorites .dv-set-card--featured .dv-set-image-wrap {
+    height: auto;
+  }
+}
+
 /* Mobil: doladenie (pásik istôt pod pevnou lištou, bez medzery, menší text banneru) */
 @media (max-width: 767px) {
   body.in-index .dv-trust-strip {
