@@ -1,0 +1,144 @@
+/* DOMVELI | Hlavná stránka: jeden nižší banner + pás kategórií | v1.0 */
+
+/* Banner: len prvý, nižší. Ďalšie dva sa nezobrazujú. */
+body #domveli-home .dv-promo-banners {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 300px;
+  margin: 16px 0 24px;
+}
+
+body #domveli-home .dv-promo-banners .dv-promo-card--1 {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+body #domveli-home .dv-promo-banners .dv-promo-card--2,
+body #domveli-home .dv-promo-banners .dv-promo-card--3 {
+  display: none;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-title {
+  font-size: clamp(30px, 3.4vw, 50px);
+  margin-bottom: 14px;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-description {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-uptitle {
+  margin-bottom: 10px;
+}
+
+/* Pás kategórií */
+body #domveli-home .dv-catstrip {
+  padding: 0 var(--dv-section-padding) 28px;
+}
+
+body #domveli-home .dv-catstrip-list {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 14px;
+}
+
+body #domveli-home .dv-catstrip-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: #30251f;
+  text-align: center;
+  text-decoration: none;
+}
+
+body #domveli-home .dv-catstrip-circle {
+  display: block;
+  width: 84px;
+  height: 84px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid #b88b4a;
+  background: #f8f5f0;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+body #domveli-home .dv-catstrip-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body #domveli-home .dv-catstrip-item:hover .dv-catstrip-circle {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(48, 37, 31, .18);
+}
+
+body #domveli-home .dv-catstrip-name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  font-size: 12.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+body #domveli-home .dv-catstrip-item:hover .dv-catstrip-name {
+  color: #91672f;
+}
+
+@media (max-width: 1050px) {
+  body #domveli-home .dv-promo-banners {
+    height: 280px;
+  }
+}
+
+@media (max-width: 767px) {
+  body #domveli-home .dv-promo-banners {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 300px;
+    margin: 14px 0 18px;
+  }
+
+  body #domveli-home .dv-promo-card--1 .dv-promo-description {
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  body #domveli-home .dv-catstrip {
+    padding-bottom: 22px;
+  }
+
+  /* Mobil: kategórie sa posúvajú do strany */
+  body #domveli-home .dv-catstrip-list {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  body #domveli-home .dv-catstrip-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  body #domveli-home .dv-catstrip-item {
+    flex: 0 0 84px;
+    scroll-snap-align: start;
+  }
+
+  body #domveli-home .dv-catstrip-circle {
+    width: 72px;
+    height: 72px;
+  }
+
+  body #domveli-home .dv-catstrip-name {
+    font-size: 11.5px;
+  }
+}
