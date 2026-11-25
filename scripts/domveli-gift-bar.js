@@ -59,7 +59,7 @@
 
     bar.classList.add('is-fixed');
     const wrap = document.querySelector('.overall-wrapper');
-    if (wrap) wrap.style.paddingTop = bar.offsetHeight + 'px';
+    if (wrap) wrap.style.setProperty('padding-top', bar.offsetHeight + 'px', 'important');
     onScroll();
     // Prilepené menu pri zmene okna maže „top“ hlavičky, preto ešte raz po ňom.
     requestAnimationFrame(onScroll);
