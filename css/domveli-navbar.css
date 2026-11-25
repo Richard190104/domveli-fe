@@ -563,6 +563,70 @@ input.btn.btn-primary:focus-visible {
   }
 }
 
+/* Pásik úplne hore: darček k nákupu nad 80 € (vkladá domveli-gift-bar.js) */
+.dv-gift-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  color: #f5eee5;
+  background: #211913;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.dv-gift-bar svg {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #d9b478;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dv-gift-bar b {
+  color: #d9b478;
+  font-weight: 700;
+}
+
+@media (max-width: 767px) {
+  .dv-gift-bar {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Mobil: pevný nad pevnou hlavičkou, po zrolovaní sa schová */
+.dv-gift-bar.is-fixed {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1003;
+  box-sizing: border-box;
+  transition: transform .2s ease;
+}
+
+.dv-gift-bar.is-fixed.is-hidden {
+  transform: translateY(-100%);
+}
+
+.dv-gift-bar.is-fixed ~ #header {
+  transition: top .2s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-gift-bar.is-fixed,
+  .dv-gift-bar.is-fixed ~ #header {
+    transition: none;
+  }
+}
+
 /* Košík v prilepenom páse (vkladá domveli-sticky-menu.js) */
 .dv-sticky-cart {
   display: none;
