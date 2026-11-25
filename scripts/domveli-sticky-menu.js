@@ -4,7 +4,7 @@
 (() => {
   'use strict';
 
-  const MQ = window.matchMedia('(min-width: 768px)');
+  const MQ = window.matchMedia('(min-width: 992px)');
 
   function apply() {
     const header = document.getElementById('header');
