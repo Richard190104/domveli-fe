@@ -204,6 +204,39 @@ body #domveli-home .dv-catstrip-item:hover .dv-catstrip-name {
   }
 }
 
+/* TOP výber v obľúbených: menšia karta a fotka */
+body #domveli-home .dv-set-card--featured {
+  flex-basis: calc(((100% - 32px) / 3) * 1.2);
+}
+
+body #domveli-home .dv-set-card--featured .dv-set-image-wrap {
+  height: 235px;
+}
+
+body #domveli-home .dv-set-card--featured .dv-set-name {
+  font-size: 17px;
+}
+
+body #domveli-home .dv-set-card--featured .dv-set-price {
+  font-size: 23px;
+}
+
+@media (max-width: 900px) {
+  body #domveli-home .dv-set-card--featured {
+    flex-basis: calc(((100% - 16px) / 2) * 1.1);
+  }
+}
+
+@media (max-width: 600px) {
+  body #domveli-home .dv-set-card--featured {
+    flex-basis: 88%;
+  }
+
+  body #domveli-home .dv-set-card--featured .dv-set-image-wrap {
+    height: 210px;
+  }
+}
+
 /* Mobil: doladenie (pásik istôt pod pevnou lištou, bez medzery, menší text banneru) */
 @media (max-width: 767px) {
   body.in-index .dv-trust-strip {
