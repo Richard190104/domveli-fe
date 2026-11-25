@@ -131,6 +131,72 @@ body.dv-cart-open {
   font-weight: 800;
 }
 
+.dv-cart-free[hidden] {
+  display: none !important;
+}
+
+.dv-cart-free {
+  margin-top: 20px;
+  padding: 16px 18px;
+  border: 1px solid #eadfce;
+  background: #f7f2eb;
+}
+
+.dv-cart-free__txt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #30241c;
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+.dv-cart-free__txt svg {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: #b98d4c;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dv-cart-free__txt b {
+  color: #92692f;
+}
+
+.dv-cart-free__bar {
+  height: 6px;
+  margin-top: 12px;
+  background: #e6dccd;
+}
+
+.dv-cart-free__bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: #c99a56;
+  transition: width .4s ease;
+}
+
+.dv-cart-free.is-done {
+  border-color: #d3e4c5;
+  background: #edf5e7;
+}
+
+.dv-cart-free.is-done svg {
+  stroke: #5a8738;
+}
+
+.dv-cart-free.is-done .dv-cart-free__txt b {
+  color: #4d7a2e;
+}
+
+.dv-cart-free.is-done .dv-cart-free__bar i {
+  background: #6f9a4c;
+}
+
 .dv-cart-actions {
   display: grid;
   grid-template-columns: 1fr 1fr;
