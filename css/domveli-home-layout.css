@@ -58,6 +58,11 @@ body #domveli-home .dv-promo-card--1 .dv-promo-uptitle {
   margin-bottom: 10px;
 }
 
+/* Sekcia „Vianočné kúzlo začína tu“ sa nezobrazuje (kategórie sú v páse pod bannerom) */
+body #domveli-home > .dv-categories {
+  display: none !important;
+}
+
 /* Pás kategórií: béžový panel nadväzujúci na banner */
 body #domveli-home .dv-catstrip {
   margin: 0 var(--dv-section-padding) 32px;
