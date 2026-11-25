@@ -331,6 +331,55 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   }
 
   /* ============================================================
+     5c. PÁS CENCÚLE NA MIERU (otvára konfigurátor z domveli-cencule.js)
+     ============================================================ */
+
+  const CC_ICONS = {
+    link: '<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/>',
+    tag: '<path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+    cart: '<circle cx="9" cy="20" r="1"/><circle cx="19" cy="20" r="1"/><path d="M2 3h2l3 12h12l3-9H5"/>'
+  };
+
+  function renderCenculeBand(root) {
+    if (!root || root.querySelector(':scope > .dv-ccband')) return;
+
+    const section = node('section', 'dv-section dv-ccband');
+    section.setAttribute('aria-label', 'Cencúle na mieru');
+    section.innerHTML =
+      '<div class="dv-ccband-img"><img src="https://richard190104.github.io/domveli-be/images/svetelne-zavesy.webp" alt="Vianočné LED cencúle na streche domu" loading="lazy"><span class="dv-ccband-badge">NOVINKA</span></div>' +
+      '<div class="dv-ccband-body">' +
+        '<div class="dv-kicker">Cencúle na mieru</div>' +
+        '<h2 class="dv-ccband-title">Presne na dĺžku vašej strechy</h2>' +
+        '<p class="dv-ccband-text">Zadajte, koľko metrov chcete osvetliť. Zostavíme vám to z prepojiteľných sád za najlepšiu cenu a celú zostavu vložíte do košíka jedným klikom.</p>' +
+        '<form class="dv-ccband-form" novalidate>' +
+          '<label class="dv-ccband-inp"><span>Dĺžka strechy</span><input type="number" inputmode="decimal" min="1" max="300" step="0.5" placeholder="20" aria-label="Dĺžka strechy v metroch"><b>m</b></label>' +
+          '<button type="submit" class="dv-ccband-go">Vypočítať zostavu →</button>' +
+        '</form>' +
+        '<div class="dv-ccband-chips">' + [10, 20, 30, 40, 60].map(m => '<button type="button" data-len="' + m + '">' + m + ' m</button>').join('') + '</div>' +
+        '<div class="dv-ccband-bens">' +
+          [['link', 'Prepojiteľné sady, jedna zásuvka'], ['tag', 'Najvýhodnejšia kombinácia'], ['cart', 'Celá zostava do košíka naraz']]
+            .map(([ic, tx]) => '<div class="dv-ccband-ben"><svg viewBox="0 0 24 24" aria-hidden="true">' + CC_ICONS[ic] + '</svg><span>' + tx + '</span></div>').join('') +
+        '</div>' +
+      '</div>';
+
+    const openCalc = len => {
+      if (window.DomveliCencule && window.DomveliCencule.open) window.DomveliCencule.open(len);
+      else location.hash = 'cencule-na-mieru';
+    };
+
+    section.querySelector('form').addEventListener('submit', e => {
+      e.preventDefault();
+      openCalc(section.querySelector('input').value);
+    });
+    section.querySelectorAll('[data-len]').forEach(b => b.addEventListener('click', () => {
+      section.querySelector('input').value = b.dataset.len;
+      openCalc(b.dataset.len);
+    }));
+
+    root.appendChild(section);
+  }
+
+  /* ============================================================
      6. VÝHODNÉ SETY
      ============================================================ */
 
