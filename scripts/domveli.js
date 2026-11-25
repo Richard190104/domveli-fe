@@ -1216,6 +1216,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderDeals();
     renderInspirationBlog(root);
     reconcileStatic(root);
+    addSetsPoints(root);
     applySectionOrder(root);
   }
 
