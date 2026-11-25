@@ -521,17 +521,20 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
         product.price
       );
 
-      prices.appendChild(price);
-
-      if (product.oldPrice) {
-        const oldPrice = createElement(
-          'del',
-          'dv-set-old-price',
-          product.oldPrice
+      if (product.oldPrice && saving > 0.005) {
+        const separately = createElement(
+          'span',
+          'dv-set-separately',
+          'Samostatne '
         );
 
-        prices.appendChild(oldPrice);
+        separately.appendChild(
+          createElement('del', 'dv-set-old-price', product.oldPrice)
+        );
+        prices.appendChild(separately);
       }
+
+      prices.appendChild(price);
 
       const button = createElement(
         'a',
