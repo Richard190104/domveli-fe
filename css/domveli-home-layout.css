@@ -242,7 +242,7 @@ body #domveli-home .dv-favorites .dv-set-image-wrap,
 body #domveli-home .dv-favorites .dv-set-card--featured .dv-set-image-wrap {
   height: auto;
   aspect-ratio: 4 / 3;
-  background: #fff;
+  background: transparent;
 }
 
 body #domveli-home .dv-favorites .dv-set-image {
