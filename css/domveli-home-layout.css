@@ -256,6 +256,234 @@ body #domveli-home .dv-favorites .dv-set-image {
   }
 }
 
+/* Banner: druhé tlačidlo „Cencúle na mieru“ (otvára konfigurátor) */
+body #domveli-home .dv-promo-card--1 .dv-promo-actions {
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-extra {
+  display: inline-flex !important;
+  padding: 13px 18px;
+  border: 1px solid #d9b478;
+  background: rgba(18, 12, 9, .35);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-extra span {
+  padding: 0;
+  border: 0;
+}
+
+body #domveli-home .dv-promo-card--1 .dv-promo-extra:hover {
+  background: rgba(201, 154, 86, .25);
+}
+
+/* Pás Cencúle na mieru */
+body #domveli-home .dv-ccband {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  margin: 0 var(--dv-section-padding) 48px;
+  background: #241c17;
+  color: #fff;
+  overflow: hidden;
+}
+
+body #domveli-home .dv-ccband-img {
+  position: relative;
+  min-height: 380px;
+}
+
+body #domveli-home .dv-ccband-img img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+body #domveli-home .dv-ccband-badge {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  padding: 7px 12px;
+  background: #c99a56;
+  color: #211913;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+body #domveli-home .dv-ccband-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 44px clamp(24px, 4vw, 56px);
+  min-width: 0;
+}
+
+body #domveli-home .dv-ccband .dv-kicker {
+  color: #e5b878;
+  margin-bottom: 10px;
+}
+
+body #domveli-home .dv-ccband-title {
+  margin: 0 0 14px;
+  color: #f5dfb8;
+  font-family: Georgia, serif;
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+body #domveli-home .dv-ccband-text {
+  margin: 0 0 24px;
+  color: #e5dbd0;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+body #domveli-home .dv-ccband-form {
+  display: flex;
+  max-width: 460px;
+  margin: 0;
+}
+
+body #domveli-home .dv-ccband-inp {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  padding: 0 14px;
+  background: #fff;
+}
+
+body #domveli-home .dv-ccband-inp span {
+  color: #786f66;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+body #domveli-home .dv-ccband-inp input {
+  flex: 1;
+  width: 60px;
+  min-width: 0;
+  height: auto;
+  margin: 0;
+  padding: 14px 8px;
+  border: 0 !important;
+  outline: 0;
+  box-shadow: none !important;
+  background: transparent;
+  color: #30251f;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+body #domveli-home .dv-ccband-inp b {
+  color: #786f66;
+  font-size: 16px;
+}
+
+body #domveli-home .dv-ccband-go {
+  margin: 0;
+  padding: 0 22px;
+  border: 0;
+  background: linear-gradient(135deg, #d5ac71, #ae7d42);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+body #domveli-home .dv-ccband-go:hover {
+  filter: brightness(1.1);
+}
+
+body #domveli-home .dv-ccband-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 26px;
+}
+
+body #domveli-home .dv-ccband-chips button {
+  margin: 0;
+  padding: 6px 12px;
+  border: 1px solid rgba(201, 154, 86, .6);
+  background: transparent;
+  color: #f5e9d6;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+body #domveli-home .dv-ccband-chips button:hover {
+  background: rgba(201, 154, 86, .25);
+}
+
+body #domveli-home .dv-ccband-bens {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(201, 160, 106, .35);
+}
+
+body #domveli-home .dv-ccband-ben {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #e5dbd0;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+body #domveli-home .dv-ccband-ben svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin-top: 1px;
+  fill: none;
+  stroke: #d9b478;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 767px) {
+  body #domveli-home .dv-promo-card--1 .dv-promo-extra {
+    padding: 11px 14px;
+    font-size: 11px;
+  }
+
+  body #domveli-home .dv-ccband {
+    grid-template-columns: 1fr;
+    margin-bottom: 32px;
+  }
+
+  body #domveli-home .dv-ccband-img {
+    min-height: 200px;
+  }
+
+  body #domveli-home .dv-ccband-body {
+    padding: 28px 20px;
+  }
+
+  body #domveli-home .dv-ccband-go {
+    padding: 0 14px;
+    font-size: 12px;
+  }
+
+  body #domveli-home .dv-ccband-bens {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
 /* Mobil: doladenie (pásik istôt pod pevnou lištou, bez medzery, menší text banneru) */
 @media (max-width: 767px) {
   body.in-index .dv-trust-strip {

@@ -380,6 +380,15 @@
     else openFromHash();
   }
 
+  // Otvorenie z iných skriptov (pás na hlavnej stránke), voliteľne s dĺžkou v metroch
+  window.DomveliCencule = {
+    open(len) {
+      open(null);
+      const v = parseFloat(String(len || '').replace(',', '.'));
+      if (v > 0) setL(v);
+    }
+  };
+
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
