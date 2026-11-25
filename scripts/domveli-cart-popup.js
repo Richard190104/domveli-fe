@@ -61,6 +61,14 @@
           </div>
         </div>
 
+        <div class="dv-cart-free" hidden>
+          <div class="dv-cart-free__txt">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1" y="6" width="14" height="10" rx="1"/><path d="M15 10h4l3 3v3h-7"/><circle cx="5.5" cy="17.5" r="1.8"/><circle cx="18.5" cy="17.5" r="1.8"/></svg>
+            <span></span>
+          </div>
+          <div class="dv-cart-free__bar"><i></i></div>
+        </div>
+
         <div class="dv-cart-actions">
           <button type="button" class="dv-cart-continue">
             ← Pokračovať v nákupe
