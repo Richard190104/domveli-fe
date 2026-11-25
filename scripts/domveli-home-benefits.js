@@ -12,7 +12,7 @@
   };
 
   const ITEMS = [
-    ['truck', 'Doprava od 3,90 €', 'Nad 100 € zadarmo'],
+    ['truck', 'Doprava od 3,90 €', 'Nad 60 € zadarmo'],
     ['card', 'Platba kartou alebo dobierkou', 'Vyberte si, čo vám vyhovuje'],
     ['back', 'Vrátenie do 14 dní', 'Jednoduché vrátenie tovaru'],
     ['box', 'Odosielame nasledujúci pracovný deň', 'Vybavíme čo najrýchlejšie']
