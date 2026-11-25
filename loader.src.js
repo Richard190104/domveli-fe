@@ -11,6 +11,7 @@
     { css: 'css/domveli-cart-popup.css' },
     { css: 'css/domveli-checkout.css' },
     { css: 'css/domveli-footer.css' },
+    { css: 'css/domveli-home-benefits.css', when: 'in-index' },
     { css: 'css/domveli-listing.css' },
     { css: 'css/domveli-navbar.css' },
     { css: 'css/domveli-notifications.css' },
