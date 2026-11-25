@@ -383,6 +383,59 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
      6. VÝHODNÉ SETY
      ============================================================ */
 
+  // „53,90 €“ -> 53.9
+  function euro(value) {
+    const n = parseFloat(String(value || '').replace(/[^\d,.-]/g, '').replace(',', '.'));
+    return Number.isFinite(n) ? n : 0;
+  }
+
+  // 5.8 -> „5,80 €“
+  function formatEuro(value) {
+    return value.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  // Tri dôvody pod nadpisom sekcie setov (najvyššia úspora sa počíta z configu).
+  function addSetsPoints(root) {
+    const section = Array.from(root.children).find(
+      child => child.classList.contains('dv-sets') &&
+        !child.classList.contains('dv-favorites') &&
+        !child.classList.contains('dv-deals')
+    );
+    const intro = section && section.querySelector(':scope > .dv-sets-intro');
+    const products = (DOMVELI_CONFIG.sets && DOMVELI_CONFIG.sets.products) || [];
+
+    if (!intro || intro.querySelector('.dv-sets-points')) return;
+
+    section.classList.add('dv-bundles');
+
+    const best = products.reduce(
+      (max, p) => Math.max(max, euro(p.oldPrice) - euro(p.price)),
+      0
+    );
+    const points = [
+      best > 0.005 ? 'Ušetríte až ' + formatEuro(best) + ' na sete' : 'Výhodnejšie ako samostatne',
+      'Farby a štýl ladia dokopy',
+      'Všetko v jednej zásielke'
+    ];
+    const list = createElement('ul', 'dv-sets-points');
+
+    points.forEach(text => {
+      const item = createElement('li', '', '');
+      item.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+      item.appendChild(document.createTextNode(text));
+      list.appendChild(item);
+    });
+
+    const subtitle = intro.querySelector('.dv-sets-subtitle');
+
+    if (subtitle) {
+      subtitle.textContent = 'Zladené kúsky v jednom balení. Lacnejšie, ako keby ste ich kupovali samostatne.';
+      subtitle.insertAdjacentElement('afterend', list);
+    } else {
+      intro.appendChild(list);
+    }
+  }
+
   function renderSets() {
     const root = document.getElementById('domveli-home');
     const config = DOMVELI_CONFIG.sets;
