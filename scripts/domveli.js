@@ -970,6 +970,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
   const SECTION_ORDER = [
     'dv-promo-banners',
+    'dv-catstrip',
 
     'dv-sets',
     'dv-favorites',
