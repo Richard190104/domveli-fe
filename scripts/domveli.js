@@ -889,7 +889,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
     const section = node('section', 'dv-section dv-reviews');
     const intro = node('div', 'dv-rev-intro');
-    const score = node('div', 'dv-rev-score');
+    const score = node('ul', 'dv-rev-points');
     const all = link(HEUREKA_URL, 'dv-rev-all');
 
     all.textContent = 'Všetky recenzie na Heureke →';
