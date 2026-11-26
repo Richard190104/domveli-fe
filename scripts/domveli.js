@@ -1209,6 +1209,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
     'dv-deals',
     'dv-recommend',
+    'dv-reviews',
 
     'dv-how',
     'dv-feature',
