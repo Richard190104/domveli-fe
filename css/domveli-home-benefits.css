@@ -1,8 +1,10 @@
 /* DOMVELI | Pásik istôt pod horným menu (homepage) | v1.0 */
-body.in-index .dv-trust-strip {
-  width: 100%;
-  background: #f8f5f0;
-  border-bottom: 1px solid #e5dbce;
+body.in-index #domveli-home .dv-trust-strip {
+  width: auto;
+  margin: 24px var(--dv-section-padding) 28px;
+  background: #fff8e9;
+  border: 1px solid #c99a56;
+  box-shadow: 0 4px 14px rgba(85, 60, 28, .08);
   box-sizing: border-box;
 }
 
@@ -12,7 +14,7 @@ body.in-index .dv-trust-strip .dv-trust-strip__list {
   gap: 12px;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 10px 16px;
+  padding: 18px 16px;
   list-style: none;
   box-sizing: border-box;
 }
@@ -75,6 +77,11 @@ body.in-index #domveli-home .dv-trust-strip__item::before {
 }
 
 @media (max-width: 767px) {
+  body.in-index #domveli-home .dv-trust-strip {
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
   body.in-index .dv-trust-strip .dv-trust-strip__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
