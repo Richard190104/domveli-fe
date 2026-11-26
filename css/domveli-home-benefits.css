@@ -77,6 +77,11 @@ body.in-index #domveli-home .dv-trust-strip__item::before {
 }
 
 @media (max-width: 767px) {
+  body.in-index #domveli-home .dv-trust-strip {
+    margin-top: 18px;
+    margin-bottom: 20px;
+  }
+
   body.in-index .dv-trust-strip .dv-trust-strip__list {
     display: grid;
     grid-template-columns: 1fr 1fr;
