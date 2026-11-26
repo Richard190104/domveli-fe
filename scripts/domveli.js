@@ -268,6 +268,11 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
           slide.button || 'OBJAVIŤ KOLEKCIU →';
 
         button.href = slide.link || '#';
+
+        const extra = content.querySelector('.dv-promo-extra');
+        if (extra && bannerIndex === 0) {
+          extra.style.display = slide.link === '/vianocna-vyzdoba-vonku/' ? '' : 'none';
+        }
       }
 
       if (slides.length > 1) {
@@ -1200,6 +1205,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
   const SECTION_ORDER = [
     'dv-promo-banners',
+    'dv-trust-strip',
     'dv-catstrip',
 
     'dv-favorites',
