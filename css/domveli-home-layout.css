@@ -68,9 +68,12 @@ body.in-index .homepage-products-heading-1 {
 
 body #domveli-home .dv-recommend {
   display: block;
-  padding-top: 56px;
-  padding-bottom: 56px;
+  padding: 56px var(--dv-section-padding);
   background: #fff;
+}
+
+body #domveli-home .dv-rec-grid .p-code {
+  display: none !important;
 }
 
 body #domveli-home .dv-rec-head {
