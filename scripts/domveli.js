@@ -889,14 +889,19 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
     const section = node('section', 'dv-section dv-reviews');
     const intro = node('div', 'dv-rev-intro');
-    const score = node('div', 'dv-rev-score');
+    const score = node('ul', 'dv-rev-points');
     const all = link(HEUREKA_URL, 'dv-rev-all');
 
     all.textContent = 'Všetky recenzie na Heureke →';
     all.target = '_blank';
     all.rel = 'noopener';
 
-    append(score, node('b', '', '100 %'), node('span', '', 'zákazníkov odporúča náš obchod'));
+    ['Rýchla a ochotná komunikácia', 'Rýchle doručenie', 'Overené nákupy'].forEach(text => {
+      const item = node('li');
+      item.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+      item.appendChild(document.createTextNode(text));
+      score.appendChild(item);
+    });
     append(
       intro,
       node('span', 'dv-kicker', 'NÁJDETE NÁS AJ NA HEUREKE'),
