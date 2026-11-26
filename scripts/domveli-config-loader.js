@@ -16,10 +16,13 @@ async function fetchConfig() {
 
   try {
     let response;
-    try {
-      response = window.__dvConfigFetch ? await window.__dvConfigFetch : null;
-    } catch { response = null; }
+    // Predstiahnutú požiadavku si vezme len jeden modul. Hneď ju vynulujeme,
+    // inak by ju dva moduly čítali naraz ("body stream already read").
+    const shared = window.__dvConfigFetch;
     window.__dvConfigFetch = null;
+    try {
+      response = shared ? await shared : null;
+    } catch { response = null; }
     if (!response || !response.ok) {
       response = await fetch(CONFIG_URL, {
         cache: 'no-cache',
