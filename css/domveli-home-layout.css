@@ -313,6 +313,8 @@ body #domveli-home .dv-rev-score {
 }
 
 body #domveli-home .dv-rev-score b {
+  flex: none;
+  white-space: nowrap;
   color: #211913;
   font-size: 42px;
   font-weight: 800;
