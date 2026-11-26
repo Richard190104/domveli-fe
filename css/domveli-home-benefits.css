@@ -68,6 +68,12 @@ body.in-index .dv-trust-strip .dv-trust-strip__txt small {
   line-height: 1.4;
 }
 
+/* Pásik nepoužíva odrážky zo štýlov obsahu Shoptetu. */
+body.in-index #domveli-home .dv-trust-strip__item::before {
+  content: none !important;
+  display: none !important;
+}
+
 @media (max-width: 767px) {
   body.in-index .dv-trust-strip .dv-trust-strip__list {
     display: grid;
