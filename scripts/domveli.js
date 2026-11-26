@@ -1265,6 +1265,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderFavorites();
     renderCenculeBand(root);
     renderDeals();
+    renderRecommended(root);
     renderInspirationBlog(root);
     reconcileStatic(root);
     addSetsPoints(root);
