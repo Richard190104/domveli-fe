@@ -271,7 +271,11 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
         const extra = content.querySelector('.dv-promo-extra');
         if (extra && bannerIndex === 0) {
-          extra.style.display = slide.link === '/vianocna-vyzdoba-vonku/' ? '' : 'none';
+          if (slide.link === '/vianocna-vyzdoba-vonku/') {
+            extra.style.removeProperty('display');
+          } else {
+            extra.style.setProperty('display', 'none', 'important');
+          }
         }
       }
 
