@@ -1240,10 +1240,10 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     'dv-recommend',
     'dv-reviews',
 
-    'dv-how',
-    'dv-feature',
     'dv-blog',
-        'dv-seo',
+    'dv-feature',
+    'dv-how',
+    'dv-seo',
 
     'dv-story'
   ];
