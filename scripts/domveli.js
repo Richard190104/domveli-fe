@@ -839,11 +839,15 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       if (!id || seen.has(id) || product.classList.contains('clone')) return;
       seen.add(id);
 
-      product.classList.remove('inactive', 'active');
-      product.removeAttribute('style');
-      product.removeAttribute('aria-hidden');
-      product.removeAttribute('tabindex');
-      grid.appendChild(product);
+      // Kópia: pôvodný Shoptet posúvač pri zmene šírky okna preskladá svoje
+      // položky a vytiahol by produkty z našej mriežky.
+      const copy = product.cloneNode(true);
+
+      copy.classList.remove('inactive', 'active');
+      copy.removeAttribute('style');
+      copy.removeAttribute('aria-hidden');
+      copy.removeAttribute('tabindex');
+      grid.appendChild(copy);
     });
 
     if (!grid.children.length) return;
