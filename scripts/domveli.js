@@ -874,7 +874,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   const REVIEWS = [
     {
       text: '„Potrebovala som poradiť s výberom tovaru… Odpovedali mi veľmi rýchlo, ochotne poradili a pomohli mi s výberom. Skvelý prístup k zákazníkovi.“',
-      tags: ['Tovar dorazil za 2 dni', 'Výborná komunikácia'],
+      tags: ['Výborná komunikácia'],
       name: 'Lívia V.'
     },
     {
