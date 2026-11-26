@@ -1,8 +1,10 @@
 /* DOMVELI | Pásik istôt pod horným menu (homepage) | v1.0 */
-body.in-index .dv-trust-strip {
-  width: 100%;
-  background: #f8f5f0;
-  border-bottom: 1px solid #e5dbce;
+body.in-index #domveli-home .dv-trust-strip {
+  width: auto;
+  margin: 24px var(--dv-section-padding) 28px;
+  background: #fff8e9;
+  border: 1px solid #c99a56;
+  box-shadow: 0 4px 14px rgba(85, 60, 28, .08);
   box-sizing: border-box;
 }
 
