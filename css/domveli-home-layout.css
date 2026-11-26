@@ -305,23 +305,41 @@ body #domveli-home .dv-rev-heading {
   line-height: 1.1;
 }
 
-body #domveli-home .dv-rev-score {
+body #domveli-home .dv-rev-points {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+body #domveli-home .dv-rev-points li {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 10px;
-  margin: 0 0 6px;
+  margin: 0;
+  padding: 0;
+  color: #30251e;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.4;
 }
 
-body #domveli-home .dv-rev-score b {
+body #domveli-home .dv-rev-points li::before {
+  content: none;
+}
+
+body #domveli-home .dv-rev-points svg {
   flex: none;
-  white-space: nowrap;
-  color: #211913;
-  font-size: 42px;
-  font-weight: 800;
-  line-height: 1;
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #b18a52;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-body #domveli-home .dv-rev-score span,
 body #domveli-home .dv-rev-lead {
   color: #73685e;
   font-size: 14px;
