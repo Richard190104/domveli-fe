@@ -590,6 +590,11 @@ body #domveli-home .dv-catstrip-item:hover .dv-catstrip-name {
   }
 }
 
+/* Obľúbené produkty: karty nezasahujú do medzery pod kategóriami. */
+body #domveli-home .dv-favorites .dv-sets-area {
+  margin-top: 0;
+}
+
 /* TOP výber v obľúbených: menšia karta a fotka */
 body #domveli-home .dv-set-card--featured {
   flex-basis: calc(((100% - 32px) / 3) * 1.2);
