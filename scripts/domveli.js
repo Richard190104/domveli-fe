@@ -822,7 +822,17 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     const grid = node('div', 'dv-rec-grid');
     const seen = new Set();
 
-    list.querySelectorAll('.product').forEach(product => {
+    // Shoptet pred prvý aktívny produkt vkladá kópie posledných položiek.
+    // Začneme skutočným začiatkom posúvača, až potom odstránime duplicity.
+    const products = Array.from(list.querySelectorAll('.product'));
+    const firstActive = products.findIndex(product =>
+      product.classList.contains('active') && !product.classList.contains('clone')
+    );
+    const orderedProducts = firstActive > 0
+      ? products.slice(firstActive).concat(products.slice(0, firstActive))
+      : products;
+
+    orderedProducts.forEach(product => {
       const card = product.querySelector('.p[data-micro-product-id]');
       const id = card && card.dataset.microProductId;
 
