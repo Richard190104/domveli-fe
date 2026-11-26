@@ -797,6 +797,55 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
 
 
   /* ============================================================
+     6c. ODPORÚČAME
+     Produkty vyberá Shoptet admin (Produkty > Titulná strana > Akčný tovar).
+     Shoptet ich vykreslí ako slider nad stránkou, tu sa presunú do mriežky.
+     Ceny, sklad a tlačidlo do košíka ostávajú od Shoptetu.
+     ============================================================ */
+
+  function renderRecommended(root) {
+    if (!root || root.querySelector(':scope > .dv-recommend')) return;
+
+    const list = document.querySelector('.products.homepage-products-1');
+    if (!list) return;
+
+    const holder = list.closest('.products-wrapper') || list;
+    const grid = node('div', 'dv-rec-grid');
+    const seen = new Set();
+
+    list.querySelectorAll('.product').forEach(product => {
+      const card = product.querySelector('.p[data-micro-product-id]');
+      const id = card && card.dataset.microProductId;
+
+      if (!id || seen.has(id) || product.classList.contains('clone')) return;
+      seen.add(id);
+
+      product.classList.remove('inactive', 'active');
+      product.removeAttribute('style');
+      product.removeAttribute('aria-hidden');
+      product.removeAttribute('tabindex');
+      grid.appendChild(product);
+    });
+
+    if (!grid.children.length) return;
+
+    const section = node('section', 'dv-section dv-recommend');
+    const head = node('div', 'dv-rec-head');
+
+    append(
+      head,
+      node('span', 'dv-kicker', 'VYBRALI SME PRE VÁS'),
+      node('h2', 'dv-rec-heading', 'Odporúčame')
+    );
+    append(section, head, grid);
+    root.appendChild(section);
+
+    // Pôvodný Shoptet slider a jeho nadpis sa skryjú.
+    document.querySelectorAll('.homepage-products-heading-1').forEach(title => title.remove());
+    holder.remove();
+  }
+
+  /* ============================================================
      7. AKO TO FUNGUJE
      ============================================================ */
 
@@ -1097,6 +1146,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
         'dv-categories',
 
     'dv-deals',
+    'dv-recommend',
 
     'dv-how',
     'dv-feature',
@@ -1215,6 +1265,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     renderFavorites();
     renderCenculeBand(root);
     renderDeals();
+    renderRecommended(root);
     renderInspirationBlog(root);
     reconcileStatic(root);
     addSetsPoints(root);

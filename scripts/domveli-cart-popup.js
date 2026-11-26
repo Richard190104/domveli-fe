@@ -198,6 +198,7 @@ window.DomveliCartPopup = { open: openPopup };
 document.addEventListener('click', event => {
   const button = event.target.closest(
     '#products .add-to-cart-button, ' +
+    '.dv-recommend .add-to-cart-button, ' +
     'body.type-product .add-to-cart-button'
   );
 
