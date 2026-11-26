@@ -642,6 +642,21 @@ body #domveli-home .dv-favorites .dv-set-image {
   }
 }
 
+/* Akcie: celé produktové fotky bez orezania */
+body #domveli-home .dv-deals .dv-set-image-wrap {
+  height: auto;
+  aspect-ratio: 4 / 3;
+  background: #fff;
+}
+
+body #domveli-home .dv-deals .dv-set-image {
+  object-fit: contain !important;
+}
+
+body #domveli-home .dv-deals .dv-set-product:hover .dv-set-image {
+  transform: none;
+}
+
 /* Banner: druhé tlačidlo „Cencúle na mieru“ (otvára konfigurátor) */
 body #domveli-home .dv-promo-card--1 .dv-promo-actions {
   flex-wrap: wrap;
