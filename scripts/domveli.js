@@ -879,7 +879,7 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
     },
     {
       text: '„Rýchle doručenie, tovar prišiel v poriadku. Som spokojná a odporúčam.“',
-      tags: ['Tovar dorazil za 4 dni', 'Rýchle doručenie'],
+      tags: ['Rýchle doručenie'],
       name: 'Jana M.'
     }
   ];
