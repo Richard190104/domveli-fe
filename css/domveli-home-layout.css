@@ -58,6 +58,227 @@ body #domveli-home .dv-promo-card--1 .dv-promo-uptitle {
   margin-bottom: 10px;
 }
 
+/* ==========================================================
+   Odporúčame (produkty z Titulnej strany Shoptetu, presúva domveli.js)
+   ========================================================== */
+body.in-index .products-wrapper:has(> .homepage-products-1),
+body.in-index .homepage-products-heading-1 {
+  display: none !important;
+}
+
+body #domveli-home .dv-recommend {
+  display: block;
+  padding-top: 56px;
+  padding-bottom: 56px;
+  background: #fff;
+}
+
+body #domveli-home .dv-rec-head {
+  margin: 0 0 26px;
+}
+
+body #domveli-home .dv-rec-heading {
+  margin: 10px 0 0;
+  color: #30251e;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+body #domveli-home .dv-rec-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid #eee6dc;
+  border-left: 1px solid #eee6dc;
+}
+
+body #domveli-home .dv-rec-grid > .product {
+  display: flex;
+  width: auto !important;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  float: none;
+  border-right: 1px solid #eee6dc;
+  border-bottom: 1px solid #eee6dc;
+  background: #fff;
+  transition: box-shadow .2s ease;
+}
+
+body #domveli-home .dv-rec-grid > .product:hover {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 12px 30px rgba(48, 37, 30, .10);
+}
+
+body #domveli-home .dv-rec-grid .p {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 18px 18px 20px;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+body #domveli-home .dv-rec-grid .p > .image {
+  display: block;
+  aspect-ratio: 4 / 3;
+  margin: 0 0 12px;
+  overflow: hidden;
+}
+
+body #domveli-home .dv-rec-grid .p > .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+body #domveli-home .dv-rec-grid .p-in {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 0;
+}
+
+body #domveli-home .dv-rec-grid .p-in-in {
+  padding: 0;
+}
+
+body #domveli-home .dv-rec-grid .name {
+  display: -webkit-box;
+  min-height: 42px;
+  margin: 0 0 8px;
+  overflow: hidden;
+  color: #30251e;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: none;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+body #domveli-home .dv-rec-grid .name:hover {
+  color: #92692f;
+}
+
+body #domveli-home .dv-rec-grid .ratings-wrapper {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+body #domveli-home .dv-rec-grid .stars-placeholder,
+body #domveli-home .dv-rec-grid .p-desc,
+body #domveli-home .dv-rec-grid .availability-amount {
+  display: none !important;
+}
+
+body #domveli-home .dv-rec-grid .availability {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+body #domveli-home .dv-rec-grid .p-bottom {
+  margin-top: auto;
+  padding: 14px 0 0;
+}
+
+body #domveli-home .dv-rec-grid .p-bottom > [data-micro="offer"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+body #domveli-home .dv-rec-grid .prices {
+  margin: 0;
+  padding: 0;
+}
+
+body #domveli-home .dv-rec-grid .price-final,
+body #domveli-home .dv-rec-grid .price-final strong {
+  color: #211913;
+  font-family: 'Mulish', Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+body #domveli-home .dv-rec-grid .p-tools {
+  margin: 0;
+  padding: 0;
+}
+
+body #domveli-home .dv-rec-grid .p-tools form {
+  margin: 0;
+}
+
+body #domveli-home .dv-rec-grid .add-to-cart-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 0;
+  margin: 0;
+  padding: 11px 14px;
+  border: 0;
+  background: #b98d4c !important;
+  color: #fff !important;
+  font-size: 13px;
+  font-weight: 750;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+body #domveli-home .dv-rec-grid .add-to-cart-button:hover {
+  background: #98703a !important;
+}
+
+@media (max-width: 1100px) {
+  body #domveli-home .dv-rec-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  body #domveli-home .dv-recommend {
+    padding-top: 32px;
+    padding-bottom: 32px;
+  }
+
+  body #domveli-home .dv-rec-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  body #domveli-home .dv-rec-grid .p {
+    padding: 12px 10px 14px;
+  }
+
+  body #domveli-home .dv-rec-grid .name {
+    min-height: 36px;
+    font-size: 13px;
+  }
+
+  body #domveli-home .dv-rec-grid .p-bottom > [data-micro="offer"] {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  body #domveli-home .dv-rec-grid .price-final,
+  body #domveli-home .dv-rec-grid .price-final strong {
+    font-size: 18px;
+  }
+
+  body #domveli-home .dv-rec-grid .add-to-cart-button {
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+  }
+}
+
 /* Sekcia „Vianočné kúzlo začína tu“ sa nezobrazuje (kategórie sú v páse pod bannerom) */
 body #domveli-home > .dv-categories {
   display: none !important;
