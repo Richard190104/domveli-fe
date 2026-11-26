@@ -846,6 +846,68 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
   }
 
   /* ============================================================
+     6d. ČO HOVORIA ZÁKAZNÍCI (recenzie z Heureky)
+     Texty sú skutočné recenzie z obchody.heureka.sk/domveli-sk/recenze/.
+     Certifikát Overené zákazníkmi zatiaľ nemáme, preto ho tu neuvádzame.
+     ============================================================ */
+
+  const HEUREKA_URL = 'https://obchody.heureka.sk/domveli-sk/recenze/';
+  const REVIEWS = [
+    {
+      text: '„Potrebovala som poradiť s výberom tovaru… Odpovedali mi veľmi rýchlo, ochotne poradili a pomohli mi s výberom. Skvelý prístup k zákazníkovi.“',
+      tags: ['Tovar dorazil za 2 dni', 'Výborná komunikácia'],
+      name: 'Lívia V.'
+    },
+    {
+      text: '„Rýchle doručenie, tovar prišiel v poriadku. Som spokojná a odporúčam.“',
+      tags: ['Tovar dorazil za 4 dni', 'Rýchle doručenie'],
+      name: 'Jana M.'
+    }
+  ];
+
+  function renderReviews(root) {
+    if (!root || root.querySelector(':scope > .dv-reviews')) return;
+
+    const section = node('section', 'dv-section dv-reviews');
+    const intro = node('div', 'dv-rev-intro');
+    const score = node('div', 'dv-rev-score');
+    const all = link(HEUREKA_URL, 'dv-rev-all');
+
+    all.textContent = 'Všetky recenzie na Heureke →';
+    all.target = '_blank';
+    all.rel = 'noopener';
+
+    append(score, node('b', '', '100 %'), node('span', '', 'zákazníkov odporúča náš obchod'));
+    append(
+      intro,
+      node('span', 'dv-kicker', 'NÁJDETE NÁS AJ NA HEUREKE'),
+      node('h2', 'dv-rev-heading', 'Čo hovoria zákazníci'),
+      score,
+      node('p', 'dv-rev-lead', 'Recenzie z Heureky od zákazníkov, ktorí u nás nakúpili.'),
+      all
+    );
+
+    const cards = node('div', 'dv-rev-cards');
+
+    REVIEWS.forEach(review => {
+      const card = node('article', 'dv-rev-card');
+      const rec = node('span', 'dv-rev-rec');
+      const tags = node('div', 'dv-rev-tags');
+      const who = node('div', 'dv-rev-who');
+
+      rec.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10v11H3V10z"/><path d="M7 10l4-8a3 3 0 0 1 3 3v4h6a2 2 0 0 1 2 2.3l-1.4 8A2 2 0 0 1 18.6 21H7"/></svg>';
+      rec.appendChild(document.createTextNode('Odporúča obchod'));
+      review.tags.forEach(tag => tags.appendChild(node('span', '', tag)));
+      append(who, node('b', '', review.name), node('span', 'dv-rev-ok', '✓ Overený nákup'));
+      append(card, rec, node('p', 'dv-rev-text', review.text), tags, who);
+      cards.appendChild(card);
+    });
+
+    append(section, intro, cards);
+    root.appendChild(section);
+  }
+
+  /* ============================================================
      7. AKO TO FUNGUJE
      ============================================================ */
 
