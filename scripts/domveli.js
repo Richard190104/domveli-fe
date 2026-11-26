@@ -861,6 +861,21 @@ import { loadConfig } from './domveli-config-loader.js?v=1';
       node('h2', 'dv-rec-heading', 'Odporúčame')
     );
     append(section, head, grid);
+
+    // Mobil: ukáže sa prvých 8 produktov, ostatné po kliknutí (skrýva CSS).
+    if (grid.children.length > 8) {
+      const more = node('div', 'dv-rec-more');
+      const button = node('button', 'dv-rec-more-btn', 'Zobraziť ďalšie produkty ↓');
+
+      button.type = 'button';
+      button.addEventListener('click', () => {
+        grid.classList.add('is-open');
+        more.hidden = true;
+      });
+      more.appendChild(button);
+      section.appendChild(more);
+    }
+
     root.appendChild(section);
 
     // Pôvodný Shoptet slider a jeho nadpis sa skryjú.

@@ -457,6 +457,33 @@ body #domveli-home .dv-rev-ok {
   }
 }
 
+/* Odporúčame: na mobile prvých 8 produktov, ostatné po kliknutí */
+body #domveli-home .dv-rec-more {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  body #domveli-home .dv-rec-grid:not(.is-open) > .product:nth-child(n+9) {
+    display: none;
+  }
+
+  body #domveli-home .dv-rec-more:not([hidden]) {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+  }
+
+  body #domveli-home .dv-rec-more-btn {
+    padding: 13px 22px;
+    border: 1px solid #30251e;
+    background: transparent;
+    color: #30251e;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+
 /* SEO blok (svetlá verzia): vianočné LED osvetlenie a dekorácie */
 body #domveli-home .dv-seo.dv-seo2 {
   padding: 60px var(--dv-section-padding);
