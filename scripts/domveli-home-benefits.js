@@ -20,7 +20,7 @@
 
   function init() {
     if (document.querySelector('.dv-trust-strip')) return;
-    const anchor = document.querySelector('.content-wrapper') || document.getElementById('domveli-home');
+    const anchor = document.querySelector('#domveli-home > .dv-promo-banners');
     if (!anchor) return;
 
     const strip = document.createElement('div');
@@ -32,7 +32,7 @@
       '</li>'
     ).join('') + '</ul>';
 
-    anchor.insertAdjacentElement('beforebegin', strip);
+    anchor.insertAdjacentElement('afterend', strip);
   }
 
   if (document.readyState === 'loading') {
